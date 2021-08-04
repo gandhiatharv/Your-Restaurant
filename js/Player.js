@@ -3,7 +3,6 @@ class Player {
     this.index = null;
     this.distance = 0;
     this.name = null;
-    this.xPos = 0;
     this.place = 0;
     this.rank = null;
   }
@@ -26,9 +25,8 @@ class Player {
     database.ref(playerIndex).set({
       name:this.name,
       distance:this.distance,
-      place:this.place,
-      xPos:this.xPos
-    });
+      place:this.place
+        });
   }
 
   static getPlayerInfo(){

@@ -78,7 +78,10 @@ player.getFinishedPlayers();
         y = displayHeight-allPlayers[plr].distance;
         cars[index-1].x = x;
         cars[index-1].y = y;
+        strokeWeight(2);
+        stroke("red");
         textAlign(CENTER);
+        fill("red");
         textSize(20);
         text(allPlayers[plr].name, cars[index-1].x, cars[index-1].y+75);
         if (index === player.index){
@@ -97,24 +100,28 @@ player.getFinishedPlayers();
       }
       console.log(displayHeight);
         console.log(player.distance);
-        if(player.distance>=5250 && tries3 === 2){
-          tries3 = tries3 - 1;
+        if(player.distance>=height*5 && tries3 === 2){
+          playsound.stop();
           lobbysound.stop();
-    playsound.stop();
-    endsound.play();
+          servecustomersound.stop();
+          tries3 = tries3 - 1;
     player.rank+=1;
       Player.updateCarsAtEnd(player.rank);
       console.log(player.rank);
       if(player.rank === 1){
+        rank1sound.play();
       swal({ title: `1st Place!`, text: "Sensational job! You were ridiculously fast!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else if (player.rank === 2){
+      rank2sound.play();
       swal({ title: `2nd Place!`, text: "Awesome! Second place is just the first place loser.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else if (player.rank === 3){
+      rank3sound.play();
       swal({ title: `3rd Place`, text: "Great effort! You're not too far out from 1st!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else{
+      rank4sound.play();
       swal({ title: `Last Place`, text: "It's okay! Once you put more time, energy, and thought on the track, you will be a moonshiner.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     }
-    } else if(player.distance < 5250){
+    } else if(player.distance < height*5){
               if(keyIsDown(38) && player.index !== null){
                   yVel += 0.9;
               }else if(keyIsDown(40) && player.index !== null){
@@ -128,7 +135,7 @@ player.getFinishedPlayers();
                   xVel *= 0.9;
               }else{
                   yVel *= 0.985;
-                  xVel *= 0.985;
+                  xVel *= 0.985; 
               }
             }else if(passedFinish === false){
               yVel *= 0.7;
@@ -191,13 +198,11 @@ player.getFinishedPlayers();
     swal({ title: `Last Place`, text: "It's okay! Once you put more time, energy, and thought on the track, you will be a moonshiner.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Multiplayer-Car-Racing-Game/main/images/cup.png", imageSize: "150x150", confirmButtonText: "Ok", });
   }
   }
-
 player.distance+= yvel;
 yvel*= 0.98;
 player.xPos = xvel;
 xvel*= 0.985;
 player.update();
-
   }
   end(){
     console.log("Game Ended");

@@ -8,6 +8,7 @@ class Form {
     this.greeting = createElement('h2');
     this.greeting2 = createElement('h2');
     this.reset = createButton('Reset');
+    // how can I create a dropdown?
   }
   hide(){
     this.greeting.hide();

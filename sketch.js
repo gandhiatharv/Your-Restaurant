@@ -8,6 +8,9 @@ var tries2 = 2;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
+var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
+
+//add code to play sounds from restaurant sound options and to stop them when needed
 
 //Which set should we take? The food names or numbers?
 
@@ -59,6 +62,13 @@ function preload(){
   rank2sound = loadSound("sound/2.wav");
   rank3sound = loadSound("sound/3.wav");
   rank4sound = loadSound("sound/4.wav");
+  playsound2 = loadSound("sound/playsound2.mp3");
+  playsound3 = loadSound("sound/playsound3.mp3");
+  playsound4 = loadSound("sound/playsound4.mp3");
+  playsound5 = loadSound("sound/playsound5.mp3");
+  playsound6 = loadSound("sound/playsound6.mp3");
+  playsound7 = loadSound("sound/playsound7.mp3");
+  playsound8 = loadSound("sound/playsound8.mp3");
 }
 
 function setup(){
@@ -81,6 +91,13 @@ if(gameState === 0 && tries === 2){
   rank4sound.stop();
   servecustomersound.stop();
   playsound.stop();
+  playsound2.stop();
+  playsound3.stop();
+  playsound4.stop();
+  playsound5.stop();
+  playsound6.stop();
+  playsound7.stop();
+  playsound8.stop();
   lobbysound.play();
   tries = 1;
 }

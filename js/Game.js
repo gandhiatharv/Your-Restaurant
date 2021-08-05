@@ -101,7 +101,14 @@ player.getFinishedPlayers();
       console.log(displayHeight);
         console.log(player.distance);
         if(player.distance>=height*5 && tries3 === 2){
-          playsound.stop();
+            playsound.stop();
+            playsound2.stop();
+            playsound3.stop();
+            playsound4.stop();
+            playsound5.stop();
+            playsound6.stop();
+            playsound7.stop();
+            playsound8.stop();
           lobbysound.stop();
           servecustomersound.stop();
           tries3 = tries3 - 1;

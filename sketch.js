@@ -10,7 +10,7 @@ var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
 var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
 
-//add code to play sounds from restaurant sound options and to stop them when needed
+//add code to play sounds from restaurant sound options when gamestate is PLAY and to stop them when needed
 
 //Which set should we take? The food names or numbers?
 

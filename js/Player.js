@@ -1,10 +1,9 @@
 class Player {
   constructor(){
     this.index = null;
-    this.distance = 0;
     this.name = null;
-    this.place = 0;
     this.rank = null;
+    this.order = 0;
   }
 
   getCount(){
@@ -24,8 +23,7 @@ class Player {
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).set({
       name:this.name,
-      distance:this.distance,
-      place:this.place
+      order:this.order
         });
   }
 
@@ -35,14 +33,14 @@ class Player {
       allPlayers = data.val();
     })
   }
-  getCarsAtEnd(){
+  getChefsAtEnd(){
     database.ref('carsAtEnd').on("value", (data) => {
       this.rank = data.val();
     });
   }
-  static updateCarsAtEnd(rank){
+  static updateChefsAtEnd(rank){
     database.ref('/').update({
-      carsAtEnd:rank
+      chefsAtEnd:rank
     });
   }
   static updateFinishedPlayers(){

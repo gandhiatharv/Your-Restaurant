@@ -8,7 +8,7 @@ class Form {
     this.greeting = createElement('h2');
     this.greeting2 = createElement('h2');
     this.reset = createButton('Reset');
-    // how can I create a dropdown?
+    //how to create a dropdown?
   }
   hide(){
     this.greeting.hide();
@@ -58,7 +58,7 @@ class Form {
 this.reset.mousePressed(()=>{
 player.updateCount(0);
 game.update(0);
-Player.updateCarsAtEnd(0);
+Player.updateChefsAtEnd(0);
 var playerInfoRef = database.ref('players');
 playerInfoRef.remove();
 database.ref("/").update({

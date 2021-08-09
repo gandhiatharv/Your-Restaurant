@@ -10,50 +10,46 @@ var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
 var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
 
+var chef1, chef2, chef3, chef4, chefs;
+
 //add code to play sounds from restaurant sound options when gamestate is PLAY and to stop them when needed
 
-//Which set should we take? The food names or numbers?
-
-//names
 var pizza, burger, fries, burrito, taco, spaghetti, bread, maccheese, nachos;
 var water, fanta, sprite, coke, gingerale, fruitpunch, lemonade, orangejuice, applejuice;
 var cookie, muffin, cake, applepie, pudding, icecream, brownie;
-//numbers
-var food1, food2, food3, food4, food5, food6, food7, food8, food9;
-var drink1, drink2, drink3, drink4, drink5, drink6, drink7, drink8, drink9;
-var dessert1, dessert2, dessert3, dessert4, dessert5, dessert6, dessert7;
 
 var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
+var table, tableimg, chef, chefimg;
 
 function preload(){
-  food1 = loadImage("images/food1.png");
-  food2 = loadImage("images/food2.png");
-  food3 = loadImage("images/food3.png");
-  food4 = loadImage("images/food4.png");
-  food5 = loadImage("images/food5.png");
-  food6 = loadImage("images/food6.png");
-  food7 = loadImage("images/food7.png");
-  food8 = loadImage("images/food8.png");
-  food9 = loadImage("images/food9.png");
+  pizza = loadImage("images/food1.png");
+  burger = loadImage("images/food2.png");
+  fries = loadImage("images/food3.png");
+  burrito = loadImage("images/food4.png");
+  taco = loadImage("images/food5.png");
+  spaghetti = loadImage("images/food6.png");
+  bread = loadImage("images/food7.png");
+  maccheese = loadImage("images/food8.png");
+  nachos = loadImage("images/food9.png");
 
-  drink1 = loadImage("images/drink1.png");
-  drink2 = loadImage("images/drink2.png");
-  drink3 = loadImage("images/drink3.png");
-  drink4 = loadImage("images/drink4.png");
-  drink5 = loadImage("images/drink5.png");
-  drink6 = loadImage("images/drink6.png");
-  drink7 = loadImage("images/drink7.png");
-  drink8 = loadImage("images/drink8.png");
-  drink9 = loadImage("images/drink9.png");
+  water = loadImage("images/drink1.png");
+  fanta = loadImage("images/drink2.png");
+  sprite = loadImage("images/drink3.png");
+  coke = loadImage("images/drink4.png");
+  gingerale = loadImage("images/drink5.png");
+  fruitpunch = loadImage("images/drink6.png");
+  lemonade = loadImage("images/drink7.png");
+  orangejuice = loadImage("images/drink8.png");
+  applejuice = loadImage("images/drink9.png");
 
-  dessert1 = loadImage("images/dessert1.png");
-  dessert2 = loadImage("images/dessert2.png");
-  dessert3 = loadImage("images/dessert3.png");
-  dessert4 = loadImage("images/dessert4.png");
-  dessert5 = loadImage("images/dessert5.png");
-  dessert6 = loadImage("images/dessert6.png");
-  dessert7 = loadImage("images/dessert7.png");
+  cookie = loadImage("images/dessert1.png");
+  muffin = loadImage("images/dessert2.png");
+  cake = loadImage("images/dessert3.png");
+  applepie = loadImage("images/dessert4.png");
+  pudding = loadImage("images/dessert5.png");
+  icecream = loadImage("images/dessert6.png");
+  brownie = loadImage("images/dessert7.png");
 
   playsound = loadSound("sound/playsound.mp3");
   lobbysound = loadSound("sound/lobbysound.mp3");
@@ -69,6 +65,9 @@ function preload(){
   playsound6 = loadSound("sound/playsound6.mp3");
   playsound7 = loadSound("sound/playsound7.mp3");
   playsound8 = loadSound("sound/playsound8.mp3");
+
+  tableimg = loadImage("images/tablebg.png");
+  chefimg = loadAnimation("images/frontchef.png", "images/frontchef.png", "images/frontchef.png", "images/leftchef.png", "images/leftchef.png", "images/leftchef.png", "images/rightchef.png", "images/rightchef.png", "images/rightchef.png");
 }
 
 function setup(){
@@ -109,10 +108,11 @@ if(gameState === 0 && tries === 2){
 if(finishedPlayers === 4){
   game.update(2);
 }
-
+if(gameState === 1){
+  clear();
+  game.play();
+}
   if(gameState === 1 && tries2 === 2){
-    clear();
-    game.play();
     lobbysound.stop();
     rank1sound.stop();
     rank2sound.stop();

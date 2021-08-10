@@ -18,6 +18,7 @@ var pizza, burger, fries, burrito, taco, spaghetti, bread, maccheese, nachos;
 var water, fanta, sprite, coke, gingerale, fruitpunch, lemonade, orangejuice, applejuice;
 var cookie, muffin, cake, applepie, pudding, icecream, brownie;
 
+var customer1, customer2, customer3, manyCustomers;
 var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
 var table, tableimg, chef, chefimg;
@@ -51,6 +52,11 @@ function preload(){
   icecream = loadImage("images/dessert6.png");
   brownie = loadImage("images/dessert7.png");
 
+  customer1 = loadImage("images/customer1.png");
+  customer2 = loadImage("images/customer2.png");
+  customer3 = loadImage("images/customer3.png");
+  manyCustomers = loadImage("images/customergroup.png");
+
   playsound = loadSound("sound/playsound.mp3");
   lobbysound = loadSound("sound/lobbysound.mp3");
   servecustomersound = loadSound("sound/servecustomer.wav");
@@ -77,12 +83,12 @@ function setup(){
   game.getState();
   game.start();
   foodGroup = createGroup();
+  customerGroup = createGroup();
 }
 
 
 
 function draw(){
-
 if(gameState === 0 && tries === 2){
   rank1sound.stop();
   rank2sound.stop();
@@ -111,6 +117,7 @@ if(finishedPlayers === 4){
 if(gameState === 1){
   clear();
   game.play();
+  spawnCustomers();
 }
   if(gameState === 1 && tries2 === 2){
     lobbysound.stop();
@@ -120,5 +127,27 @@ if(gameState === 1){
     rank4sound.stop();
     playsound.play();
     tries2 = 1;
+  }
+}
+
+function spawnCustomers(){
+  if(frameCount%200 === 0 && gameState === 1){
+    customer = createSprite(Math.round(random(600, displayWidth/1.2)), 375, 200, 200);
+    var rand = Math.round(random(1, 4));
+    if(rand === 1){
+      customer.addImage(customer1);
+      customer.scale = 0.9;
+    } else if(rand === 2){
+      customer.addImage(customer2);
+      customer.scale = 1.75;
+    } else if(rand === 3){
+      customer.addImage(customer3);
+      customer.scale = 0.94;
+    } else{
+      customer.addImage(manyCustomers);
+      customer.scale = 2;
+    }
+    customer.depth = 1;
+    customerGroup.add(customer);
   }
 }

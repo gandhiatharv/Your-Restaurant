@@ -27,22 +27,26 @@ class Game {
 
       form.display();
     }
-    chef1 = createSprite(displayWidth/2, displayHeight/1.575);
+    chef1 = createSprite(displayWidth/2, displayHeight/1.5);
     chef1.addAnimation("cooking", chefimg);
     chef1.visible = false;
     chef1.scale = 2;
-    chef2 = createSprite(displayWidth/2, displayHeight/1.575);
+    chef1.depth = 2;
+    chef2 = createSprite(displayWidth/2, displayHeight/1.5);
     chef2.addAnimation("cooking", chefimg);
     chef2.visible = false;
     chef2.scale = 2;
-    chef3 = createSprite(displayWidth/2, displayHeight/1.575);
+    chef2.depth = 2;
+    chef3 = createSprite(displayWidth/2, displayHeight/1.5);
     chef3.addAnimation("cooking", chefimg);
     chef3.visible = false;
     chef3.scale = 2;
-    chef4 = createSprite(displayWidth/2, displayHeight/1.575);
+    chef3.depth = 2;
+    chef4 = createSprite(displayWidth/2, displayHeight/1.5);
     chef4.addAnimation("cooking", chefimg);
     chef4.visible = false;
     chef4.scale = 2;
+    chef4.depth = 2;
     chefs = [chef1, chef2, chef3, chef4];
 
   }
@@ -104,6 +108,7 @@ player.getFinishedPlayers();
           player.update();
           //display sprites
           drawSprites();
+          text(mouseX + "," + mouseY, mouseX, mouseY); 
     }
   
 }

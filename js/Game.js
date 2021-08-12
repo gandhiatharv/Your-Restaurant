@@ -108,7 +108,6 @@ player.getFinishedPlayers();
           player.update();
           //display sprites
           drawSprites();
-          text(mouseX + "," + mouseY, mouseX, mouseY); 
     }
   
 }

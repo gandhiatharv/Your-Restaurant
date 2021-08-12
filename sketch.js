@@ -143,105 +143,105 @@ if(gameState === 1){
   if(mousePressedOver(pizza)){
     // pizza.depth = 1.5;
     pizza.x = mouseX;
-    pizza.y = mouseY+175;
+    pizza.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(burger)){
    //  burger.depth = 1.5;
     burger.x = mouseX;
-    burger.y = mouseY+175;
+    burger.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(burrito)){
    //    burrito.depth = 1;
     burrito.x = mouseX;
-    burrito.y = mouseY+175;
+    burrito.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(taco)){
     taco.x = mouseX;
-    taco.y = mouseY+175;
+    taco.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(fries)){
     fries.x = mouseX;
-    fries.y = mouseY+175;
+    fries.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(spaghetti)){
     spaghetti.x = mouseX;
-    spaghetti.y = mouseY+175;
+    spaghetti.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(bread)){
     bread.x = mouseX;
-    bread.y = mouseY+175;
+    bread.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(maccheese)){
     maccheese.x = mouseX;
-    maccheese.y = mouseY+175;
+    maccheese.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(nachos)){
     nachos.x = mouseX;
-    nachos.y = mouseY+175;
+    nachos.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(sprite)){
     sprite.x = mouseX;
-    sprite.y = mouseY+175;
+    sprite.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(coke)){
     coke.x = mouseX;
-    coke.y = mouseY+175;
+    coke.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(fanta)){
     fanta.x = mouseX;
-    fanta.y = mouseY+175;
+    fanta.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(gingerale)){
     gingerale.x = mouseX;
-    gingerale.y = mouseY+175;
+    gingerale.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(fruitpunch)){
     fruitpunch.x = mouseX;
-    fruitpunch.y = mouseY+175;
+    fruitpunch.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(lemonade)){
     lemonade.x = mouseX;
-    lemonade.y = mouseY+175;
+    lemonade.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(orangejuice)){
     orangejuice.x = mouseX;
-    orangejuice.y = mouseY+175;
+    orangejuice.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(applejuice)){
     applejuice.x = mouseX;
-    applejuice.y = mouseY+175;
+    applejuice.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(water)){
     water.x = mouseX;
-    water.y = mouseY+175;
+    water.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(cookie)){
     cookie.x = mouseX;
-    cookie.y = mouseY+175;
+    cookie.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(muffin)){
     muffin.x = mouseX;
-    muffin.y = mouseY+175;
+    muffin.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(cake)){
     cake.x = mouseX;
-    cake.y = mouseY+175;
+    cake.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(applepie)){
     applepie.x = mouseX;
-    applepie.y = mouseY+175;
+    applepie.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(pudding)){
     pudding.x = mouseX;
-    pudding.y = mouseY+175;
+    pudding.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(brownie)){
     brownie.x = mouseX;
-    brownie.y = mouseY+175;
+    brownie.y = mouseY+displayHeight/6.17142857143;
   }
     if(mousePressedOver(icecream)){
     icecream.x = mouseX;
-    icecream.y = mouseY+175;
+    icecream.y = mouseY+displayHeight/6.17142857143;
   }
 
   drawSprites();

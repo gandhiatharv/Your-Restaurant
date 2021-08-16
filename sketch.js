@@ -87,8 +87,10 @@ function preload(){
 }
 
 function setup(){
-  canvas = createCanvas(displayWidth-20,displayHeight-30);
+  canvas = createCanvas(displayWidth,displayHeight);
   database = firebase.database();
+  console.log(displayWidth);
+  console.log(displayHeight);
   game = new Game();
   game.getState();
   game.start();
@@ -244,17 +246,11 @@ if(gameState === 1){
     icecream.y = mouseY+displayHeight/6.17142857143;
   }
 
-  drawSprites();
-  fill("blue");
-  textSize(20);
-  //textFont("Courier");
-  text("Orders: " + orders, displayWidth/65, displayHeight/30);
-  text("Deliveries: " + deliveries, displayWidth/1.2, displayHeight/30);
 }
 
 function spawnCustomers(){
   if(frameCount%400 === 0 && gameState === 1){
-    customer = createSprite(0, displayHeight/2.88);
+    customer = createSprite(0, displayHeight/2.815);
     var rand = Math.round(random(1, 4));
     var rand2 = Math.round(random(1, 25));
     if(rand === 1){
@@ -538,4 +534,13 @@ applepie.scale = displayWidth/4800;
   function mouseReleased(){
     foodGroup.destroyEach();
     makeFood();
+  }
+
+  function keyPressed(){
+    if (keyCode === 13 && gameState === 0) {
+      form.enter();
+    }
+    if (keyCode === 36 && gameState === 0) {
+      form.enter();
+    }
   }

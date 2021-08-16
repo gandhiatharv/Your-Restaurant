@@ -24,16 +24,15 @@ class Form {
     this.button.hide();
 
     player.name = this.input.value();
-    playerCount++;
+    playerCount+=1;
     player.index = playerCount;
-    player.updateName();
+    player.update();
     player.updateCount(playerCount);
 
-    this.greeting.html("Welcome " + player.name + "!");
-    this.greeting.position(
-      displayWidth / 2.1 - player.name.length * (displayWidth / 110),
-      125
-    );
+    this.greeting.html("Hello Chef " + player.name+"!");
+    this.greeting.position(displayWidth/8, displayHeight/2.05);
+    this.greeting2.html("Please wait for others to join.");
+    this.greeting2.position(displayWidth/8, displayHeight/1.7);
   }
   display(){
     this.welcome.position(0, 0);

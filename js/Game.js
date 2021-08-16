@@ -108,6 +108,12 @@ player.getFinishedPlayers();
           player.update();
           //display sprites
           drawSprites();
+          fill("blue");
+          textSize(20);
+          textFont("Courier");
+          //text("Orders: " + orders, displayWidth/65, displayHeight/30);
+          text("Orders: " + orders, displayWidth/18, displayHeight/5);
+          text("Deliveries: " + deliveries, displayWidth/1.2, displayHeight/30);
     }
   
 }

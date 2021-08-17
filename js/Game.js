@@ -69,13 +69,255 @@ player.getFinishedPlayers();
         chefs[index-1].visible = true;
         if (index === player.index){
           chefs[index-1].shapeColor = "red";
-          camera.position.x = displayWidth/2;
-          camera.position.y = chefs[index-1].y;
         }
       }
       }
+
+
+      spawnCustomers();
+
+if(player.index!= null){
+  if(mousePressedOver(pizza)){
+    // pizza.depth = 1.5;
+    pizza.x = mouseX;
+    pizza.y = mouseY;
+    if(currentorder === "Pizza"&&pizza.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      pizza.destroy();
+      pizz();
+  }
+}
+    if(mousePressedOver(burger)){
+   //  burger.depth = 1.5;
+    burger.x = mouseX;
+    burger.y = mouseY;
+    if(currentorder === "Burger"&&burger.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      burger.destroy();
+      burge();
+  }
+  }
+    if(mousePressedOver(burrito)){
+   //    burrito.depth = 1;
+    burrito.x = mouseX;
+    burrito.y = mouseY;
+    if(currentorder === "Burrito"&&burrito.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      burrito.destroy();
+      burrit();
+  }
+  }
+    if(mousePressedOver(taco)){
+    taco.x = mouseX;
+    taco.y = mouseY;
+    if(currentorder === "Taco"&&taco.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      taco.destroy();
+      tac();
+  }
+  }
+    if(mousePressedOver(fries)){
+    fries.x = mouseX;
+    fries.y = mouseY;
+    if(currentorder === "Fries"&&fries.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      fries.destroy();
+      frie();
+  }
+  }
+    if(mousePressedOver(spaghetti)){
+    spaghetti.x = mouseX;
+    spaghetti.y = mouseY;
+    if(currentorder === "Spaghetti"&&spaghetti.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      spaghetti.destroy();
+      spaghett();
+  }
+  }
+    if(mousePressedOver(bread)){
+    bread.x = mouseX;
+    bread.y = mouseY;
+    if(currentorder === "Bread"&&bread.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      bread.destroy();
+      brea();
+  }
+  }
+    if(mousePressedOver(maccheese)){
+    maccheese.x = mouseX;
+    maccheese.y = mouseY;
+    if(currentorder === "Macaroni & Cheese"&&maccheese.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      maccheese.destroy();
+      macchees();
+  }
+  }
+    if(mousePressedOver(nachos)){
+    nachos.x = mouseX;
+    nachos.y = mouseY;
+    if(currentorder === "Nachos"&&nachos.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      nachos.destroy();
+      nacho();
+  }
+  }
+    if(mousePressedOver(sprite)){
+    sprite.x = mouseX;
+    sprite.y = mouseY;
+    if(currentorder === "Sprite"&&sprite.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      sprite.destroy();
+      sprit();
+  }
+  }
+    if(mousePressedOver(coke)){
+    coke.x = mouseX;
+    coke.y = mouseY;
+    if(currentorder === "Coke"&&coke.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      coke.destroy();
+      cok();
+  }
+  }
+    if(mousePressedOver(fanta)){
+    fanta.x = mouseX;
+    fanta.y = mouseY;
+    if(currentorder === "Fanta"&&fanta.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      fanta.destroy();
+      fant();
+  }
+  }
+    if(mousePressedOver(gingerale)){
+    gingerale.x = mouseX;
+    gingerale.y = mouseY;
+    if(currentorder === "Gingerale"&&gingerale.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      gingerale.destroy();
+      gingeral();
+  }
+  }
+    if(mousePressedOver(fruitpunch)){
+    fruitpunch.x = mouseX;
+    fruitpunch.y = mouseY;
+    if(currentorder === "Fruit Punch"&&fruitpunch.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      fruitpunch.destroy();
+      fruitpunc();
+  }
+  }
+    if(mousePressedOver(lemonade)){
+    lemonade.x = mouseX;
+    lemonade.y = mouseY;
+    if(currentorder === "Lemonade"&&lemonade.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      lemonade.destroy();
+      lemonad();
+  }
+  }
+    if(mousePressedOver(orangejuice)){
+    orangejuice.x = mouseX;
+    orangejuice.y = mouseY;
+    if(currentorder === "Orange Juice"&&orangejuice.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      orangejuice.destroy();
+      orangejuic();
+  }
+  }
+    if(mousePressedOver(applejuice)){
+    applejuice.x = mouseX;
+    applejuice.y = mouseY;
+    if(currentorder === "Apple Juice"&&applejuice.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      applejuice.destroy();
+      applejuic();
+  }
+  }
+    if(mousePressedOver(water)){
+    water.x = mouseX;
+    water.y = mouseY;
+    if(currentorder === "Water"&&water.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      water.destroy();
+      wate();
+  }
+  }
+    if(mousePressedOver(cookie)){
+    cookie.x = mouseX;
+    cookie.y = mouseY;
+    if(currentorder === "Cookies"&&cookie.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      cookie.destroy();
+      cooki();
+  }
+  }
+    if(mousePressedOver(muffin)){
+    muffin.x = mouseX;
+    muffin.y = mouseY;
+    if(currentorder === "Muffin"&&muffin.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      muffin.destroy();
+      muffi();
+  }
+  }
+    if(mousePressedOver(cake)){
+    cake.x = mouseX;
+    cake.y = mouseY;
+    if(currentorder === "Cake"&&cake.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      cake.destroy();
+      cak();
+  }
+  }
+    if(mousePressedOver(applepie)){
+    applepie.x = mouseX;
+    applepie.y = mouseY;
+    if(currentorder === "Apple Pie"&&applepie.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      applepie.destroy();
+      applepi();
+  }
+  }
+    if(mousePressedOver(pudding)){
+    pudding.x = mouseX;
+    pudding.y = mouseY;
+    if(currentorder === "Pudding"&&pudding.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      pudding.destroy();
+      puddin();
+  }
+  }
+    if(mousePressedOver(brownie)){
+    brownie.x = mouseX;
+    brownie.y = mouseY;
+    if(currentorder === "Brownie"&&brownie.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      brownie.destroy();
+      browni();
+  }
+  }
+    if(mousePressedOver(icecream)){
+    icecream.x = mouseX;
+    icecream.y = mouseY;
+    if(currentorder === "Ice Cream"&&icecream.y < displayHeight/2.20408163265){
+      customer.destroy(); currentOrderCheck(); spawnCust(); servecustomersound.play(); deliveries = deliveries + 1;
+      icecream.destroy();
+      icecrea();
+  }
+}
+}
+
+      textSize(20);
+      fill("white");
+      strokeWeight(2);
+      stroke("orange");
+   /* text(allPlayers.chef1.name + "'s Score: "+allPlayers.player1.score,displayWidth/22,displayHeight/20);
+      text(allPlayers.chef2.name + "'s Score: " + allPlayers.player2.score, displayWidth/22,displayHeight/12);
+      text(allPlayers.chef3.name + "'s Score: "+allPlayers.player3.score,displayWidth/22,displayHeight/20);
+      text(allPlayers.chef4.name + "'s Score: " + allPlayers.player4.score, displayWidth/22,displayHeight/12);*/
       console.log(displayHeight);
         console.log(player.distance);
+        
         if(player.distance>=height*5 && tries3 === 2){
             playsound.stop();
             playsound2.stop();
@@ -112,10 +354,9 @@ player.getFinishedPlayers();
           textSize(20);
           textFont("Courier");
           //text("Orders: " + orders, displayWidth/65, displayHeight/30);
-          text(mouseX + "," +mouseY, mouseX, mouseY);
-          text("Orders: " + orders, displayWidth/87.2727272727, displayHeight/5.02325581395);
-          text("Deliveries: " + deliveries, displayWidth/1.14490161002, displayHeight/5.02325581395);
-          text("Current Order: " + currentorder, displayWidth/2.4, displayHeight/5.02325581395);
+          text("Orders: " + orders, displayWidth/87.2727272727, displayHeight/27);
+          text("Deliveries: " + deliveries, displayWidth/1.14490161002, displayHeight/27);
+          text("Current Order: " + currentorder, displayWidth/2.4, displayHeight/27);
     }
-  
+
 }

@@ -27,6 +27,8 @@ var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, 
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
 
+
+
 var currentorder;
 
 var orders = 0;

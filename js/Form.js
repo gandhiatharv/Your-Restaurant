@@ -17,7 +17,7 @@ class Form {
     this.input.hide();
     this.welcome.hide();
     this.reset.show();
-    this.reset.position(displayWidth/1.16, displayHeight/45);
+    this.reset.position(displayWidth/1.2, displayHeight/1.45);
   }
   enter() {
     this.input.hide();

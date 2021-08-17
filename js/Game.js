@@ -112,8 +112,10 @@ player.getFinishedPlayers();
           textSize(20);
           textFont("Courier");
           //text("Orders: " + orders, displayWidth/65, displayHeight/30);
-          text("Orders: " + orders, displayWidth/18, displayHeight/5);
-          text("Deliveries: " + deliveries, displayWidth/1.2, displayHeight/30);
+          text(mouseX + "," +mouseY, mouseX, mouseY);
+          text("Orders: " + orders, displayWidth/87.2727272727, displayHeight/5.02325581395);
+          text("Deliveries: " + deliveries, displayWidth/1.14490161002, displayHeight/5.02325581395);
+          text("Current Order: " + currentorder, displayWidth/2.4, displayHeight/5.02325581395);
     }
   
 }

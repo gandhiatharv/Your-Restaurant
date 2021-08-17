@@ -21,15 +21,15 @@ var cookie, muffin, cake, applepie, pudding, icecream, brownie;
 var customer1, customer2, customer3, manyCustomers;
 var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
-var table, tableimg, chef, chefimg;
+var table, tableimg, chefimg;
 
 var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, maccheeseimg, nachosimg;
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
 
+var target = 50;
 
-
-var currentorder;
+var currentorder = " ";
 
 var orders = 0;
 var deliveries = 0;
@@ -132,7 +132,6 @@ if(finishedPlayers === 4){
 if(gameState === 1){
   clear();
   game.play();
-  spawnCustomers();
 }
   if(gameState === 1 && tries2 === 2){
     lobbysound.stop();
@@ -143,118 +142,12 @@ if(gameState === 1){
     playsound.play();
     tries2 = 1;
   }
-
-  if(mousePressedOver(pizza)){
-    // pizza.depth = 1.5;
-    pizza.x = mouseX;
-    pizza.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(burger)){
-   //  burger.depth = 1.5;
-    burger.x = mouseX;
-    burger.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(burrito)){
-   //    burrito.depth = 1;
-    burrito.x = mouseX;
-    burrito.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(taco)){
-    taco.x = mouseX;
-    taco.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(fries)){
-    fries.x = mouseX;
-    fries.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(spaghetti)){
-    spaghetti.x = mouseX;
-    spaghetti.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(bread)){
-    bread.x = mouseX;
-    bread.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(maccheese)){
-    maccheese.x = mouseX;
-    maccheese.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(nachos)){
-    nachos.x = mouseX;
-    nachos.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(sprite)){
-    sprite.x = mouseX;
-    sprite.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(coke)){
-    coke.x = mouseX;
-    coke.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(fanta)){
-    fanta.x = mouseX;
-    fanta.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(gingerale)){
-    gingerale.x = mouseX;
-    gingerale.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(fruitpunch)){
-    fruitpunch.x = mouseX;
-    fruitpunch.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(lemonade)){
-    lemonade.x = mouseX;
-    lemonade.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(orangejuice)){
-    orangejuice.x = mouseX;
-    orangejuice.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(applejuice)){
-    applejuice.x = mouseX;
-    applejuice.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(water)){
-    water.x = mouseX;
-    water.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(cookie)){
-    cookie.x = mouseX;
-    cookie.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(muffin)){
-    muffin.x = mouseX;
-    muffin.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(cake)){
-    cake.x = mouseX;
-    cake.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(applepie)){
-    applepie.x = mouseX;
-    applepie.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(pudding)){
-    pudding.x = mouseX;
-    pudding.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(brownie)){
-    brownie.x = mouseX;
-    brownie.y = mouseY+displayHeight/6.17142857143;
-  }
-    if(mousePressedOver(icecream)){
-    icecream.x = mouseX;
-    icecream.y = mouseY+displayHeight/6.17142857143;
-  }
-
 }
 
 function spawnCustomers(){
-  if(frameCount%400 === 0 && gameState === 1){
+  if(frameCount%200 === 0 && gameState === 1){
     customer = createSprite(0, displayHeight/2.815);
     var rand = Math.round(random(1, 4));
-    var rand2 = Math.round(random(1, 25));
     if(rand === 1){
       customer.addImage(customer1);
       customer.scale = displayWidth/2100;
@@ -272,58 +165,9 @@ function spawnCustomers(){
       customer.scale = displayWidth/930;
       customer.x = random(displayWidth/2.35, displayWidth/1.35);
     }
-    if(rand2 === 1){
-      currentorder = "Pizza";
-    } else if (rand2 === 2){
-      currentorder = "Burger";
-    } else if (rand2 === 3){
-      currentorder = "Fries";
-    } else if (rand2 === 4){
-      currentorder = "Spaghetti";
-    } else if (rand2 === 5){
-      currentorder = "Macaroni & Cheese";
-    } else if (rand2 === 6){
-      currentorder = "Burger";
-    } else if (rand2 === 7){
-      currentorder = "Spaghetti";
-    } else if (rand2 === 8){
-      currentorder = "Bread";
-    } else if (rand2 === 9){
-      currentorder = "Nachos";
-     } else if (rand2 === 10){
-        currentorder = "Sprite";
-      } else if(rand2 === 11){
-      currentorder = "Water";
-    } else if (rand2 === 12){
-      currentorder = "Coke";
-    } else if (rand2 === 13){
-      currentorder = "Fanta";
-    } else if (rand2 === 14){
-      currentorder = "Gingerale";
-    } else if (rand2 === 15){
-      currentorder = "Lemonade";
-    } else if (rand2 === 16){
-      currentorder = "Orange Juice";
-    } else if (rand2 === 17){
-      currentorder = "Apple Juice";
-    } else if (rand2 === 18){
-      currentorder = "Fruit Punch";
-    } else if (rand2 === 19){
-      currentorder = "Cookies";
-    } else if (rand2 === 20){
-      currentorder = "Cake";
-    } else if (rand2 === 21){
-      currentorder = "Muffin";
-    } else if (rand2 === 22){
-      currentorder = "Brownie";
-    } else if (rand2 === 23){
-      currentorder = "Ice Cream";
-    }else if (rand2 === 24){
-      currentorder = "Apple Pie";
-    } else if (rand2 === 25){
-      currentorder = "Pudding";
-    }
+    currentOrderCheck();
     customer.depth = 1;
+    customer.lifetime = 200;
     customerGroup.add(customer);
   }
 }
@@ -545,4 +389,85 @@ applepie.scale = displayWidth/4800;
     if (keyCode === 36 && gameState === 0) {
       form.enter();
     }
+  }
+
+  function currentOrderCheck(){
+    var rand2 = Math.round(random(1, 25));
+    if(rand2 === 1){
+      currentorder = "Pizza";
+    } else if (rand2 === 2){
+      currentorder = "Burger";
+    } else if (rand2 === 3){
+      currentorder = "Fries";
+    } else if (rand2 === 4){
+      currentorder = "Spaghetti";
+    } else if (rand2 === 5){
+      currentorder = "Macaroni & Cheese";
+    } else if (rand2 === 6){
+      currentorder = "Burger";
+    } else if (rand2 === 7){
+      currentorder = "Spaghetti";
+    } else if (rand2 === 8){
+      currentorder = "Bread";
+    } else if (rand2 === 9){
+      currentorder = "Nachos";
+     } else if (rand2 === 10){
+        currentorder = "Sprite";
+      } else if(rand2 === 11){
+      currentorder = "Water";
+    } else if (rand2 === 12){
+      currentorder = "Coke";
+    } else if (rand2 === 13){
+      currentorder = "Fanta";
+    } else if (rand2 === 14){
+      currentorder = "Gingerale";
+    } else if (rand2 === 15){
+      currentorder = "Lemonade";
+    } else if (rand2 === 16){
+      currentorder = "Orange Juice";
+    } else if (rand2 === 17){
+      currentorder = "Apple Juice";
+    } else if (rand2 === 18){
+      currentorder = "Fruit Punch";
+    } else if (rand2 === 19){
+      currentorder = "Cookies";
+    } else if (rand2 === 20){
+      currentorder = "Cake";
+    } else if (rand2 === 21){
+      currentorder = "Muffin";
+    } else if (rand2 === 22){
+      currentorder = "Brownie";
+    } else if (rand2 === 23){
+      currentorder = "Ice Cream";
+    }else if (rand2 === 24){
+      currentorder = "Apple Pie";
+    } else if (rand2 === 25){
+      currentorder = "Pudding";
+    }
+  }
+
+  function spawnCust(){
+    customer = createSprite(0, displayHeight/2.815);
+    var rand = Math.round(random(1, 4));
+    if(rand === 1){
+      customer.addImage(customer1);
+      customer.scale = displayWidth/2100;
+      customer.x = random(displayWidth/4.2, displayWidth/1.07);
+    } else if(rand === 2){
+      customer.addImage(customer2);
+      customer.scale = displayWidth/1092.857142857;
+            customer.x = random(displayWidth/4.2, displayWidth/1.08);
+    } else if(rand === 3){
+      customer.addImage(customer3);
+      customer.scale = displayWidth/2000.91489362;
+      customer.x = random(displayWidth/3.2, displayWidth/1.17);
+    } else{
+      customer.addImage(manyCustomers);
+      customer.scale = displayWidth/930;
+      customer.x = random(displayWidth/2.35, displayWidth/1.35);
+    }
+    currentOrderCheck();
+    customer.depth = 1;
+    customer.lifetime = 100;
+    customerGroup.add(customer);
   }

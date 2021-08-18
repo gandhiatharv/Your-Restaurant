@@ -167,7 +167,7 @@ function spawnCustomers(){
     }
     currentOrderCheck();
     customer.depth = 1;
-    customer.lifetime = 200;
+    customer.lifetime = 300;
     customerGroup.add(customer);
   }
 }
@@ -468,6 +468,6 @@ applepie.scale = displayWidth/4800;
     }
     currentOrderCheck();
     customer.depth = 1;
-    customer.lifetime = 100;
+    customer.lifetime = 300;
     customerGroup.add(customer);
   }

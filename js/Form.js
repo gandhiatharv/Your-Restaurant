@@ -20,6 +20,7 @@ class Form {
     this.welcome.hide();
     this.reset.show();
     this.reset.position(displayWidth/1.2, displayHeight/1.3);
+    this.leave.hide();
   }
   enter() {
     this.input.hide();
@@ -40,7 +41,7 @@ class Form {
     this.input.position(displayWidth/4, displayHeight/2);
     this.button.position(displayWidth/4, displayHeight/1.7);
     this.reset.hide();
-    this.leave.position(displayWidth/15, displayHeight/1.3);
+    this.leave.position(displayWidth/1.2, displayHeight/1.3);
     this.leave.hide();
 
     this.button.mousePressed(()=>{
@@ -68,6 +69,7 @@ this.leave.mousePressed(()=>{
   location.reload();
 })
 
+
 this.reset.mousePressed(()=>{
   player.updateCount(0);
   game.update(0);
@@ -81,5 +83,4 @@ this.reset.mousePressed(()=>{
   })
 
   }
-
 }

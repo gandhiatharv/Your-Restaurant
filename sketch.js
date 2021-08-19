@@ -104,17 +104,6 @@ function setup(){
 
 
 function draw(){
-
-  /*if(playerCount === 0){
-    game.update(0);
-Player.updateChefsAtEnd(0);
-var playerInfoRef = database.ref('players');
-playerInfoRef.remove();
-database.ref("/").update({
-  finishedPlayers: 0
-});
-  }*/
-
 if(gameState === 0 && tries === 2){
   rank1sound.stop();
   rank2sound.stop();

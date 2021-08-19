@@ -104,6 +104,17 @@ function setup(){
 
 
 function draw(){
+
+  /*if(playerCount === 0){
+    game.update(0);
+Player.updateChefsAtEnd(0);
+var playerInfoRef = database.ref('players');
+playerInfoRef.remove();
+database.ref("/").update({
+  finishedPlayers: 0
+});
+  }*/
+
 if(gameState === 0 && tries === 2){
   rank1sound.stop();
   rank2sound.stop();
@@ -147,6 +158,7 @@ if(gameState === 1){
 function spawnCustomers(){
   if(frameCount%200 === 0 && gameState === 1){
     customer = createSprite(0, displayHeight/2.815);
+    orders++;
     var rand = Math.round(random(1, 4));
     if(rand === 1){
       customer.addImage(customer1);
@@ -448,6 +460,7 @@ applepie.scale = displayWidth/4800;
 
   function spawnCust(){
     customer = createSprite(0, displayHeight/2.815);
+    orders++;
     var rand = Math.round(random(1, 4));
     if(rand === 1){
       customer.addImage(customer1);

@@ -65,6 +65,10 @@ player.getFinishedPlayers();
       var x = displayWidth/2;
       var y;
       for(var plr in allPlayers){
+       // text(allPlayers.chef1.name + "'s Score: "+allPlayers.player1.score,displayWidth/22,displayHeight/20);
+       // text(allPlayers.chef2.name + "'s Score: " + allPlayers.player2.score, displayWidth/22,displayHeight/12);
+       // text(allPlayers.chef3.name + "'s Score: "+allPlayers.player1.score,displayWidth/22,displayHeight/20);
+      //  text(allPlayers.chef4.name + "'s Score: " + allPlayers.player2.score, displayWidth/22,displayHeight/12);
         index = index + 1;
         chefs[index-1].visible = true;
         if (index === player.index){

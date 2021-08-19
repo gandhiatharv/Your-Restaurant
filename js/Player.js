@@ -4,6 +4,7 @@ class Player {
     this.name = null;
     this.rank = null;
     this.order = 0;
+    this.delivery = 0;
   }
 
   getCount(){
@@ -23,7 +24,8 @@ class Player {
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).set({
       name:this.name,
-      order:this.order
+      order:this.order,
+      delivery:this.delivery
         });
   }
 
@@ -38,6 +40,16 @@ class Player {
       this.rank = data.val();
     });
   }
+  static playerOrders(){
+    database.ref('playerOrders').on("value",(data)=>{
+    this.order=data.val();            
+    }) 
+}  
+static playerDeliveries(){
+  database.ref('playerDeliveries').on("value",(data)=>{
+  this.delivery=data.val();            
+  }) 
+}
   static updateChefsAtEnd(rank){
     database.ref('/').update({
       chefsAtEnd:rank
@@ -49,6 +61,18 @@ class Player {
     });
     this.place += 1;
 }
+
+static updatePlayerDeliveries(delivery){
+  database.ref('/').update({
+      playerDeliveries:delivery
+  }) 
+  }
+
+  static updatePlayerOrders(order){
+    database.ref('/').update({
+        playerOrders:order
+    }) 
+    }
 
   getFinishedPlayers(){
     var finishedPlayersRef = database.ref('finishedPlayers');

@@ -23,6 +23,8 @@ var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
 var table, tableimg, chefimg;
 
+var framecountnumber;
+
 var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, maccheeseimg, nachosimg;
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
@@ -30,6 +32,10 @@ var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownie
 var target = 50;
 
 var currentorder = " ";
+
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
 
 var orders = 0;
 var deliveries = 0;
@@ -104,22 +110,27 @@ function setup(){
 
 
 function draw(){
+framecountnumber = 200-deliveries*3.5;
+
 if(gameState === 0 && tries === 2){
-  rank1sound.stop();
-  rank2sound.stop();
-  rank3sound.stop();
-  rank4sound.stop();
-  servecustomersound.stop();
-  playsound.stop();
-  playsound2.stop();
-  playsound3.stop();
-  playsound4.stop();
-  playsound5.stop();
-  playsound6.stop();
-  playsound7.stop();
-  playsound8.stop();
+stopSound();
   lobbysound.play();
   tries = 1;
+}
+
+if(gameState === 1){
+  if(frameCount%30 === 0){
+    seconds = seconds + 1;
+  }
+  if(frameCount%1800 === 0){
+    minutes = minutes + 1;
+    seconds = 0;
+  }
+  if(frameCount%108000 === 0){
+    hours = hours + 1;
+    minutes = 0;
+    seconds = 0;
+  }
 }
 
   if(playerCount === 4 && finishedPlayers === 0){
@@ -134,18 +145,14 @@ if(gameState === 1){
   game.play();
 }
   if(gameState === 1 && tries2 === 2){
-    lobbysound.stop();
-    rank1sound.stop();
-    rank2sound.stop();
-    rank3sound.stop();
-    rank4sound.stop();
-    playsound.play();
+stopSound();
+playsound.play();
     tries2 = 1;
   }
 }
 
 function spawnCustomers(){
-  if(frameCount%200 === 0 && gameState === 1){
+  if(frameCount%framecountnumber === 0 && gameState === 1){
     customer = createSprite(0, displayHeight/2.815);
     orders++;
     var rand = Math.round(random(1, 4));
@@ -168,7 +175,7 @@ function spawnCustomers(){
     }
     currentOrderCheck();
     customer.depth = 1;
-    customer.lifetime = 300;
+    customer.lifetime = 200;
     customerGroup.add(customer);
   }
 }
@@ -470,6 +477,39 @@ applepie.scale = displayWidth/4800;
     }
     currentOrderCheck();
     customer.depth = 1;
-    customer.lifetime = 300;
+    customer.lifetime = 200;
     customerGroup.add(customer);
+  }
+
+  function stopSound(){
+    rank1sound.stop();
+    rank2sound.stop();
+    rank3sound.stop();
+    rank4sound.stop();
+    playsound.stop();
+    playsound2.stop();
+    playsound3.stop();
+    playsound4.stop();
+    playsound5.stop();
+    playsound6.stop();
+    playsound7.stop();
+    playsound8.stop();
+    lobbysound.stop();
+    servecustomersound.stop();
+  }
+
+  function stopSound1(){
+    rank1sound.stop();
+  rank2sound.stop();
+  rank3sound.stop();
+  rank4sound.stop();
+  playsound.stop();
+  playsound2.stop();
+  playsound3.stop();
+  playsound4.stop();
+  playsound5.stop();
+  playsound6.stop();
+  playsound7.stop();
+  playsound8.stop();
+  lobbysound.stop();
   }

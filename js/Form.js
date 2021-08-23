@@ -3,7 +3,7 @@ class Form {
   constructor() {
     this.welcomeBG = "images/bg.jpg";
     this.welcome = createImg(this.welcomeBG);
-    this.input = createInput("").attribute("placeholder", "Name");
+    this.input = createInput("").attribute("placeholder", "Nickname");
     this.button = createButton('Open Restaurant');
     this.greeting = createElement('h2');
     this.greeting2 = createElement('h2');

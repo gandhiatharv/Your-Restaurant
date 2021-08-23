@@ -5,6 +5,8 @@ var playerCount = 0;
 var finishedPlayers = 0;
 var tries = 2;
 var tries2 = 2;
+var tries3 = 2;
+var tries4 = 2;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
@@ -23,6 +25,8 @@ var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
 var table, tableimg, chefimg;
 
+var gameState2 = 2;
+
 var framecountnumber;
 
 var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, maccheeseimg, nachosimg;
@@ -33,11 +37,17 @@ var target = 50;
 
 var currentorder = " ";
 
+var message = " ";
+var message2 = "Winning Score: 10 Deliveries";
+
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
 
+var variable = 1;
+
 var orders = 0;
+var welcome;
 var deliveries = 0;
 
 function preload(){
@@ -92,6 +102,7 @@ function preload(){
 
   tableimg = loadImage("images/tablebg.png");
   chefimg = loadAnimation("images/frontchef.png", "images/frontchef.png", "images/frontchef.png", "images/leftchef.png", "images/leftchef.png", "images/leftchef.png", "images/rightchef.png", "images/rightchef.png", "images/rightchef.png");
+  chefimg2 = loadAnimation("images/frontchef.png");
 }
 
 function setup(){
@@ -99,9 +110,9 @@ function setup(){
   database = firebase.database();
   console.log(displayWidth);
   console.log(displayHeight);
-  game = new Game();
-  game.getState();
-  game.start();
+ game = new Game();
+ game.getState();
+game.start();
   foodGroup = createGroup(); 
   customerGroup = createGroup();
   makeFood();
@@ -115,21 +126,32 @@ framecountnumber = 200-deliveries*3.5;
 if(gameState === 0 && tries === 2){
 stopSound();
   lobbysound.play();
+  lobbysound.setVolume(0.1);
   tries = 1;
 }
 
-if(gameState === 1){
+if(frameCount%200 === 0 && variable === 1){
+  tries4 = 1;
+}
+
+if(tries4 === 1){
+  message = "Current Order: " + currentorder;
+} else{
+  message = " ";
+}
+
+if(gameState2 === 2){
   if(frameCount%30 === 0){
-    seconds = seconds + 1;
+    player.seconds = player.seconds+1;
   }
   if(frameCount%1800 === 0){
-    minutes = minutes + 1;
-    seconds = 0;
+    player.minutes = player.minutes+1;
+    player.seconds = 0;
   }
   if(frameCount%108000 === 0){
-    hours = hours + 1;
-    minutes = 0;
-    seconds = 0;
+    player.hours = player.hours+1;
+    player.minutes = 0;
+    player.seconds = 0;
   }
 }
 
@@ -147,6 +169,7 @@ if(gameState === 1){
   if(gameState === 1 && tries2 === 2){
 stopSound();
 playsound.play();
+playsound.setVolume(0.1);
     tries2 = 1;
   }
 }
@@ -154,7 +177,7 @@ playsound.play();
 function spawnCustomers(){
   if(frameCount%framecountnumber === 0 && gameState === 1){
     customer = createSprite(0, displayHeight/2.815);
-    orders++;
+    player.order = player.order+1;
     var rand = Math.round(random(1, 4));
     if(rand === 1){
       customer.addImage(customer1);
@@ -227,6 +250,7 @@ function pizz(){
     bread.addImage(breadimg);
     bread.scale = displayWidth/7200;
        bread.depth = 1.5;
+       taco.depth = bread.depth + 1;
               foodGroup.add(bread);
   }
   function macchees(){
@@ -456,7 +480,7 @@ applepie.scale = displayWidth/4800;
 
   function spawnCust(){
     customer = createSprite(0, displayHeight/2.815);
-    orders++;
+    player.order = player.order+1;
     var rand = Math.round(random(1, 4));
     if(rand === 1){
       customer.addImage(customer1);

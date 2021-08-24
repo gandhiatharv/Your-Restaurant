@@ -31,6 +31,8 @@ class Form {
     this.reset.style('width', '150px');
     this.reset.style('height', '60px');
     this.leave.hide();
+  }
+  showButtons(){
     this.up.show();
     this.down.show();
     this.up.position(displayWidth/2.4-displayWidth/15, displayHeight/5.62);

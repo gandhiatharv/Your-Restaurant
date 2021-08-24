@@ -54,6 +54,10 @@ class Game {
 
   play(){
     form.hide();
+    if(tries5 === 2){
+      form.showButtons();
+      tries5 = 1;
+    }
     drawSprites();
     strokeWeight(2);
     stroke("orange");

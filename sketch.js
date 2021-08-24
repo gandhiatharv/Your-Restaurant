@@ -7,6 +7,7 @@ var tries = 2;
 var tries2 = 2;
 var tries3 = 2;
 var tries4 = 2;
+var tries5 = 2;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
@@ -380,8 +381,8 @@ applepie.scale = displayWidth/4800;
   function muffi(){
          muffin = createSprite(width/3.35, height/2.08);
     muffin.addImage(muffinimg);
-    muffin.scale = displayWidth/9600;
-       muffin.depth = 1.5;
+    muffin.scale = displayWidth/12000;
+    muffin.depth = 1.5;
       foodGroup.add(muffin);
   }
   function cooki(){

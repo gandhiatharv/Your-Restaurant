@@ -9,8 +9,12 @@ class Form {
     this.greeting2 = createElement('h2');
     this.reset = createButton('Reset');
     this.leave = createButton('Leave');
-
-    //how to create a dropdown?
+    this.up = createButton('🡱');
+    this.down = createButton('🡳');
+  }
+  hideButtons(){
+    this.up.hide();
+    this.down.hide();
   }
   hide(){
     this.greeting.hide();
@@ -19,8 +23,20 @@ class Form {
     this.input.hide();
     this.welcome.hide();
     this.reset.show();
-    this.reset.position(displayWidth/1.23, displayHeight/1.4);
+    this.reset.position(displayWidth/1.23, displayHeight/1.35);
+    this.reset.style('width', '150px');
+    this.reset.style('height', '60px');
     this.leave.hide();
+    this.up.show();
+    this.down.show();
+    this.up.position(displayWidth/2.5, displayHeight/2);
+    this.up.style('width', '80px');
+    this.up.style('height', '40px');
+    this.down.position(displayWidth/1.75, displayHeight/2);
+    this.down.style('width', '80px');
+    this.down.style('height', '40px');
+    this.up.style('text-align', 'center');
+    this.down.style('text-align', 'center');
   }
   enter() {
     this.input.hide();
@@ -41,8 +57,12 @@ class Form {
     this.input.position(displayWidth/4, displayHeight/2);
     this.button.position(displayWidth/4, displayHeight/1.7);
     this.reset.hide();
-    this.leave.position(displayWidth/1.23, displayHeight/1.4);
+    this.leave.position(displayWidth/1.23, displayHeight/1.35);
+    this.leave.style('width', '150px');
+    this.leave.style('height', '60px');
     this.leave.hide();
+    this.up.hide();
+    this.down.hide();
 
     this.button.mousePressed(()=>{
       this.input.hide();
@@ -67,6 +87,28 @@ this.leave.mousePressed(()=>{
   player.updateCount(playerCount-1);
   }
   location.reload();
+})
+
+this.up.mousePressed(()=>{
+  stopSound1();
+  if(soundNumber === 1){
+    soundNumber = 8;
+  } else{
+    soundNumber = soundNumber - 1;
+  }
+  console.log(soundNumber);
+  checkSound();
+})
+
+this.down.mousePressed(()=>{
+  stopSound1();
+  if(soundNumber === 8){
+    soundNumber = 1;
+  } else{
+    soundNumber = soundNumber + 1;
+  }
+  console.log(soundNumber);
+  checkSound();
 })
 
 

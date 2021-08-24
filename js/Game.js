@@ -8,33 +8,6 @@ class Game {
     })
 
   }
- 
- //code for dropdown sounds
-
-  /*stopSound1();
-  playsound.play();
-
-  stopSound1();
-  playsound2.play();
-  
-  stopSound1();
-  playsound3.play();
-
-  stopSound1();
-  playsound4.play();
-
-  stopSound1();
-  playsound5.play();
-
-  stopSound1();
-  playsound6.play();
-
-  stopSound1();
-  playsound7.play();
-
-  stopSound1();
-  playsound8.play();
-  */
 
 
   update(state){
@@ -393,6 +366,7 @@ if(player.index!= null){
           textSize(20);
           text("Your Name: Chef "+player.name, displayWidth/2.65, displayHeight/16);
           text(message2, displayWidth/2.75, displayHeight/11.5);
+          text(songtitle, displayWidth/2, displayHeight/2); 
     }
 
 }

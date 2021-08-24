@@ -50,6 +50,10 @@ var orders = 0;
 var welcome;
 var deliveries = 0;
 
+var soundNumber = 1;
+
+var songtitle;
+
 function preload(){
   pizzaimg = loadImage("images/food1.png");
   burgerimg = loadImage("images/food2.png");
@@ -116,6 +120,7 @@ game.start();
   foodGroup = createGroup(); 
   customerGroup = createGroup();
   makeFood();
+  console.log(soundNumber);
 }
 
 
@@ -169,7 +174,7 @@ if(gameState === 1){
   if(gameState === 1 && tries2 === 2){
 stopSound();
 playsound.play();
-playsound.setVolume(0.1);
+playsound.setVolume(0.1); songtitle = "Sound 1";
     tries2 = 1;
   }
 }
@@ -536,4 +541,32 @@ applepie.scale = displayWidth/4800;
   playsound7.stop();
   playsound8.stop();
   lobbysound.stop();
+  }
+
+  function checkSound(){
+    if(soundNumber === 1){
+      playsound.play();
+      playsound.setVolume(0.1); songtitle = "Sound 1";
+    } else if(soundNumber === 2){
+      playsound2.play();
+      playsound2.setVolume(0.1); songtitle = "Sound 2";
+    } else if(soundNumber === 3){
+      playsound3.play();
+      playsound3.setVolume(0.1); songtitle = "Sound 3";
+    } else if(soundNumber === 4){
+      playsound4.play();
+      playsound4.setVolume(0.1); songtitle = "Sound 4";
+    } else if(soundNumber === 5){
+      playsound5.play();
+      playsound5.setVolume(0.1); songtitle = "Sound 5";
+    } else if(soundNumber === 6){
+      playsound6.play();
+      playsound6.setVolume(0.1); songtitle = "Sound 6";
+    } else if(soundNumber === 7){
+      playsound7.play();
+      playsound7.setVolume(0.1); songtitle = "Sound 7";
+    } else if(soundNumber === 8){
+      playsound8.play();
+      playsound8.setVolume(0.1); songtitle = "Sound 8";
+    }
   }

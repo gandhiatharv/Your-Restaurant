@@ -92,31 +92,28 @@ if(gameState2 === 2){
       
 if(player.index!= null){
   if(mousePressedOver(pizza)){
-    // pizza.depth = 1.5;
     pizza.x = mouseX;
     pizza.y = mouseY;
     if(currentorder === "Pizza"&&pizza.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       pizza.destroy();
       pizz();
   }
 }
     if(mousePressedOver(burger)){
-   //  burger.depth = 1.5;
     burger.x = mouseX;
     burger.y = mouseY;
     if(currentorder === "Burger"&&burger.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       burger.destroy();
       burge();
   }
   }
     if(mousePressedOver(burrito)){
-   //    burrito.depth = 1;
     burrito.x = mouseX;
     burrito.y = mouseY;
     if(currentorder === "Burrito"&&burrito.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       burrito.destroy();
       burrit();
   }
@@ -125,7 +122,7 @@ if(player.index!= null){
     taco.x = mouseX;
     taco.y = mouseY;
     if(currentorder === "Taco"&&taco.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       taco.destroy();
       tac();
   }
@@ -134,7 +131,7 @@ if(player.index!= null){
     fries.x = mouseX;
     fries.y = mouseY;
     if(currentorder === "Fries"&&fries.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       fries.destroy();
       frie();
   }
@@ -143,7 +140,7 @@ if(player.index!= null){
     spaghetti.x = mouseX;
     spaghetti.y = mouseY;
     if(currentorder === "Spaghetti"&&spaghetti.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       spaghetti.destroy();
       spaghett();
   }
@@ -152,7 +149,7 @@ if(player.index!= null){
     bread.x = mouseX;
     bread.y = mouseY;
     if(currentorder === "Bread"&&bread.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       bread.destroy();
       brea();
   }
@@ -161,7 +158,7 @@ if(player.index!= null){
     maccheese.x = mouseX;
     maccheese.y = mouseY;
     if(currentorder === "Macaroni & Cheese"&&maccheese.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       maccheese.destroy();
       macchees();
   }
@@ -170,7 +167,7 @@ if(player.index!= null){
     nachos.x = mouseX;
     nachos.y = mouseY;
     if(currentorder === "Nachos"&&nachos.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       nachos.destroy();
       nacho();
   }
@@ -179,7 +176,7 @@ if(player.index!= null){
     sprite.x = mouseX;
     sprite.y = mouseY;
     if(currentorder === "Sprite"&&sprite.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       sprite.destroy();
       sprit();
   }
@@ -188,7 +185,7 @@ if(player.index!= null){
     coke.x = mouseX;
     coke.y = mouseY;
     if(currentorder === "Coke"&&coke.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       coke.destroy();
       cok();
   }
@@ -197,7 +194,7 @@ if(player.index!= null){
     fanta.x = mouseX;
     fanta.y = mouseY;
     if(currentorder === "Fanta"&&fanta.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       fanta.destroy();
       fant();
   }
@@ -206,7 +203,7 @@ if(player.index!= null){
     gingerale.x = mouseX;
     gingerale.y = mouseY;
     if(currentorder === "Gingerale"&&gingerale.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       gingerale.destroy();
       gingeral();
   }
@@ -215,7 +212,7 @@ if(player.index!= null){
     fruitpunch.x = mouseX;
     fruitpunch.y = mouseY;
     if(currentorder === "Fruit Punch"&&fruitpunch.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       fruitpunch.destroy();
       fruitpunc();
   }
@@ -224,7 +221,7 @@ if(player.index!= null){
     lemonade.x = mouseX;
     lemonade.y = mouseY;
     if(currentorder === "Lemonade"&&lemonade.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       lemonade.destroy();
       lemonad();
   }
@@ -233,7 +230,7 @@ if(player.index!= null){
     orangejuice.x = mouseX;
     orangejuice.y = mouseY;
     if(currentorder === "Orange Juice"&&orangejuice.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       orangejuice.destroy();
       orangejuic();
   }
@@ -242,7 +239,7 @@ if(player.index!= null){
     applejuice.x = mouseX;
     applejuice.y = mouseY;
     if(currentorder === "Apple Juice"&&applejuice.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       applejuice.destroy();
       applejuic();
   }
@@ -251,7 +248,7 @@ if(player.index!= null){
     water.x = mouseX;
     water.y = mouseY;
     if(currentorder === "Water"&&water.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       water.destroy();
       wate();
   }
@@ -260,7 +257,7 @@ if(player.index!= null){
     cookie.x = mouseX;
     cookie.y = mouseY;
     if(currentorder === "Cookies"&&cookie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       cookie.destroy();
       cooki();
   }
@@ -269,7 +266,7 @@ if(player.index!= null){
     muffin.x = mouseX;
     muffin.y = mouseY;
     if(currentorder === "Muffin"&&muffin.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       muffin.destroy();
       muffi();
   }
@@ -278,7 +275,7 @@ if(player.index!= null){
     cake.x = mouseX;
     cake.y = mouseY;
     if(currentorder === "Cake"&&cake.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       cake.destroy();
       cak();
   }
@@ -287,7 +284,7 @@ if(player.index!= null){
     applepie.x = mouseX;
     applepie.y = mouseY;
     if(currentorder === "Apple Pie"&&applepie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       applepie.destroy();
       applepi();
   }
@@ -296,7 +293,7 @@ if(player.index!= null){
     pudding.x = mouseX;
     pudding.y = mouseY;
     if(currentorder === "Pudding"&&pudding.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       pudding.destroy();
       puddin();
   }
@@ -305,7 +302,7 @@ if(player.index!= null){
     brownie.x = mouseX;
     brownie.y = mouseY;
     if(currentorder === "Brownie"&&brownie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       brownie.destroy();
       browni();
   }
@@ -314,7 +311,7 @@ if(player.index!= null){
     icecream.x = mouseX;
     icecream.y = mouseY;
     if(currentorder === "Ice Cream"&&icecream.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); servecustomersound.play();
+      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
       icecream.destroy();
       icecrea();
   }
@@ -327,29 +324,40 @@ if(player.index!= null){
       strokeWeight(2);
       stroke("orange");
 
-        if(player.delivery>=10 && tries3 === 2){
-          stopSound();
+        if(player.delivery>=10&&tries3 === 2){
           tries3 = tries3 - 1;
+          stopSound();
+          form.hideButtons();
           variable = 0;
           tries4 = 2;
           message = " ";
           message2 = " ";
+          message3 = " ";
+          songtitle = " ";
           customerGroup.destroyEach();
-          gameState2 = 1;
+        gameState2 = 1;
     player.rank+=1;
       Player.updateChefsAtEnd(player.rank);
       console.log(player.rank);
       if(player.rank === 1){
+        if(muted === 0){
         rank1sound.play();
+        }
       swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else if (player.rank === 2){
+      if(muted === 0){
       rank2sound.play();
+      }
       swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else if (player.rank === 3){
+      if(muted === 0){
       rank3sound.play();
+      }
       swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     } else{
+      if(muted === 0){
       rank4sound.play();
+      }
       swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
     }
     }
@@ -359,14 +367,14 @@ if(player.index!= null){
           fill("blue");
           textSize(20);
           textFont("Courier");
-          //text("Orders: " + orders, displayWidth/65, displayHeight/30);
           text(message, displayWidth/2.625, displayHeight/27);
           textSize(50);
-          text(player.hours+":"+player.minutes+":"+player.seconds, displayWidth/15, displayHeight/1.25);
+          text(player.hours+":"+player.minutes+":"+player.seconds, displayWidth/7, displayHeight/1.25);
           textSize(20);
           text("Your Name: Chef "+player.name, displayWidth/2.65, displayHeight/16);
           text(message2, displayWidth/2.75, displayHeight/11.5);
-          text(songtitle, displayWidth/2, displayHeight/2); 
+          text(songtitle, displayWidth/2.4, displayHeight/5); 
+          text(message3, displayWidth/2.9, displayHeight/6.5);
     }
 
 }

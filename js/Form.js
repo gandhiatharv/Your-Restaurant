@@ -9,14 +9,16 @@ class Form {
     this.greeting2 = createElement('h2');
     this.reset = createButton('Reset');
     this.leave = createButton('Leave');
-   // this.img1 = "images/up.png";
-   // this.img2 = "images/down.png";
     this.up = createButton("Previous");
     this.down = createButton("Next");
+    this.mute = createButton("Mute");
+    this.unmute = createButton("Unmute");
   }
   hideButtons(){
     this.up.hide();
     this.down.hide();
+    this.mute.hide();
+    this.unmute.hide();
   }
   hide(){
     this.greeting.hide();
@@ -31,10 +33,10 @@ class Form {
     this.leave.hide();
     this.up.show();
     this.down.show();
-    this.up.position(displayWidth/2.5, displayHeight/2);
+    this.up.position(displayWidth/2.4-displayWidth/15, displayHeight/5.62);
     this.up.style('width', '90px');
     this.up.style('height', '40px');
-    this.down.position(displayWidth/1.75, displayHeight/2);
+    this.down.position(displayWidth/2.4+displayWidth/15, displayHeight/5.62);
     this.down.style('width', '90px');
     this.down.style('height', '40px');
     this.up.style('text-align', 'center');
@@ -73,6 +75,24 @@ class Form {
     this.leave.hide();
     this.up.hide();
     this.down.hide();
+    this.unmute.hide();
+    this.mute.show();
+    this.mute.position(displayWidth/40, displayHeight/1.36);
+    this.unmute.position(displayWidth/40, displayHeight/1.36);
+    this.mute.style('width', '135px');
+    this.mute.style('height', '60px');
+    this.unmute.style('width', '135px');
+    this.unmute.style('height', '60px');
+    this.mute.style('text-align', 'center');
+    this.unmute.style('text-align', 'center');
+    this.mute.style('font-size', '15px');
+    this.unmute.style('font-size', '15px');
+    this.mute.style('background-color', '#D3D3D3');
+    this.unmute.style('background-color', '#D3D3D3');
+    this.mute.style('border-radius', '0');
+    this.unmute.style('border-radius', '0');
+    this.mute.style('border', '1px solid');
+    this.unmute.style('border', '1px solid');
 
     this.button.mousePressed(()=>{
       this.input.hide();
@@ -99,6 +119,21 @@ this.leave.mousePressed(()=>{
   location.reload();
 })
 
+this.mute.mousePressed(()=>{
+ stopSound();
+  muted = 1;
+  this.mute.hide();
+  this.unmute.show();
+})
+
+this.unmute.mousePressed(()=>{
+  stopSound1();
+  muted = 0;
+   checkSound();
+   this.unmute.hide();
+   this.mute.show();
+ }) 
+
 this.up.mousePressed(()=>{
   stopSound1();
   if(soundNumber === 1){
@@ -106,7 +141,6 @@ this.up.mousePressed(()=>{
   } else{
     soundNumber = soundNumber - 1;
   }
-  console.log(soundNumber);
   checkSound();
 })
 
@@ -117,7 +151,6 @@ this.down.mousePressed(()=>{
   } else{
     soundNumber = soundNumber + 1;
   }
-  console.log(soundNumber);
   checkSound();
 })
 

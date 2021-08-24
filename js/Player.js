@@ -3,6 +3,7 @@ class Player {
     this.index = null;
     this.name = null;
     this.rank = null;
+
     this.order = 0;
     this.delivery = 0;
     this.seconds = 0;
@@ -42,7 +43,7 @@ class Player {
     })
   }
   getChefsAtEnd(){
-    database.ref('carsAtEnd').on("value", (data) => {
+    database.ref('chefsAtEnd').on("value", (data) => {
       this.rank = data.val();
     });
   }

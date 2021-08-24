@@ -14,8 +14,6 @@ var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, play
 var orders;
 var chef1, chef2, chef3, chef4, chefs;
 
- //add code to play sounds from restaurant sound options when gamestate is PLAY and to stop them when needed
-
 var pizza, burger, fries, burrito, taco, spaghetti, bread, maccheese, nachos;
 var water, fanta, sprite, coke, gingerale, fruitpunch, lemonade, orangejuice, applejuice;
 var cookie, muffin, cake, applepie, pudding, icecream, brownie;
@@ -25,9 +23,13 @@ var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
 var table, tableimg, chefimg;
 
+var message3 = "Pick A Sound For Your Restaurant";
+
 var gameState2 = 2;
 
 var framecountnumber;
+
+var muted = 0;
 
 var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, maccheeseimg, nachosimg;
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
@@ -126,11 +128,13 @@ game.start();
 
 
 function draw(){
-framecountnumber = 200-deliveries*3.5;
+framecountnumber = 200-deliveries*4.5;
 
 if(gameState === 0 && tries === 2){
 stopSound();
+if(muted === 0){
   lobbysound.play();
+}
   lobbysound.setVolume(0.1);
   tries = 1;
 }
@@ -148,15 +152,15 @@ if(tries4 === 1){
 if(gameState2 === 2){
   if(frameCount%30 === 0){
     player.seconds = player.seconds+1;
-  }
-  if(frameCount%1800 === 0){
-    player.minutes = player.minutes+1;
-    player.seconds = 0;
-  }
-  if(frameCount%108000 === 0){
-    player.hours = player.hours+1;
-    player.minutes = 0;
-    player.seconds = 0;
+    if(player.seconds === 60){
+      player.minutes = player.minutes+1;
+      player.seconds = 0; 
+      if(player.minutes === 60){
+        player.hours = player.hours+1;
+        player.minutes = 0;
+        player.seconds = 0;
+      }
+    }
   }
 }
 
@@ -173,7 +177,9 @@ if(gameState === 1){
 }
   if(gameState === 1 && tries2 === 2){
 stopSound();
+if(muted === 0){
 playsound.play();
+}
 playsound.setVolume(0.1); songtitle = "Sound 1";
     tries2 = 1;
   }
@@ -545,28 +551,28 @@ applepie.scale = displayWidth/4800;
 
   function checkSound(){
     if(soundNumber === 1){
-      playsound.play();
+      if(muted === 0){playsound.play();}
       playsound.setVolume(0.1); songtitle = "Sound 1";
     } else if(soundNumber === 2){
-      playsound2.play();
+      if(muted === 0){playsound2.play();}
       playsound2.setVolume(0.1); songtitle = "Sound 2";
     } else if(soundNumber === 3){
-      playsound3.play();
+      if(muted === 0){playsound3.play();}
       playsound3.setVolume(0.1); songtitle = "Sound 3";
     } else if(soundNumber === 4){
-      playsound4.play();
+      if(muted === 0){playsound4.play();}
       playsound4.setVolume(0.1); songtitle = "Sound 4";
     } else if(soundNumber === 5){
-      playsound5.play();
+      if(muted === 0){playsound5.play();}
       playsound5.setVolume(0.1); songtitle = "Sound 5";
     } else if(soundNumber === 6){
-      playsound6.play();
+      if(muted === 0){playsound6.play();}
       playsound6.setVolume(0.1); songtitle = "Sound 6";
     } else if(soundNumber === 7){
-      playsound7.play();
+      if(muted === 0){playsound7.play();}
       playsound7.setVolume(0.1); songtitle = "Sound 7";
     } else if(soundNumber === 8){
-      playsound8.play();
+      if(muted === 0){playsound8.play();}
       playsound8.setVolume(0.1); songtitle = "Sound 8";
     }
   }

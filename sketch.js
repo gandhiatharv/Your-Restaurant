@@ -8,6 +8,7 @@ var tries2 = 2;
 var tries3 = 2;
 var tries4 = 2;
 var tries5 = 2;
+var alert = 0;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
@@ -28,7 +29,7 @@ var message3 = "Pick A Sound For Your Restaurant";
 
 var gameState2 = 2;
 
-var framecountnumber;
+var framecountnumber, timer;
 
 var muted = 0;
 
@@ -37,6 +38,8 @@ var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonad
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
 
 var target = 50;
+
+var playerNameCheck;
 
 var currentorder = " ";
 
@@ -47,6 +50,9 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 
+var s = 0;
+var w = 0;
+
 var variable = 1;
 
 var orders = 0;
@@ -55,7 +61,7 @@ var deliveries = 0;
 
 var soundNumber = 1;
 
-var songtitle;
+var songtitle, variable2;
 
 function preload(){
   pizzaimg = loadImage("images/food1.png");
@@ -123,13 +129,35 @@ game.start();
   foodGroup = createGroup(); 
   customerGroup = createGroup();
   makeFood();
+  makeFood();
   console.log(soundNumber);
+  game.getFreezeAlert();
 }
 
 
 
 function draw(){
 framecountnumber = 200-deliveries*4.5;
+
+if(alert === 1){
+  swal({ title: 'You Are Frozen',
+  text: "You can return to cooking in 10 seconds.", 
+  imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+  imageSize: "150x150", 
+  confirmButtonText: "Ok", });
+}
+
+if(gameState === 3){
+  if(frameCount%300 === 0 && w === 1){
+    game.update(0);
+    w = 0;
+    swal({ title: 'Click The Button',
+    text: "You can resume cooking now!", 
+    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+    imageSize: "150x150", 
+    confirmButtonText: "Ok", });
+  }
+}
 
 if(gameState === 0 && tries === 2){
 stopSound();
@@ -261,7 +289,7 @@ function pizz(){
      bread = createSprite(width/3.8, height/1.48);
     bread.addImage(breadimg);
     bread.scale = displayWidth/7200;
-       bread.depth = 1.5;
+       bread.depth = 0.5;
        taco.depth = bread.depth + 1;
               foodGroup.add(bread);
   }
@@ -423,6 +451,7 @@ applepie.scale = displayWidth/4800;
   
   function mouseReleased(){
     foodGroup.destroyEach();
+    makeFood();
     makeFood();
   }
 

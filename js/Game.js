@@ -9,10 +9,23 @@ class Game {
 
   }
 
+  getFreezeAlert(){
+    var freezeAlertRef  = database.ref('alert');
+    freezeAlertRef.on("value",function(data){
+       alert = data.val();
+    })
+
+  }
 
   update(state){
     database.ref('/').update({
       gameState: state
+    });
+  }
+
+  updateFreezeAlert(number){
+    database.ref('/').update({
+      alert: number
     });
   }
 
@@ -91,10 +104,11 @@ player.getFinishedPlayers();
         text("Chef "+allPlayers.player4.name + "'s Deliveries: "+allPlayers.player4.delivery,displayWidth/1.3,display_position+90); 
       }
       }  
-if(gameState2 === 2){ 
+      if(player.index!= null){
+if(gameState !== 3){ 
+  if(gameState2 === 2){
       spawnCustomers();
       
-if(player.index!= null){
   if(mousePressedOver(pizza)){
     pizza.x = mouseX;
     pizza.y = mouseY;
@@ -320,8 +334,19 @@ if(player.index!= null){
       icecrea();
   }
 }
+  }
+} else{
+  spawnCustomers();
+      
+  if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
+    swal({ title: 'You Are Frozen',
+    text: "You cannot perform any actions until you are unfrozen.", 
+    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+    imageSize: "150x150", 
+    confirmButtonText: "Ok", });
 }
 }
+      }
 
       textSize(20);
       fill("white");

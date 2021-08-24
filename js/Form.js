@@ -13,6 +13,7 @@ class Form {
     this.down = createButton("Next");
     this.mute = createButton("Mute");
     this.unmute = createButton("Unmute");
+    this.freeze = createButton("Freeze");
   }
   hideButtons(){
     this.up.hide();
@@ -101,6 +102,7 @@ class Form {
       this.button.hide();
       this.leave.show();
       player.name = this.input.value();
+      console.log(player.name);
       playerCount+=1;
       player.index = playerCount;
       player.update();
@@ -121,6 +123,20 @@ this.leave.mousePressed(()=>{
   location.reload();
 })
 
+this.freeze.mousePressed(()=>{
+  if(gameState!==3){
+game.update(3);
+game.updateFreezeAlert(1);
+w = 1;
+  } else{
+    swal({ title: 'You Are Frozen',
+    text: "You cannot perform any actions until you are unfrozen.", 
+    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+    imageSize: "150x150", 
+    confirmButtonText: "Ok", });
+  }
+})
+
 this.mute.mousePressed(()=>{
  stopSound();
   muted = 1;
@@ -129,9 +145,14 @@ this.mute.mousePressed(()=>{
 })
 
 this.unmute.mousePressed(()=>{
-  stopSound1();
+  stopSound();
   muted = 0;
+  if(gameState === 1){
    checkSound();
+  } else if(gameState === 0){
+    lobbysound.play();
+    lobbysound.setVolume(0.1);
+  }
    this.unmute.hide();
    this.mute.show();
  }) 

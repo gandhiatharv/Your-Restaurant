@@ -339,8 +339,8 @@ function pizz(){
     function browni(){
          brownie = createSprite(width/1.73, height/2.08);
     brownie.addImage(brownieimg);
-    brownie.scale = displayWidth/4800;
-         brownie.depth = 1.5;
+    brownie.scale = displayWidth/3700;
+    brownie.depth = 1.5;
                 foodGroup.add(brownie);
   }
     function icecrea(){

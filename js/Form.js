@@ -9,8 +9,10 @@ class Form {
     this.greeting2 = createElement('h2');
     this.reset = createButton('Reset');
     this.leave = createButton('Leave');
-    this.up = createButton('🡱');
-    this.down = createButton('🡳');
+   // this.img1 = "images/up.png";
+   // this.img2 = "images/down.png";
+    this.up = createButton("Previous");
+    this.down = createButton("Next");
   }
   hideButtons(){
     this.up.hide();
@@ -30,13 +32,21 @@ class Form {
     this.up.show();
     this.down.show();
     this.up.position(displayWidth/2.5, displayHeight/2);
-    this.up.style('width', '80px');
+    this.up.style('width', '90px');
     this.up.style('height', '40px');
     this.down.position(displayWidth/1.75, displayHeight/2);
-    this.down.style('width', '80px');
+    this.down.style('width', '90px');
     this.down.style('height', '40px');
     this.up.style('text-align', 'center');
     this.down.style('text-align', 'center');
+    this.up.style('font-size', '8px');
+    this.down.style('font-size', '8px');
+    this.up.style('background-color', '#D3D3D3');
+    this.down.style('background-color', '#D3D3D3');
+    this.up.style('border-radius', '0');
+    this.down.style('border-radius', '0');
+    this.up.style('border', '1px solid');
+    this.down.style('border', '1px solid');
   }
   enter() {
     this.input.hide();

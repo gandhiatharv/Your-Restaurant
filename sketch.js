@@ -8,6 +8,7 @@ var tries2 = 2;
 var tries3 = 2;
 var tries4 = 2;
 var tries5 = 2;
+var tries6 = 2;
 var alert = 0;
 var allPlayers;
 var database, passedFinish;
@@ -139,6 +140,11 @@ game.start();
 function draw(){
 framecountnumber = 200-deliveries*4.5;
 
+if(gameState === 0 && tries6 === 2){
+  showTutorial();
+  tries6 = 1;
+}
+
 if(alert === 1){
   swal({ title: 'You Are Frozen',
   text: "You can return to cooking in 10 seconds.", 
@@ -164,6 +170,7 @@ stopSound();
 if(muted === 0){
   lobbysound.play();
 }
+
   lobbysound.setVolume(0.1);
   tries = 1;
 }
@@ -605,4 +612,17 @@ applepie.scale = displayWidth/4800;
       if(muted === 0){playsound8.play();}
       playsound8.setVolume(0.1); songtitle = "Sound 8";
     }
+  }
+
+  function showTutorial() {
+    swal(
+      {
+        title: `Tutorial`,
+        text: "Enter your nickname and join the game. Begin playing when 4 players have joined. Serve customers by checking the current order and dragging that respective food up to them. You can see all the other players' orders and deliveries at the top left and right sides of the screen. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. There will be various levels in the game. When you successfully complete a level, your rank will be displayed. You can press 'Tutorial' to view this tutorial again. Have fun!",
+        imageUrl:
+          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
+        imageSize: "365x171",
+        confirmButtonText: "Start Playing"
+      },
+    );
   }

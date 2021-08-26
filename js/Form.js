@@ -14,6 +14,8 @@ class Form {
     this.mute = createButton("Mute");
     this.unmute = createButton("Unmute");
     this.freeze = createButton("Freeze");
+    this.tutorial = createButton("Tutorial");
+    this.warning = createElement('h2');
   }
   hideButtons(){
     this.up.hide();
@@ -21,6 +23,7 @@ class Form {
     this.mute.hide();
     this.unmute.hide();
   }
+
   hide(){
     this.greeting.hide();
     this.greeting2.hide();
@@ -54,24 +57,40 @@ class Form {
     this.down.style('border', '1px solid');
   }
   enter() {
-    this.input.hide();
-    this.button.hide();
-    this.leave.show();
-    player.name = this.input.value();
-    playerCount+=1;
-    player.index = playerCount;
-    player.update();
-    player.updateCount(playerCount);
-    this.greeting.html("Hello Chef " + player.name+"!");
-    this.greeting.position(displayWidth/8, displayHeight/2.05);
-    this.greeting2.html("Please wait for others to join.");
-    this.greeting2.position(displayWidth/8, displayHeight/1.7);
+    if(this.input.value()<=0||this.input.value()>=0){
+      this.warning.show();
+    } else if(this.input.value()==="" && this.input.value()===" " && this.input.value()==="  "&& this.input.value()==="   "&& this.input.value()==="    "&& this.input.value()==="     "&& this.input.value()==="      "&& this.input.value()==="       "&& this.input.value()==="        "&& this.input.value()==="         "&& this.input.value()==="          "){
+    this.warning.show();
+    }
+    else if(this.input.value().length<1||this.input.value().length>25){
+this.warning.show();
+    }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && this.input.value()!==" " && this.input.value()!=="  "&& this.input.value()!=="   "&& this.input.value()!=="    "&& this.input.value()!=="     "&& this.input.value()!=="      "&& this.input.value()!=="       "&& this.input.value()!=="        "&& this.input.value()!=="         "&& this.input.value()!=="          "){
+      this.input.hide();
+      this.button.hide();
+      this.warning.hide();
+      this.leave.show();
+      player.name = this.input.value();
+      playerCount+=1;
+      player.index = playerCount;
+      player.update();
+      player.updateCount(playerCount);
+      this.greeting.html("Hello Chef " + player.name+"!");
+      this.greeting.position(displayWidth/8, displayHeight/2.05);
+      this.greeting2.html("Please wait for others to join.");
+      this.greeting2.position(displayWidth/8, displayHeight/1.7);
+      }
   }
   display(){
     this.welcome.position(0, 0);
     this.input.position(displayWidth/4, displayHeight/2);
     this.button.position(displayWidth/4, displayHeight/1.7);
     this.reset.hide();
+    this.warning.html("Please enter a name between 1 and 25 characters.");
+    this.warning.position(displayWidth/5, displayHeight/1.5);
+    this.warning.style("font-size", '20px');
+    this.warning.style("color", 'blue');
+    this.warning.style("font-family", 'Courier New');
+    this.warning.hide();
     this.leave.position(displayWidth/1.23, displayHeight/1.35);
     this.leave.style('width', '150px');
     this.leave.style('height', '60px');
@@ -82,6 +101,7 @@ class Form {
     this.mute.show();
     this.mute.position(displayWidth/40, displayHeight/1.36);
     this.unmute.position(displayWidth/40, displayHeight/1.36);
+    this.tutorial.position(displayWidth/1.2, displayHeight/1.36);
     this.mute.style('width', '135px');
     this.mute.style('height', '60px');
     this.unmute.style('width', '135px');
@@ -96,23 +116,60 @@ class Form {
     this.unmute.style('border-radius', '0');
     this.mute.style('border', '1px solid');
     this.unmute.style('border', '1px solid');
+    this.tutorial.style('width', '135px');
+    this.tutorial.style('height', '60px');
+    this.tutorial.style('text-align', 'center');
+    this.tutorial.style('font-size', '15px');
+    this.tutorial.style('background-color', '#D3D3D3');
+    this.tutorial.style('border-radius', '0');
+    this.tutorial.style('border', '1px solid');
 
     this.button.mousePressed(()=>{
-      this.input.hide();
-      this.button.hide();
-      this.leave.show();
-      player.name = this.input.value();
-      console.log(player.name);
-      playerCount+=1;
-      player.index = playerCount;
-      player.update();
-      player.updateCount(playerCount);
-      this.greeting.html("Hello Chef " + player.name+"!");
-      this.greeting.position(displayWidth/8, displayHeight/2.05);
-      this.greeting2.html("Please wait for others to join.");
-      this.greeting2.position(displayWidth/8, displayHeight/1.7);
+      if(this.input.value()<=0||this.input.value()>=0){
+        this.warning.show();
+      } else if(this.input.value()==="" && this.input.value()===" " && this.input.value()==="  "&& this.input.value()==="   "&& this.input.value()==="    "&& this.input.value()==="     "&& this.input.value()==="      "&& this.input.value()==="       "&& this.input.value()==="        "&& this.input.value()==="         "&& this.input.value()==="          "){
+      this.warning.show();
+      }
+      else if(this.input.value().length<1||this.input.value().length>25){
+this.warning.show();
+      }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && this.input.value()!==" " && this.input.value()!=="  "&& this.input.value()!=="   "&& this.input.value()!=="    "&& this.input.value()!=="     "&& this.input.value()!=="      "&& this.input.value()!=="       "&& this.input.value()!=="        "&& this.input.value()!=="         "&& this.input.value()!=="          "){
+        this.input.hide();
+        this.button.hide();
+        this.warning.hide();
+        this.leave.show();
+        player.name = this.input.value();
+        playerCount+=1;
+        player.index = playerCount;
+        player.update();
+        player.updateCount(playerCount);
+        this.greeting.html("Hello Chef " + player.name+"!");
+        this.greeting.position(displayWidth/8, displayHeight/2.05);
+        this.greeting2.html("Please wait for others to join.");
+        this.greeting2.position(displayWidth/8, displayHeight/1.7);
+        }
     });
 
+    this.tutorial.mousePressed(()=>{
+      swal(
+        {
+          title: `Tutorial`,
+          text: "Enter your nickname and join the game. Begin playing when 4 players have joined. Serve customers by checking the current order and dragging that respective food up to them. You can see all the other players' orders and deliveries at the top left and right sides of the screen. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. There will be various levels in the game. When you successfully complete a level, your rank will be displayed. You can press 'Tutorial' to view this tutorial again. Have fun!",
+          imageUrl:
+            "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
+          imageSize: "365x171",
+          confirmButtonText: "Resume Playing"
+        },
+      );
+    })
+
+this.leave.mousePressed(()=>{
+  if(playerCount === 0){
+    player.updateCount(0);
+  } else{
+  player.updateCount(playerCount-1);
+  }
+  location.reload();
+})
 
 this.leave.mousePressed(()=>{
   if(playerCount === 0){

@@ -33,7 +33,7 @@ class Player {
       seconds:this.seconds,
       minutes:this.minutes,
       hours:this.hours
-        });
+            });
   }
 
   static getPlayerInfo(){
@@ -75,13 +75,13 @@ static playerhours(){
   static updateChefsAtEnd(rank){
     database.ref('/').update({
       chefsAtEnd:rank
+
     });
   }
   static updateFinishedPlayers(){
     database.ref('/').update({
         finishedPlayers: finishedPlayers + 1,
     });
-    this.place += 1;
 }
 
 static updatePlayerDeliveries(delivery){

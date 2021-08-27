@@ -146,7 +146,7 @@ this.warning.show();
         this.greeting.position(displayWidth/8, displayHeight/2.05);
         this.greeting2.html("Please wait for others to join.");
         this.greeting2.position(displayWidth/8, displayHeight/1.7);
-        }
+      }
     });
 
     this.tutorial.mousePressed(()=>{

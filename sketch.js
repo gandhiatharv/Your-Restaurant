@@ -10,6 +10,8 @@ var tries4 = 2;
 var tries5 = 2;
 var tries6 = 2;
 var alert = 0;
+var chefsAtEnd = 0;
+var firstplace, secondplace, thirdplace, fourthplace;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;

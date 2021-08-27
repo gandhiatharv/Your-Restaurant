@@ -366,6 +366,7 @@ if(gameState !== 3){
           customerGroup.destroyEach();
         gameState2 = 1;
     player.rank+=1;
+    
       Player.updateChefsAtEnd(player.rank);
       console.log(player.rank);
       if(player.rank === 1){

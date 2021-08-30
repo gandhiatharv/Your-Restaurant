@@ -3,6 +3,7 @@ class Player {
     this.index = null;
     this.name = null;
     this.rank = null;
+    this.readiness = null;
 
     this.order = 0;
     this.delivery = 0;
@@ -22,6 +23,13 @@ class Player {
     database.ref('/').update({
       playerCount: count
     });
+  }
+
+  updateChefsEnd(){
+    var chefsAtEndRef = database.ref('chefsAtEnd');
+    chefsAtEndRef.on("value",(data)=>{
+      chefsAtEnd = data.val();
+    })
   }
 
   update(){
@@ -45,6 +53,18 @@ class Player {
   getChefsAtEnd(){
     database.ref('chefsAtEnd').on("value", (data) => {
       this.rank = data.val();
+      chefsAtEnd = data.val();
+    });
+  }
+  getTries9(){
+    database.ref('tries9').on("value", (data) => {
+      tries9 = data.val();
+    });
+  }
+  getReadiness(){
+    database.ref('Readiness').on("value", (data) => {
+      this.readiness = data.val();
+      readyfornextlevel = data.val();
     });
   }
   static playerOrders(){
@@ -75,7 +95,16 @@ static playerhours(){
   static updateChefsAtEnd(rank){
     database.ref('/').update({
       chefsAtEnd:rank
-
+    });
+  }
+  static updateTries9(tries9value){
+    database.ref('/').update({
+      tries9:tries9value
+    });
+  }
+  static updateReadiness(ready){
+    database.ref('/').update({
+      Readiness:ready
     });
   }
   static updateFinishedPlayers(){

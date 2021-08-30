@@ -9,13 +9,13 @@ class Game {
 
   }
 
-  getFreezeAlert(){
+ /* getFreezeAlert(){
     var freezeAlertRef  = database.ref('alert');
     freezeAlertRef.on("value",function(data){
        alert = data.val();
     })
 
-  }
+  }*/
 
   update(state){
     database.ref('/').update({
@@ -23,11 +23,11 @@ class Game {
     });
   }
 
-  updateFreezeAlert(number){
+  /*updateFreezeAlert(number){
     database.ref('/').update({
       alert: number
     });
-  }
+  }*/
 
   async start(){
     if(gameState === 0){
@@ -80,7 +80,9 @@ class Game {
     text("Game Start", 120, 100)
     Player.getPlayerInfo();
 player.getChefsAtEnd();
+player.getReadiness();
 player.getFinishedPlayers();
+player.updateChefsEnd();
 
     if(allPlayers !== undefined){
       image(tableimg, 0, 0, displayWidth, displayHeight); 
@@ -353,7 +355,37 @@ if(gameState !== 3){
       strokeWeight(2);
       stroke("orange");
 
-        if(player.delivery>=10&&tries3 === 2){
+      if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
+        tries8 = 1;
+        tries3 = tries3 - 1;
+        stopSound();
+        form.hideButtons();
+        variable = 0;
+        tries4 = 2;
+        message = " ";
+        message2 = " ";
+        message3 = " ";
+        songtitle = " ";
+        customerGroup.destroyEach();
+      gameState2 = 1;
+        if(muted === 0){
+          rank4sound.play();
+          }
+          swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+            if (isConfirm) {
+              tries9 = 2;
+              Player.updateReadiness(readyfornextlevel + 1);
+              player.getReadiness();
+            }});
+          }
+            if(readyfornextlevel === 4&& tries9 === 2){
+              tries9 = 1;
+              nextround();
+            }
+
+
+
+        if(player.delivery>=target&&tries3 === 2){
           tries3 = tries3 - 1;
           stopSound();
           form.hideButtons();
@@ -366,29 +398,56 @@ if(gameState !== 3){
           customerGroup.destroyEach();
         gameState2 = 1;
     player.rank+=1;
-    
-      Player.updateChefsAtEnd(player.rank);
-      console.log(player.rank);
       if(player.rank === 1){
         if(muted === 0){
         rank1sound.play();
         }
-      swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
+                Player.updateChefsAtEnd(player.rank);       
+      swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+        if (isConfirm) {
+          message2 = "Please wait for others to finish.";
+          tries9 = 2;
+          if(readyfornextlevel >= 4){
+            Player.updateReadiness(readyfornextlevel-3);
+player.getReadiness();
+          }else{
+          Player.updateReadiness(readyfornextlevel + 1);
+          player.getReadiness();
+          }
+        }});
     } else if (player.rank === 2){
       if(muted === 0){
       rank2sound.play();
       }
-      swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
+      Player.updateChefsAtEnd(player.rank);
+      swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+        if (isConfirm) {      
+          message2 = "Please wait for another person to finish.";
+          tries9 = 2;
+          Player.updateReadiness(readyfornextlevel + 1);
+          player.getReadiness();
+        }});
     } else if (player.rank === 3){
       if(muted === 0){
       rank3sound.play();
       }
-      swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
+      Player.updateChefsAtEnd(player.rank);
+      swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+        if (isConfirm) {
+          tries9 = 2;
+          Player.updateReadiness(readyfornextlevel + 1);
+          player.getReadiness();
+        }});
     } else{
       if(muted === 0){
       rank4sound.play();
       }
-      swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ok", });
+      swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+        if (isConfirm) {
+          tries9 = 2;
+          Player.updateReadiness(readyfornextlevel + 1);
+          player.getReadiness();
+        }});
     }
     }
           player.update();
@@ -402,9 +461,9 @@ if(gameState !== 3){
           text(player.hours+":"+player.minutes+":"+player.seconds, displayWidth/7, displayHeight/1.25);
           textSize(20);
           text("Your Name: Chef "+player.name, displayWidth/2.65, displayHeight/16);
+          //text(songtitle, displayWidth/2.4, displayHeight/5); 
+          //text(message3, displayWidth/2.9, displayHeight/6.5);
           text(message2, displayWidth/2.75, displayHeight/11.5);
-          text(songtitle, displayWidth/2.4, displayHeight/5); 
-          text(message3, displayWidth/2.9, displayHeight/6.5);
     }
 
 }

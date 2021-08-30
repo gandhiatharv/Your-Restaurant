@@ -9,15 +9,21 @@ var tries3 = 2;
 var tries4 = 2;
 var tries5 = 2;
 var tries6 = 2;
-var alert = 0;
+var tries7 = 2;
+var tries8 = 2;
+var tries9 = 2;
+//var alert = 0;
 var chefsAtEnd = 0;
-var firstplace, secondplace, thirdplace, fourthplace;
 var allPlayers;
 var database, passedFinish;
 var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
 var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
 var orders;
 var chef1, chef2, chef3, chef4, chefs;
+var tutorialtext = "Enter your nickname and join the game. Begin playing when 4 players have joined. There will be various levels in the game. Every couple moments you will lose a delivery and customers will come to your restaurant at a rate that increases as you progress through levels and deliver more orders. Serve customers by checking the current order and dragging that respective food up to them. Whenever a customer arrives at your restaurant, your orders will increment by 1 and whenever you serve a customer, your deliveries will increment by 1. You can see all the other players' orders and deliveries at the top left and right sides of the screen respectively. When you complete a level, your rank will be displayed. When everyone is ready for the next level, the next level of the game will begin. Every level, you have to deliver more orders than the previous one. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. You can press 'Tutorial' to view this tutorial again. Have fun!";
+
+var levelnumber = 1;
+var deliveryremovalnumber = 1000;
 
 var pizza, burger, fries, burrito, taco, spaghetti, bread, maccheese, nachos;
 var water, fanta, sprite, coke, gingerale, fruitpunch, lemonade, orangejuice, applejuice;
@@ -40,14 +46,15 @@ var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, 
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
 
-var target = 50;
+var target = 10;
+
+var message2 = "Winning Score: " + target + " Deliveries";
 
 var playerNameCheck;
 
 var currentorder = " ";
 
 var message = " ";
-var message2 = "Winning Score: 10 Deliveries";
 
 var seconds = 0;
 var minutes = 0;
@@ -65,6 +72,10 @@ var deliveries = 0;
 var soundNumber = 1;
 
 var songtitle, variable2;
+
+var readyfornextlevel = 0;
+
+let sel;
 
 function preload(){
   pizzaimg = loadImage("images/food1.png");
@@ -124,8 +135,6 @@ function preload(){
 function setup(){
   canvas = createCanvas(displayWidth,displayHeight);
   database = firebase.database();
-  console.log(displayWidth);
-  console.log(displayHeight);
  game = new Game();
  game.getState();
 game.start();
@@ -133,29 +142,51 @@ game.start();
   customerGroup = createGroup();
   makeFood();
   makeFood();
-  console.log(soundNumber);
-  game.getFreezeAlert();
+  sel = createSelect();
+  sel.position(displayWidth/2.4, displayHeight/5);
+sel.option('Select A Sound For Your Restaurant');
+  sel.option('Sound 1');
+  sel.option('Sound 2');
+  sel.option('Sound 3');
+  sel.option('Sound 4');
+  sel.option('Sound 5');
+  sel.option('Sound 6');
+  sel.option('Sound 7');
+  sel.option('Sound 8');
+  sel.selected('Select A Sound For Your Restaurant');
+sel.changed(mySelectEvent);
+  //game.getFreezeAlert();
 }
 
 
 
 function draw(){
-framecountnumber = 200-deliveries*4.5;
+  if(player.delivery <= 0){
+    framecountnumber = 200;
+  }else{
+framecountnumber = 200-player.delivery*4.5;
+  }
+
+if(frameCount%deliveryremovalnumber === 0){
+  if(gameState2 === 2){
+  player.delivery = player.delivery - 1;
+  }
+}
 
 if(gameState === 0 && tries6 === 2){
   showTutorial();
   tries6 = 1;
 }
 
-if(alert === 1){
+/*if(alert === 1){
   swal({ title: 'You Are Frozen',
   text: "You can return to cooking in 10 seconds.", 
   imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
   imageSize: "150x150", 
   confirmButtonText: "Ok", });
-}
+}*/
 
-if(gameState === 3){
+/*if(gameState === 3){
   if(frameCount%300 === 0 && w === 1){
     game.update(0);
     w = 0;
@@ -165,7 +196,7 @@ if(gameState === 3){
     imageSize: "150x150", 
     confirmButtonText: "Ok", });
   }
-}
+}*/
 
 if(gameState === 0 && tries === 2){
 stopSound();
@@ -202,8 +233,21 @@ if(gameState2 === 2){
   }
 }
 
-  if(playerCount === 4 && finishedPlayers === 0){
+  if(playerCount === 4 && finishedPlayers === 0 && gameState!==1){
     game.update(1);
+    if(tries7 ===2){
+      tries7 = 1;
+    swal(
+      {
+        title: `Level 1`,
+        text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
+        imageUrl:
+          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
+        imageSize: "365x171",
+        confirmButtonText: "Play"
+      },
+    );
+    }
   }
 
 if(finishedPlayers === 4){
@@ -474,7 +518,7 @@ applepie.scale = displayWidth/4800;
   }
 
   function currentOrderCheck(){
-    var rand2 = Math.round(random(1, 25));
+    var rand2 = Math.round(random(1, 1));
     if(rand2 === 1){
       currentorder = "Pizza";
     } else if (rand2 === 2){
@@ -620,7 +664,7 @@ applepie.scale = displayWidth/4800;
     swal(
       {
         title: `Tutorial`,
-        text: "Enter your nickname and join the game. Begin playing when 4 players have joined. Serve customers by checking the current order and dragging that respective food up to them. You can see all the other players' orders and deliveries at the top left and right sides of the screen. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. There will be various levels in the game. When you successfully complete a level, your rank will be displayed. You can press 'Tutorial' to view this tutorial again. Have fun!",
+        text: tutorialtext,
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
         imageSize: "365x171",
@@ -628,3 +672,54 @@ applepie.scale = displayWidth/4800;
       },
     );
   }
+
+  function nextround(){
+player.delivery = 0;
+player.order = 0;
+player.seconds = 0;
+player.minutes = 0;
+player.hours = 0;
+target  = target + 10;
+levelnumber = levelnumber + 1;
+deliveryremovalnumber = deliveryremovalnumber/1.15;
+    player.update();
+    stopSound();
+    gameState2 = 2;
+    checkSound();
+    message3 = "Pick A Sound For Your Restaurant";
+    message2 = "Winning Score: " + target + " Deliveries";
+    message = " ";
+    tries3 = 2;
+    variable = 1;
+    tries4 = 2;
+    tries5 = 2;
+    tries8 = 2;
+    form.showMuteAndUnmute();
+    swal(
+      {
+        title: `Level `+levelnumber,
+        text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
+        imageUrl:
+          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
+        imageSize: "365x171",
+        confirmButtonText: "Play"
+      },
+    );
+    Player.updateChefsAtEnd(0);
+    }
+    
+    function mySelectEvent() {
+      let item = sel.value();
+      stopSound1();
+      if(item === "Select A Sound For Your Restaurant"){
+        stopSound1();
+      } else if(item === "Sound 1"){
+        soundNumber = 1;
+      }
+      if(soundNumber === 1){
+        soundNumber = 8;
+      } else{
+        soundNumber = soundNumber - 1;
+      }
+      checkSound();
+    }

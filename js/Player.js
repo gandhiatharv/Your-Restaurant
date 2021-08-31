@@ -61,6 +61,26 @@ class Player {
       chatphase = data.val();
     });
   }
+  getFirstPlace(){
+    database.ref('firstPlace').on("value", (data) => {
+      firstPlace = data.val();
+    });
+  }
+  getSecondPlace(){
+    database.ref('secondPlace').on("value", (data) => {
+      secondPlace = data.val();
+    });
+  }
+  getThirdPlace(){
+    database.ref('thirdPlace').on("value", (data) => {
+      thirdPlace = data.val();
+    });
+  }
+  getFourthPlace(){
+    database.ref('fourthPlace').on("value", (data) => {
+      fourthPlace = data.val();
+    });
+  }
   getMessage1(){
     database.ref('chatmessage1').on("value", (data) => {
        
@@ -96,10 +116,20 @@ class Player {
       tries9 = data.val();
     });
   }
+  getTries(){
+    database.ref('Tries').on("value", (data) => {
+      tries10 = data.val();
+    });
+  }
   getReadiness(){
     database.ref('Readiness').on("value", (data) => {
       this.readiness = data.val();
       readyfornextlevel = data.val();
+    });
+  }
+  getFreezeAlert(){
+    database.ref('alert').on("value", (data) => {
+      alert = data.val();
     });
   }
   static playerOrders(){
@@ -136,6 +166,31 @@ static playerhours(){
     database.ref('/').update({
       chatphase:chatphasevalue
     });
+  } 
+   static updateFirstPlace(name){
+    database.ref('/').update({
+      firstPlace:name
+    });
+  }
+  static updateSecondPlace(name){
+    database.ref('/').update({
+      secondPlace:name
+    });
+  }
+  static updateThirdPlace(name){
+    database.ref('/').update({
+      thirdPlace:name
+    });
+  }
+  static updateFourthPlace(name){
+    database.ref('/').update({
+      fourthPlace:name
+    });
+  }
+  static updateFreezeAlert(freezealertvalue){
+    database.ref('/').update({
+      alert:freezealertvalue
+    });
   }
   static updateMessage1(chatmessage){
     database.ref('/').update({
@@ -165,6 +220,11 @@ static playerhours(){
   static updateTries9(tries9value){
     database.ref('/').update({
       tries9:tries9value
+    });
+  }
+  static updateTries(triesvalue){
+    database.ref('/').update({
+      Tries:triesvalue
     });
   }
   static updateReadiness(ready){

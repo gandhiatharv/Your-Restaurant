@@ -9,25 +9,11 @@ class Game {
 
   }
 
- /* getFreezeAlert(){
-    var freezeAlertRef  = database.ref('alert');
-    freezeAlertRef.on("value",function(data){
-       alert = data.val();
-    })
-
-  }*/
-
   update(state){
     database.ref('/').update({
       gameState: state
     });
   }
-
-  /*updateFreezeAlert(number){
-    database.ref('/').update({
-      alert: number
-    });
-  }*/
 
   async start(){
     if(gameState === 0){
@@ -89,6 +75,11 @@ player.getMessage3();
 player.getMessage4();
 player.getMessage5();
 player.getChatPhase();
+player.getFreezeAlert();
+player.getFirstPlace();
+player.getSecondPlace();
+player.getThirdPlace();
+player.getFourthPlace();
 
 
     if(allPlayers !== undefined){
@@ -112,7 +103,9 @@ player.getChatPhase();
         text("Chef "+allPlayers.player4.name + "'s Orders: "+allPlayers.player4.order,displayWidth/65,display_position+90);
         text("Chef "+allPlayers.player4.name + "'s Deliveries: "+allPlayers.player4.delivery,displayWidth/1.3,display_position+90); 
       }
-      }  
+      } 
+      
+      
       if(player.index!= null){
 if(gameState !== 3){ 
   if(gameState2 === 2){
@@ -362,7 +355,7 @@ if(gameState !== 3){
       strokeWeight(2);
       stroke("orange");
 
-      if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
+   /*   if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
         tries8 = 1;
         tries3 = tries3 - 1;
         stopSound();
@@ -456,7 +449,116 @@ player.getReadiness();
           player.getReadiness();
         }});
     }
+    }*/
+
+    if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
+      tries8 = 1;
+      tries3 = tries3 - 1;
+      stopSound();
+      form.hideButtons();
+      variable = 0;
+      tries4 = 2;
+      message = " ";
+      message2 = " ";
+      message3 = " ";
+      songtitle = " ";
+      customerGroup.destroyEach();
+    gameState2 = 1;
+      if(muted === 0){
+        rank4sound.play();
+        }
+        swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+          if (isConfirm) {
+            tries9 = 2;
+            Player.updateReadiness(readyfornextlevel + 1);
+            player.getReadiness();
+          }});
+        }
+          if(readyfornextlevel === 4&& tries9 === 2){
+            tries9 = 1;
+            nextround();
+          }
+
+
+
+      if(player.delivery>=target&&tries3 === 2){
+        tries3 = tries3 - 1;
+        stopSound();
+        form.hideButtons();
+        variable = 0;
+        tries4 = 2;
+        message = " ";
+        message2 = " ";
+        message3 = " ";
+        songtitle = " ";
+        customerGroup.destroyEach();
+      gameState2 = 1;
+  player.rank+=1;
+    if(player.rank === 1){
+      if(muted === 0){
+      rank1sound.play();
+      }
+              Player.updateChefsAtEnd(player.rank);       
+              Player.updateFirstPlace(player.name);
+    swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      if (isConfirm) {
+        message2 = "Please wait for others to finish.";
+        tries9 = 2;
+        if(readyfornextlevel >= 4){
+          Player.updateReadiness(readyfornextlevel-3);
+player.getReadiness();
+        }else{
+        Player.updateReadiness(readyfornextlevel + 1);
+        player.getReadiness();
+        }
+      }});
+  } else if (player.rank === 2){
+    if(muted === 0){
+    rank2sound.play();
     }
+    Player.updateChefsAtEnd(player.rank);
+    Player.updateSecondPlace(player.name);
+    swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      if (isConfirm) {      
+        message2 = "Please wait for another person to finish.";
+        tries9 = 2;
+        Player.updateReadiness(readyfornextlevel + 1);
+        player.getReadiness();
+      }});
+  } else if (player.rank === 3){
+    if(muted === 0){
+    rank3sound.play();
+    }
+    Player.updateChefsAtEnd(player.rank);
+    Player.updateThirdPlace(player.name);
+    swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      if (isConfirm) {
+        tries9 = 2;
+        Player.updateReadiness(readyfornextlevel + 1);
+        player.getReadiness();
+      }});
+  } else{
+    if(muted === 0){
+    rank4sound.play();
+    }
+    swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      if (isConfirm) {
+        tries9 = 2;
+        Player.updateReadiness(readyfornextlevel + 1);
+        player.getReadiness();
+      }});
+  }
+  }
+
+if(chefsAtEnd === 3){
+  swal({ title: `Results`, text: "First Place: Chef "+firstPlace+"Second Place: Chef "+secondPlace+"Third Place: Chef "+thirdPlace+"Fourth Place: Chef "+fourthPlace, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+    if (isConfirm) {
+      tries9 = 2;
+      Player.updateReadiness(readyfornextlevel + 1);
+      player.getReadiness();
+    }});
+}
+
           player.update();
           //display sprites
           drawSprites();

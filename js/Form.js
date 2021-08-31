@@ -219,19 +219,11 @@ this.leave.mousePressed(()=>{
   location.reload();
 })
 
-/*this.freeze.mousePressed(()=>{
-  if(gameState!==3){
-game.update(3);
-game.updateFreezeAlert(1);
-w = 1;
-  } else{
-    swal({ title: 'You Are Frozen',
-    text: "You cannot perform any actions until you are unfrozen.", 
-    imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
-    imageSize: "200x200", 
-    confirmButtonText: "Ok", });
-  }
-})*/
+this.freeze.mousePressed(()=>{
+  tries11 = 2;
+  game.update(3);
+    Player.updateFreezeAlert(1);
+})
 
 this.mute.mousePressed(()=>{
  stopSound();
@@ -286,6 +278,12 @@ this.reset.mousePressed(()=>{
   Player.updateMessage4("");
   Player.updateMessage5("");
   Player.updateChatPhase(1);
+  Player.updateFreezeAlert(0);
+  Player.updateTries(2);
+  Player.updateFirstPlace("");
+  Player.updateSecondPlace("");
+  Player.updateThirdPlace("");
+  Player.updateFourthPlace("");
   var playerInfoRef = database.ref('players');
   playerInfoRef.remove();
   database.ref("/").update({

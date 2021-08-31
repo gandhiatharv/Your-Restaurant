@@ -3,6 +3,10 @@
 2. sweetalert, tutorial, chat, freeze
 3. have pause and resume game features on games, have leave button and rename reset button to end game button, when someone pauses or resumes the game a notifcation comes up, when someone end the game a swal notification comes up, have tutorial on all multiplayer games
 4. have tutorial in all games, update tutorials with all the different featyures
+5. sound
+6. other stuff on gmail agendas
+7. freezing can be used only twice and does not reduce deliveries; add play and pause features on it; update rules of tutorial with these regulations
+8. add these features on all multiplayer games
 */
 
 
@@ -20,7 +24,9 @@ var tries6 = 2;
 var tries7 = 2;
 var tries8 = 2;
 var tries9 = 2;
-//var alert = 0;
+var tries10 = 2;
+var tries11 = 2;
+var alert = 0;
 var chefsAtEnd = 0;
 var allPlayers;
 var database, passedFinish;
@@ -84,6 +90,8 @@ var songtitle, variable2;
 var readyfornextlevel = 0;
 
 var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5;
+
+var firstPlace, secondPlace, thirdPlace, fourthPlace;
 
 var chatphase = 1;
 
@@ -167,7 +175,6 @@ sel.option('Select A Sound For Your Restaurant');
   sel.option('Sound 8');
   sel.selected('Select A Sound For Your Restaurant');
 sel.changed(mySelectEvent);
-  //game.getFreezeAlert();
 }
 
 
@@ -182,13 +189,34 @@ framecountnumber = 300-player.delivery*3.5;
     }
   }
 
+if(alert === 1 && tries11 === 2){
+  tries11 = 1;
+  swal({ title: 'You Are Frozen',
+  text: "You can return to cooking in 10 seconds.", 
+  imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
+  imageSize: "200x200", 
+  confirmButtonText: "Ok", });
+}
+
+  if(gameState === 3){
+    if(frameCount%300 === 0){
+      swal({ title: 'Click The Button',
+      text: "You can resume cooking now!", 
+      imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/thumbsup.png", 
+      imageSize: "150x150", 
+      confirmButtonText: "Ok", });
+      Player.updateFreezeAlert(0);
+      game.update(1);
+    }
+  }
+
 if(frameCount%deliveryremovalnumber === 0){
   if(gameState2 === 2){
   player.delivery = player.delivery - 1;
   }
 }
 
-if(gameState === 0 && tries6 === 2){
+if(gameState === 0 && tries6 === 2 && playerCount!==4&&gameState!==1){
   showTutorial();
   tries6 = 1;
 }
@@ -223,7 +251,7 @@ if(muted === 0){
   tries = 1;
 }
 
-if(frameCount%200 === 0 && variable === 1){
+if(frameCount%300 === 0 && variable === 1){
   tries4 = 1;
 }
 
@@ -250,7 +278,7 @@ if(gameState2 === 2){
 }
 }
 
-  if(playerCount === 4 && finishedPlayers === 0 && gameState!==1){
+  if(playerCount === 4 && finishedPlayers === 0 && gameState===0){
     game.update(1);
     if(tries7 ===2){
       tries7 = 1;

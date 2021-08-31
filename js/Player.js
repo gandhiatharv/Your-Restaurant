@@ -56,6 +56,41 @@ class Player {
       chefsAtEnd = data.val();
     });
   }
+  getChatPhase(){
+    database.ref('chatphase').on("value", (data) => {
+      chatphase = data.val();
+    });
+  }
+  getMessage1(){
+    database.ref('chatmessage1').on("value", (data) => {
+       
+      chatmessage1 = data.val();
+    });
+  }
+  getMessage2(){
+    database.ref('chatmessage2').on("value", (data) => {
+       
+      chatmessage2= data.val();
+    });
+  }
+  getMessage3(){
+    database.ref('chatmessage3').on("value", (data) => {
+       
+      chatmessage3 = data.val();
+    });
+  }
+  getMessage4(){
+    database.ref('chatmessage4').on("value", (data) => {
+       
+      chatmessage4 = data.val();
+    });
+  }
+  getMessage5(){
+    database.ref('chatmessage5').on("value", (data) => {
+       
+      chatmessage5 = data.val();
+    });
+  }
   getTries9(){
     database.ref('tries9').on("value", (data) => {
       tries9 = data.val();
@@ -95,6 +130,36 @@ static playerhours(){
   static updateChefsAtEnd(rank){
     database.ref('/').update({
       chefsAtEnd:rank
+    });
+  }
+  static updateChatPhase(chatphasevalue){
+    database.ref('/').update({
+      chatphase:chatphasevalue
+    });
+  }
+  static updateMessage1(chatmessage){
+    database.ref('/').update({
+      chatmessage1:chatmessage
+    });
+  }
+  static updateMessage2(chatmessage){
+    database.ref('/').update({
+      chatmessage2:chatmessage
+    });
+  }
+  static updateMessage3(chatmessage){
+    database.ref('/').update({
+      chatmessage3:chatmessage
+    });
+  }
+  static updateMessage4(chatmessage){
+    database.ref('/').update({
+      chatmessage4:chatmessage
+    });
+  }
+  static updateMessage5(chatmessage){
+    database.ref('/').update({
+      chatmessage5:chatmessage
     });
   }
   static updateTries9(tries9value){

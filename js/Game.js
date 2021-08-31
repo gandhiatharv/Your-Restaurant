@@ -83,6 +83,13 @@ player.getChefsAtEnd();
 player.getReadiness();
 player.getFinishedPlayers();
 player.updateChefsEnd();
+player.getMessage1();
+player.getMessage2();
+player.getMessage3();
+player.getMessage4();
+player.getMessage5();
+player.getChatPhase();
+
 
     if(allPlayers !== undefined){
       image(tableimg, 0, 0, displayWidth, displayHeight); 
@@ -343,8 +350,8 @@ if(gameState !== 3){
   if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
     swal({ title: 'You Are Frozen',
     text: "You cannot perform any actions until you are unfrozen.", 
-    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
-    imageSize: "150x150", 
+    imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
+    imageSize: "200x200", 
     confirmButtonText: "Ok", });
 }
 }
@@ -371,7 +378,7 @@ if(gameState !== 3){
         if(muted === 0){
           rank4sound.play();
           }
-          swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+          swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
             if (isConfirm) {
               tries9 = 2;
               Player.updateReadiness(readyfornextlevel + 1);
@@ -403,7 +410,7 @@ if(gameState !== 3){
         rank1sound.play();
         }
                 Player.updateChefsAtEnd(player.rank);       
-      swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           message2 = "Please wait for others to finish.";
           tries9 = 2;
@@ -420,7 +427,7 @@ player.getReadiness();
       rank2sound.play();
       }
       Player.updateChefsAtEnd(player.rank);
-      swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {      
           message2 = "Please wait for another person to finish.";
           tries9 = 2;
@@ -432,7 +439,7 @@ player.getReadiness();
       rank3sound.play();
       }
       Player.updateChefsAtEnd(player.rank);
-      swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           tries9 = 2;
           Player.updateReadiness(readyfornextlevel + 1);
@@ -442,7 +449,7 @@ player.getReadiness();
       if(muted === 0){
       rank4sound.play();
       }
-      swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           tries9 = 2;
           Player.updateReadiness(readyfornextlevel + 1);
@@ -464,6 +471,7 @@ player.getReadiness();
           //text(songtitle, displayWidth/2.4, displayHeight/5); 
           //text(message3, displayWidth/2.9, displayHeight/6.5);
           text(message2, displayWidth/2.75, displayHeight/11.5);
+          text(`${chatmessage1}${"\n"}${chatmessage2}${"\n"}${chatmessage3}${"\n"}${chatmessage4}${"\n"}${chatmessage5}${"\n"}`, displayWidth/2, displayHeight/2);
     }
 
 }

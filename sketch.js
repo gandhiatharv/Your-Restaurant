@@ -1,3 +1,11 @@
+/*NOTES:
+1. paus & play game, someone has ended game, make sure deliveries does not go off screen
+2. sweetalert, tutorial, chat, freeze
+3. have pause and resume game features on games, have leave button and rename reset button to end game button, when someone pauses or resumes the game a notifcation comes up, when someone end the game a swal notification comes up, have tutorial on all multiplayer games
+4. have tutorial in all games, update tutorials with all the different featyures
+*/
+
+
 var canvas, backgroundImage;
 
 var gameState = 0;
@@ -74,6 +82,10 @@ var soundNumber = 1;
 var songtitle, variable2;
 
 var readyfornextlevel = 0;
+
+var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5;
+
+var chatphase = 1;
 
 let sel;
 
@@ -162,9 +174,12 @@ sel.changed(mySelectEvent);
 
 function draw(){
   if(player.delivery <= 0){
-    framecountnumber = 200;
+    framecountnumber = 300;
   }else{
-framecountnumber = 200-player.delivery*4.5;
+framecountnumber = 300-player.delivery*3.5;
+    if(framecountnumber < 1){
+      framecountnumber = 1;
+    }
   }
 
 if(frameCount%deliveryremovalnumber === 0){
@@ -181,8 +196,8 @@ if(gameState === 0 && tries6 === 2){
 /*if(alert === 1){
   swal({ title: 'You Are Frozen',
   text: "You can return to cooking in 10 seconds.", 
-  imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
-  imageSize: "150x150", 
+  imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
+  imageSize: "200x200", 
   confirmButtonText: "Ok", });
 }*/
 
@@ -192,7 +207,7 @@ if(gameState === 0 && tries6 === 2){
     w = 0;
     swal({ title: 'Click The Button',
     text: "You can resume cooking now!", 
-    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+    imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/thumbsup.png", 
     imageSize: "150x150", 
     confirmButtonText: "Ok", });
   }
@@ -218,6 +233,7 @@ if(tries4 === 1){
   message = " ";
 }
 
+if(gameState === 1){
 if(gameState2 === 2){
   if(frameCount%30 === 0){
     player.seconds = player.seconds+1;
@@ -232,6 +248,7 @@ if(gameState2 === 2){
     }
   }
 }
+}
 
   if(playerCount === 4 && finishedPlayers === 0 && gameState!==1){
     game.update(1);
@@ -242,8 +259,8 @@ if(gameState2 === 2){
         title: `Level 1`,
         text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
         imageUrl:
-          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
-        imageSize: "365x171",
+          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",
+        imageSize: "324x172",
         confirmButtonText: "Play"
       },
     );
@@ -700,8 +717,8 @@ deliveryremovalnumber = deliveryremovalnumber/1.15;
         title: `Level `+levelnumber,
         text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
         imageUrl:
-          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
-        imageSize: "365x171",
+          "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",
+        imageSize: "324x172",
         confirmButtonText: "Play"
       },
     );

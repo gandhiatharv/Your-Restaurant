@@ -15,6 +15,8 @@ class Form {
     this.freeze = createButton("Freeze");
     this.tutorial = createButton("Tutorial");
     this.warning = createElement('h2');
+    this.chat = createInput("").attribute("placeholder", "Send A Message");
+    this.send = createButton('Send');
   }
   hideButtons(){
     ////this.up.hide();
@@ -62,12 +64,12 @@ class Form {
   enter() {
     if(this.input.value()<=0||this.input.value()>=0){
       this.warning.show();
-    } else if(this.input.value()==="" && this.input.value()===" " && this.input.value()==="  "&& this.input.value()==="   "&& this.input.value()==="    "&& this.input.value()==="     "&& this.input.value()==="      "&& this.input.value()==="       "&& this.input.value()==="        "&& this.input.value()==="         "&& this.input.value()==="          "){
+    } else if(this.input.value()===""){
     this.warning.show();
     }
     else if(this.input.value().length<1||this.input.value().length>25){
 this.warning.show();
-    }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && this.input.value()!==" " && this.input.value()!=="  "&& this.input.value()!=="   "&& this.input.value()!=="    "&& this.input.value()!=="     "&& this.input.value()!=="      "&& this.input.value()!=="       "&& this.input.value()!=="        "&& this.input.value()!=="         "&& this.input.value()!=="          "){
+    }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!==""){
       this.input.hide();
       this.button.hide();
       this.warning.hide();
@@ -77,11 +79,11 @@ this.warning.show();
       player.index = playerCount;
       player.update();
       player.updateCount(playerCount);
-      this.greeting.html("Hello Chef " + player.name+"!");
+      this.greeting.html("Hello Chef " + player.name+"! Please wait for others to join.");
       this.greeting.position(displayWidth/8, displayHeight/2.05);
       //this.greeting2.html("Please wait for others to join.");
       //this.greeting2.position(displayWidth/8, displayHeight/1.7);
-      }
+    }
   }
   display(){
     this.welcome.position(0, 0);
@@ -130,12 +132,12 @@ this.warning.show();
     this.button.mousePressed(()=>{
       if(this.input.value()<=0||this.input.value()>=0){
         this.warning.show();
-      } else if(this.input.value()==="" && this.input.value()===" " && this.input.value()==="  "&& this.input.value()==="   "&& this.input.value()==="    "&& this.input.value()==="     "&& this.input.value()==="      "&& this.input.value()==="       "&& this.input.value()==="        "&& this.input.value()==="         "&& this.input.value()==="          "){
+      } else if(this.input.value()===""){
       this.warning.show();
       }
       else if(this.input.value().length<1||this.input.value().length>25){
 this.warning.show();
-      }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && this.input.value()!==" " && this.input.value()!=="  "&& this.input.value()!=="   "&& this.input.value()!=="    "&& this.input.value()!=="     "&& this.input.value()!=="      "&& this.input.value()!=="       "&& this.input.value()!=="        "&& this.input.value()!=="         "&& this.input.value()!=="          "){
+      }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!==""){
         this.input.hide();
         this.button.hide();
         this.warning.hide();
@@ -149,6 +151,49 @@ this.warning.show();
         this.greeting.position(displayWidth/8, displayHeight/2.05);
         //this.greeting2.html("Please wait for others to join.");
         //this.greeting2.position(displayWidth/8, displayHeight/1.7);
+      }
+    });
+
+    this.send.mousePressed(()=>{
+      if(this.chat.value().length>=1 && this.chat.value()!==""){
+        if(chatmessage1!==""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+            chatmessage1 = chatmessage2;
+            chatmessage2 = chatmessage3;
+            chatmessage3 = chatmessage4;
+            chatmessage4 = chatmessage5;
+            chatmessage5 = "Chef "+player.name + ": "+this.chat.value();
+            Player.updateMessage1(chatmessage1);
+            Player.updateMessage2(chatmessage2);
+            Player.updateMessage3(chatmessage3);
+            Player.updateMessage4(chatmessage4);
+            Player.updateMessage5(chatmessage5);
+        }else{
+if(chatmessage1 ===""){
+  Player.updateMessage1(this.chat.value());
+} else if(chatmessage2 ===""&&chatmessage1!==""){
+  Player.updateMessage2(this.chat.value());
+}else if(chatmessage3 ===""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage3(this.chat.value());
+}else if(chatmessage4 ===""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage4(this.chat.value());
+}else if(chatmessage5 ===""&&chatmessage4!==""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage5(this.chat.value());
+}
+}
+
+/*else{
+if(chatmessage5 ===""){
+  Player.updateMessage5(this.chat.value());
+} else if(chatmessage4 ===""&&chatmessage5!==""){
+  Player.updateMessage4(this.chat.value());
+}else if(chatmessage3 ===""&&chatmessage4!==""&&chatmessage5!==""){
+  Player.updateMessage3(this.chat.value());
+}else if(chatmessage2 ===""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+  Player.updateMessage2(this.chat.value());
+}else if(chatmessage1 ===""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+  Player.updateMessage1(this.chat.value());
+}
+}*/
       }
     });
 
@@ -174,15 +219,6 @@ this.leave.mousePressed(()=>{
   location.reload();
 })
 
-this.leave.mousePressed(()=>{
-  if(playerCount === 0){
-    player.updateCount(0);
-  } else{
-  player.updateCount(playerCount-1);
-  }
-  location.reload();
-})
-
 /*this.freeze.mousePressed(()=>{
   if(gameState!==3){
 game.update(3);
@@ -191,8 +227,8 @@ w = 1;
   } else{
     swal({ title: 'You Are Frozen',
     text: "You cannot perform any actions until you are unfrozen.", 
-    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
-    imageSize: "150x150", 
+    imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
+    imageSize: "200x200", 
     confirmButtonText: "Ok", });
   }
 })*/
@@ -244,6 +280,12 @@ this.reset.mousePressed(()=>{
   Player.updateChefsAtEnd(0);
   Player.updateReadiness(0);
   Player.updateTries9(2);
+  Player.updateMessage1("");
+  Player.updateMessage2("");
+  Player.updateMessage3("");
+  Player.updateMessage4("");
+  Player.updateMessage5("");
+  Player.updateChatPhase(1);
   var playerInfoRef = database.ref('players');
   playerInfoRef.remove();
   database.ref("/").update({

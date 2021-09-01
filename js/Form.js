@@ -17,12 +17,24 @@ class Form {
     this.warning = createElement('h2');
     this.chat = createInput("").attribute("placeholder", "Send A Message");
     this.send = createButton('Send');
+    this.pause = createButton('Pause');
+    this.play = createButton('Resume');
   }
   hideButtons(){
     ////this.up.hide();
     ////this.down.hide();
     this.mute.hide();
     this.unmute.hide();
+  }
+
+  hidePause(){
+this.pause.hide();
+this.play.show();
+  }
+
+  hidePlay(){
+    this.play.hide();
+    this.pause.show();
   }
 
   showMuteAndUnmute(){
@@ -60,6 +72,8 @@ class Form {
     //this.down.style('border-radius', '0');
     //this.up.style('border', '1px solid');
     //this.down.style('border', '1px solid');
+    this.pause.show();
+    this.play.hide();
   }
   enter() {
     if(this.input.value()<=0||this.input.value()>=0){
@@ -144,6 +158,9 @@ this.warning.show();
         this.leave.show();
         player.name = this.input.value();
         playerCount+=1;
+        if(playerCount === 1){
+          
+        }
         player.index = playerCount;
         player.update();
         player.updateCount(playerCount);
@@ -245,6 +262,19 @@ this.unmute.mousePressed(()=>{
    this.mute.show();
  }) 
 
+ this.pause.mousePressed(()=>{
+Player.updatePaused("true");
+customerGroup.setLifetimeEach(-1);
+   this.pause.hide();
+   this.play.show();
+ })
+ 
+ this.play.mousePressed(()=>{
+  Player.updatePaused("false");
+  this.play.hide();
+    this.pause.show();
+  }) 
+
 /*this.up.mousePressed(()=>{
   stopSound1();
   if(soundNumber === 1){
@@ -267,6 +297,7 @@ this.down.mousePressed(()=>{
 
 
 this.reset.mousePressed(()=>{
+  Player.updateGameEnded("Chef "+player.name+" has ended the game. Thanks for playing!");
   player.updateCount(0);
   game.update(0);
   Player.updateChefsAtEnd(0);
@@ -284,6 +315,7 @@ this.reset.mousePressed(()=>{
   Player.updateSecondPlace("");
   Player.updateThirdPlace("");
   Player.updateFourthPlace("");
+  Player.updatePaused("false");
   var playerInfoRef = database.ref('players');
   playerInfoRef.remove();
   database.ref("/").update({

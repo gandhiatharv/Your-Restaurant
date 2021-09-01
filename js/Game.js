@@ -9,6 +9,14 @@ class Game {
 
   }
 
+  getOks2(){
+    var oksRef  = database.ref('oks');
+    oksRef.on("value",function(data){
+       oks = data.val();
+    })
+
+  }
+
   update(state){
     database.ref('/').update({
       gameState: state
@@ -80,7 +88,9 @@ player.getFirstPlace();
 player.getSecondPlace();
 player.getThirdPlace();
 player.getFourthPlace();
-
+player.getGameEnded();
+player.getOks();
+player.getPaused();
 
     if(allPlayers !== undefined){
       image(tableimg, 0, 0, displayWidth, displayHeight); 
@@ -95,18 +105,27 @@ player.getFourthPlace();
           chefs[index-1].shapeColor = "red";
         }
         text("Chef "+allPlayers.player1.name + "'s Orders: "+allPlayers.player1.order,displayWidth/65,display_position);
-        text("Chef "+allPlayers.player1.name + "'s Deliveries: "+allPlayers.player1.delivery,displayWidth/1.3,display_position);
+        text("Chef "+allPlayers.player1.name + "'s Money: $"+allPlayers.player1.delivery+".00",displayWidth/1.3,display_position);
         text("Chef "+allPlayers.player2.name + "'s Orders: "+allPlayers.player2.order,displayWidth/65,display_position+30);
-        text("Chef "+allPlayers.player2.name + "'s Deliveries: "+allPlayers.player2.delivery,displayWidth/1.3,display_position+30);
+        text("Chef "+allPlayers.player2.name + "'s Money: $"+allPlayers.player2.delivery+".00",displayWidth/1.3,display_position+30);
         text("Chef "+allPlayers.player3.name + "'s Orders: "+allPlayers.player3.order,displayWidth/65,display_position+60);
-        text("Chef "+allPlayers.player3.name + "'s Deliveries: "+allPlayers.player3.delivery,displayWidth/1.3,display_position+60);
+        text("Chef "+allPlayers.player3.name + "'s Money: $"+allPlayers.player3.delivery+".00",displayWidth/1.3,display_position+60);
         text("Chef "+allPlayers.player4.name + "'s Orders: "+allPlayers.player4.order,displayWidth/65,display_position+90);
-        text("Chef "+allPlayers.player4.name + "'s Deliveries: "+allPlayers.player4.delivery,displayWidth/1.3,display_position+90); 
+        text("Chef "+allPlayers.player4.name + "'s Money: $"+allPlayers.player4.delivery+".00",displayWidth/1.3,display_position+90); 
       }
       } 
+
+      if(paused === "false"){
+        form.hidePlay();
+      }
       
+      if(paused === "true"){
+        form.hidePause();
+        customerGroup.setLifetimeEach(-1);
+      }      
       
       if(player.index!= null){
+        if(paused === "false"){
 if(gameState !== 3){ 
   if(gameState2 === 2){
       spawnCustomers();
@@ -115,7 +134,7 @@ if(gameState !== 3){
     pizza.x = mouseX;
     pizza.y = mouseY;
     if(currentorder === "Pizza"&&pizza.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       pizza.destroy();
       pizz();
   }
@@ -124,7 +143,7 @@ if(gameState !== 3){
     burger.x = mouseX;
     burger.y = mouseY;
     if(currentorder === "Burger"&&burger.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       burger.destroy();
       burge();
   }
@@ -133,7 +152,7 @@ if(gameState !== 3){
     burrito.x = mouseX;
     burrito.y = mouseY;
     if(currentorder === "Burrito"&&burrito.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       burrito.destroy();
       burrit();
   }
@@ -142,7 +161,7 @@ if(gameState !== 3){
     taco.x = mouseX;
     taco.y = mouseY;
     if(currentorder === "Taco"&&taco.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       taco.destroy();
       tac();
   }
@@ -151,7 +170,7 @@ if(gameState !== 3){
     fries.x = mouseX;
     fries.y = mouseY;
     if(currentorder === "Fries"&&fries.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       fries.destroy();
       frie();
   }
@@ -160,7 +179,7 @@ if(gameState !== 3){
     spaghetti.x = mouseX;
     spaghetti.y = mouseY;
     if(currentorder === "Spaghetti"&&spaghetti.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       spaghetti.destroy();
       spaghett();
   }
@@ -169,7 +188,7 @@ if(gameState !== 3){
     bread.x = mouseX;
     bread.y = mouseY;
     if(currentorder === "Bread"&&bread.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       bread.destroy();
       brea();
   }
@@ -178,7 +197,7 @@ if(gameState !== 3){
     maccheese.x = mouseX;
     maccheese.y = mouseY;
     if(currentorder === "Macaroni & Cheese"&&maccheese.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       maccheese.destroy();
       macchees();
   }
@@ -187,7 +206,7 @@ if(gameState !== 3){
     nachos.x = mouseX;
     nachos.y = mouseY;
     if(currentorder === "Nachos"&&nachos.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       nachos.destroy();
       nacho();
   }
@@ -196,7 +215,7 @@ if(gameState !== 3){
     sprite.x = mouseX;
     sprite.y = mouseY;
     if(currentorder === "Sprite"&&sprite.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       sprite.destroy();
       sprit();
   }
@@ -205,7 +224,7 @@ if(gameState !== 3){
     coke.x = mouseX;
     coke.y = mouseY;
     if(currentorder === "Coke"&&coke.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       coke.destroy();
       cok();
   }
@@ -214,7 +233,7 @@ if(gameState !== 3){
     fanta.x = mouseX;
     fanta.y = mouseY;
     if(currentorder === "Fanta"&&fanta.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       fanta.destroy();
       fant();
   }
@@ -223,7 +242,7 @@ if(gameState !== 3){
     gingerale.x = mouseX;
     gingerale.y = mouseY;
     if(currentorder === "Gingerale"&&gingerale.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       gingerale.destroy();
       gingeral();
   }
@@ -232,7 +251,7 @@ if(gameState !== 3){
     fruitpunch.x = mouseX;
     fruitpunch.y = mouseY;
     if(currentorder === "Fruit Punch"&&fruitpunch.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       fruitpunch.destroy();
       fruitpunc();
   }
@@ -241,7 +260,7 @@ if(gameState !== 3){
     lemonade.x = mouseX;
     lemonade.y = mouseY;
     if(currentorder === "Lemonade"&&lemonade.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       lemonade.destroy();
       lemonad();
   }
@@ -250,7 +269,7 @@ if(gameState !== 3){
     orangejuice.x = mouseX;
     orangejuice.y = mouseY;
     if(currentorder === "Orange Juice"&&orangejuice.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       orangejuice.destroy();
       orangejuic();
   }
@@ -259,7 +278,7 @@ if(gameState !== 3){
     applejuice.x = mouseX;
     applejuice.y = mouseY;
     if(currentorder === "Apple Juice"&&applejuice.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       applejuice.destroy();
       applejuic();
   }
@@ -268,7 +287,7 @@ if(gameState !== 3){
     water.x = mouseX;
     water.y = mouseY;
     if(currentorder === "Water"&&water.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       water.destroy();
       wate();
   }
@@ -277,7 +296,7 @@ if(gameState !== 3){
     cookie.x = mouseX;
     cookie.y = mouseY;
     if(currentorder === "Cookies"&&cookie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       cookie.destroy();
       cooki();
   }
@@ -286,7 +305,7 @@ if(gameState !== 3){
     muffin.x = mouseX;
     muffin.y = mouseY;
     if(currentorder === "Muffin"&&muffin.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       muffin.destroy();
       muffi();
   }
@@ -295,7 +314,7 @@ if(gameState !== 3){
     cake.x = mouseX;
     cake.y = mouseY;
     if(currentorder === "Cake"&&cake.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       cake.destroy();
       cak();
   }
@@ -304,7 +323,7 @@ if(gameState !== 3){
     applepie.x = mouseX;
     applepie.y = mouseY;
     if(currentorder === "Apple Pie"&&applepie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       applepie.destroy();
       applepi();
   }
@@ -313,7 +332,7 @@ if(gameState !== 3){
     pudding.x = mouseX;
     pudding.y = mouseY;
     if(currentorder === "Pudding"&&pudding.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       pudding.destroy();
       puddin();
   }
@@ -322,7 +341,7 @@ if(gameState !== 3){
     brownie.x = mouseX;
     brownie.y = mouseY;
     if(currentorder === "Brownie"&&brownie.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       brownie.destroy();
       browni();
   }
@@ -331,24 +350,25 @@ if(gameState !== 3){
     icecream.x = mouseX;
     icecream.y = mouseY;
     if(currentorder === "Ice Cream"&&icecream.y < displayHeight/2.20408163265){
-      customer.destroy(); currentOrderCheck(); spawnCust(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();}
+      var dollar = createSprite(customer.x, customer.y - 150); dollar.addImage(dollarimg); dollar.scale = 0.1; dollar.lifetime = 100; currentOrderCheck(); player.delivery= player.delivery+1; rank1sound.stop(); rank2sound.stop(); rank3sound.stop(); rank4sound.stop(); clapsound.stop(); lobbysound.stop(); servecustomersound.stop(); if(muted === 0){servecustomersound.play();} customer.lifetime = 100;
       icecream.destroy();
       icecrea();
   }
 }
   }
-} else{
-  spawnCustomers();
-      
-  if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
-    swal({ title: 'You Are Frozen',
-    text: "You cannot perform any actions until you are unfrozen.", 
-    imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
-    imageSize: "200x200", 
-    confirmButtonText: "Ok", });
 }
-}
+      } else if (paused === "true"){
+        if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
+          swal({
+            title: `The Game Is Paused`,
+            text: "You cannot perform any actions until the game is resumed.",
+            type: "error",
+            confirmButtonText: "Ok",
+          }
+            );
+        }
       }
+    }
 
       textSize(20);
       fill("white");
@@ -451,36 +471,6 @@ player.getReadiness();
     }
     }*/
 
-    if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
-      tries8 = 1;
-      tries3 = tries3 - 1;
-      stopSound();
-      form.hideButtons();
-      variable = 0;
-      tries4 = 2;
-      message = " ";
-      message2 = " ";
-      message3 = " ";
-      songtitle = " ";
-      customerGroup.destroyEach();
-    gameState2 = 1;
-      if(muted === 0){
-        rank4sound.play();
-        }
-        swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
-          if (isConfirm) {
-            tries9 = 2;
-            Player.updateReadiness(readyfornextlevel + 1);
-            player.getReadiness();
-          }});
-        }
-          if(readyfornextlevel === 4&& tries9 === 2){
-            tries9 = 1;
-            nextround();
-          }
-
-
-
       if(player.delivery>=target&&tries3 === 2){
         tries3 = tries3 - 1;
         stopSound();
@@ -495,69 +485,122 @@ player.getReadiness();
       gameState2 = 1;
   player.rank+=1;
     if(player.rank === 1){
-      if(muted === 0){
-      rank1sound.play();
-      }
               Player.updateChefsAtEnd(player.rank);       
               Player.updateFirstPlace(player.name);
-    swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+              result = 1;
+              if(muted === 0){
+                clapsound.play();
+                }
+              swal({
+                title: `You Reached The Target!`,
+                text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
+                type: "success",
+                confirmButtonText: "Ok",
+              },    function(isConfirm) {
+                if (isConfirm) {
+                  message2 = "Please wait for others to finish.";
+                }});  } else if (player.rank === 2){
+    Player.updateChefsAtEnd(player.rank);
+    Player.updateSecondPlace(player.name);
+    result = 2;
+    if(muted === 0){
+      clapsound.play();
+      }
+      swal({
+        title: `You Reached The Target!`,
+        text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
+        type: "success",
+        confirmButtonText: "Ok",
+      },    function(isConfirm) {
+        if (isConfirm) {
+          message2 = "Please wait for others to finish.";
+        }});  } else if (player.rank === 3){
+    Player.updateChefsAtEnd(player.rank);
+    Player.updateThirdPlace(player.name);
+    result = 3;
+  } else{
+    if(muted === 0){
+    rank4sound.play();
+    }
+    result = 4;
+  }
+  }
+
+  if(chefsAtEnd === 3 && player.delivery < target && tries8 === 2){
+    tries8 = 1;
+    tries3 = tries3 - 1;
+    stopSound();
+    form.hideButtons();
+    variable = 0;
+    tries4 = 2;
+    message = " ";
+    message2 = " ";
+    message3 = " ";
+    songtitle = " ";
+    customerGroup.destroyEach();
+  gameState2 = 1;
+  Player.updateFourthPlace(player.name);
+  result = 4;
+      }
+
+if(chefsAtEnd === 3 && tries12 === 2){
+  if(result === 1){
+    if(muted === 0){
+      rank1sound.play();
+      }
+    swal({ title: `Results`, text: `1st Place: You (Chef ${firstPlace})${"\n"}2nd Place: Chef ${secondPlace}${"\n"}3rd Place: Chef ${thirdPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
-        message2 = "Please wait for others to finish.";
         tries9 = 2;
+        message2 = "Please wait for others to be ready for the next level.";
         if(readyfornextlevel >= 4){
           Player.updateReadiness(readyfornextlevel-3);
-player.getReadiness();
+    player.getReadiness();
         }else{
         Player.updateReadiness(readyfornextlevel + 1);
         player.getReadiness();
         }
       }});
-  } else if (player.rank === 2){
+  } else if(result === 2){
     if(muted === 0){
-    rank2sound.play();
-    }
-    Player.updateChefsAtEnd(player.rank);
-    Player.updateSecondPlace(player.name);
-    swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
-      if (isConfirm) {      
-        message2 = "Please wait for another person to finish.";
-        tries9 = 2;
-        Player.updateReadiness(readyfornextlevel + 1);
-        player.getReadiness();
-      }});
-  } else if (player.rank === 3){
-    if(muted === 0){
-    rank3sound.play();
-    }
-    Player.updateChefsAtEnd(player.rank);
-    Player.updateThirdPlace(player.name);
-    swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      rank2sound.play();
+      }
+    swal({ title: `Results`, text: `2nd Place: You (Chef ${secondPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}3rd Place: Chef ${thirdPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
+        message2 = "Please wait for others to be ready for the next level.";
         Player.updateReadiness(readyfornextlevel + 1);
         player.getReadiness();
       }});
-  } else{
+  } else if(result === 3){
     if(muted === 0){
-    rank4sound.play();
-    }
-    swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      rank3sound.play();
+      }
+    swal({ title: `Results`, text: `3rd Place: You (Chef ${thirdPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}2nd Place: Chef ${secondPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
+        message2 = "Please wait for others to be ready for the next level.";
         Player.updateReadiness(readyfornextlevel + 1);
         player.getReadiness();
       }});
-  }
+  } else if(result === 4){
+    if(muted === 0){
+      rank4sound.play();
+      }
+    swal({ title: `Results`, text: `Honorable Mention: You (Chef ${fourthPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}2nd Place: Chef ${secondPlace}${"\n"}3rd Place: Chef ${thirdPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      if (isConfirm) {
+        tries9 = 2;
+        message2 = "Please wait for others to be ready for the next level.";
+        Player.updateReadiness(readyfornextlevel + 1);
+        player.getReadiness();
+      }});
   }
 
-if(chefsAtEnd === 3){
-  swal({ title: `Results`, text: "First Place: Chef "+firstPlace+"Second Place: Chef "+secondPlace+"Third Place: Chef "+thirdPlace+"Fourth Place: Chef "+fourthPlace, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
-    if (isConfirm) {
-      tries9 = 2;
-      Player.updateReadiness(readyfornextlevel + 1);
-      player.getReadiness();
-    }});
+  tries12 = 1;
 }
+      if(readyfornextlevel === 4&& tries9 === 2){
+        tries9 = 1;
+        nextround();
+      }
 
           player.update();
           //display sprites

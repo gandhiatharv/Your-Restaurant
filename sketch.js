@@ -5,8 +5,13 @@
 4. have tutorial in all games, update tutorials with all the different featyures
 5. sound
 6. other stuff on gmail agendas
+powerups, pause and play, different views, coin system, last minute edits
 7. freezing can be used only twice and does not reduce deliveries; add play and pause features on it; update rules of tutorial with these regulations
 8. add these features on all multiplayer games
+hide stuff when people finish the level and in the begining
+have imgs in swal for powerups, hide and show poerups when necessary, put pause feature through database, when game is paused or ended, or frozen, chef should also be frozen
+hhave chat feature, play and pause feature, different views, and different powerups, all the sound stuff, and displaying everyone's results together on all my games
+9. pls wait for others to be ready & deliveries overflow, when it doesnt show current order you can serve pizza fix that glitch, pause and resume sound button
 */
 
 
@@ -26,11 +31,12 @@ var tries8 = 2;
 var tries9 = 2;
 var tries10 = 2;
 var tries11 = 2;
+var tries12 = 2;
 var alert = 0;
 var chefsAtEnd = 0;
 var allPlayers;
 var database, passedFinish;
-var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound;
+var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, servecustomersound, clapsound;
 var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
 var orders;
 var chef1, chef2, chef3, chef4, chefs;
@@ -46,7 +52,7 @@ var cookie, muffin, cake, applepie, pudding, icecream, brownie;
 var customer1, customer2, customer3, manyCustomers;
 var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
-var table, tableimg, chefimg;
+var table, tableimg, chefimg, dollarimg;
 
 var message3 = "Pick A Sound For Your Restaurant";
 
@@ -70,6 +76,8 @@ var currentorder = " ";
 
 var message = " ";
 
+var paused = "false";
+
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -78,6 +86,8 @@ var s = 0;
 var w = 0;
 
 var variable = 1;
+
+var result;
 
 var orders = 0;
 var welcome;
@@ -91,9 +101,13 @@ var readyfornextlevel = 0;
 
 var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5;
 
-var firstPlace, secondPlace, thirdPlace, fourthPlace;
+var firstPlace, secondPlace, thirdPlace, fourthPlace, name1, name2, name3, name4;
 
 var chatphase = 1;
+
+var gameended = "";
+
+var oks = 0;
 
 let sel;
 
@@ -126,6 +140,7 @@ function preload(){
   icecreamimg = loadImage("images/dessert6.png");
   brownieimg = loadImage("images/dessert7.png");
 
+  dollarimg = loadImage("images/dollar.png");
 
   customer1 = loadImage("images/customer1.png");
   customer2 = loadImage("images/customer2.png");
@@ -146,6 +161,7 @@ function preload(){
   playsound6 = loadSound("sound/playsound6.mp3");
   playsound7 = loadSound("sound/playsound7.mp3");
   playsound8 = loadSound("sound/playsound8.mp3");
+  clapsound = loadSound("sound/clap.wav");
 
   tableimg = loadImage("images/tablebg.png");
   chefimg = loadAnimation("images/frontchef.png", "images/frontchef.png", "images/frontchef.png", "images/leftchef.png", "images/leftchef.png", "images/leftchef.png", "images/rightchef.png", "images/rightchef.png", "images/rightchef.png");
@@ -157,6 +173,7 @@ function setup(){
   database = firebase.database();
  game = new Game();
  game.getState();
+ game.getOks2();
 game.start();
   foodGroup = createGroup(); 
   customerGroup = createGroup();
@@ -189,6 +206,14 @@ framecountnumber = 300-player.delivery*3.5;
     }
   }
 
+  if(gameended!==""&&oks < 3){
+          swal({ title: `Game Ended`, text: gameended, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/waving.jpeg", imageSize: "306x220", confirmButtonText: "Ok", },    function(isConfirm) {
+            if (isConfirm) {
+              Player.updateOks(oks+1);
+location.reload();
+            }});
+          }
+
 if(alert === 1 && tries11 === 2){
   tries11 = 1;
   swal({ title: 'You Are Frozen',
@@ -210,11 +235,13 @@ if(alert === 1 && tries11 === 2){
     }
   }
 
+  if(paused === "false"){
 if(frameCount%deliveryremovalnumber === 0){
   if(gameState2 === 2){
   player.delivery = player.delivery - 1;
   }
 }
+  }
 
 if(gameState === 0 && tries6 === 2 && playerCount!==4&&gameState!==1){
   showTutorial();
@@ -251,6 +278,11 @@ if(muted === 0){
   tries = 1;
 }
 
+if(gameState === 0&&oks === 3){
+  Player.updateGameEnded("");
+  Player.updateOks(0);
+}
+
 if(frameCount%300 === 0 && variable === 1){
   tries4 = 1;
 }
@@ -261,6 +293,7 @@ if(tries4 === 1){
   message = " ";
 }
 
+if(paused==="false"){
 if(gameState === 1){
 if(gameState2 === 2){
   if(frameCount%30 === 0){
@@ -277,9 +310,12 @@ if(gameState2 === 2){
   }
 }
 }
+}
 
   if(playerCount === 4 && finishedPlayers === 0 && gameState===0){
     game.update(1);
+    Player.updateGameEnded("");
+    Player.updateOks(0);
     if(tries7 ===2){
       tries7 = 1;
     swal(
@@ -617,33 +653,6 @@ applepie.scale = displayWidth/4800;
     }
   }
 
-  function spawnCust(){
-    customer = createSprite(0, displayHeight/2.815);
-    player.order = player.order+1;
-    var rand = Math.round(random(1, 4));
-    if(rand === 1){
-      customer.addImage(customer1);
-      customer.scale = displayWidth/2100;
-      customer.x = random(displayWidth/4.2, displayWidth/1.07);
-    } else if(rand === 2){
-      customer.addImage(customer2);
-      customer.scale = displayWidth/1092.857142857;
-            customer.x = random(displayWidth/4.2, displayWidth/1.08);
-    } else if(rand === 3){
-      customer.addImage(customer3);
-      customer.scale = displayWidth/2000.91489362;
-      customer.x = random(displayWidth/3.2, displayWidth/1.17);
-    } else{
-      customer.addImage(manyCustomers);
-      customer.scale = displayWidth/930;
-      customer.x = random(displayWidth/2.35, displayWidth/1.35);
-    }
-    currentOrderCheck();
-    customer.depth = 1;
-    customer.lifetime = 200;
-    customerGroup.add(customer);
-  }
-
   function stopSound(){
     rank1sound.stop();
     rank2sound.stop();
@@ -659,6 +668,7 @@ applepie.scale = displayWidth/4800;
     playsound8.stop();
     lobbysound.stop();
     servecustomersound.stop();
+    clapsound.stop();
   }
 
   function stopSound1(){
@@ -666,6 +676,7 @@ applepie.scale = displayWidth/4800;
   rank2sound.stop();
   rank3sound.stop();
   rank4sound.stop();
+  clapsound.stop();
   playsound.stop();
   playsound2.stop();
   playsound3.stop();
@@ -739,6 +750,7 @@ deliveryremovalnumber = deliveryremovalnumber/1.15;
     tries4 = 2;
     tries5 = 2;
     tries8 = 2;
+    tries12 = 2;
     form.showMuteAndUnmute();
     swal(
       {

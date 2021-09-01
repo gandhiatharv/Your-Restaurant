@@ -105,6 +105,11 @@ class Player {
       chatmessage4 = data.val();
     });
   }
+  getPaused(){
+    database.ref('paused').on("value", (data) => {
+      paused = data.val();
+    });
+  }
   getMessage5(){
     database.ref('chatmessage5').on("value", (data) => {
        
@@ -116,9 +121,19 @@ class Player {
       tries9 = data.val();
     });
   }
+  getOks(){
+    database.ref('oks').on("value", (data) => {
+      oks = data.val();
+    });
+  }
   getTries(){
     database.ref('Tries').on("value", (data) => {
       tries10 = data.val();
+    });
+  }
+  getGameEnded(){
+    database.ref('gameEnded').on("value", (data) => {
+      gameended = data.val();
     });
   }
   getReadiness(){
@@ -182,6 +197,11 @@ static playerhours(){
       thirdPlace:name
     });
   }
+  static updateOks(okvalue){
+    database.ref('/').update({
+      oks:okvalue
+    });
+  }
   static updateFourthPlace(name){
     database.ref('/').update({
       fourthPlace:name
@@ -232,12 +252,33 @@ static playerhours(){
       Readiness:ready
     });
   }
+  static updatePaused(pausedvalue){
+    database.ref('/').update({
+      paused:pausedvalue
+    });
+  }
   static updateFinishedPlayers(){
     database.ref('/').update({
         finishedPlayers: finishedPlayers + 1,
     });
 }
-
+static updateName1(name1value){
+  database.ref('/').update({
+      name1: name1value,
+  });
+}static updateName2(name2value){
+  database.ref('/').update({
+      name2: name2value,
+  });
+}static updateName3(name3value){
+  database.ref('/').update({
+      name3: name3value,
+  });
+}static updateName4(name4value){
+  database.ref('/').update({
+      name4: name4value,
+  });
+}
 static updatePlayerDeliveries(delivery){
   database.ref('/').update({
       playerDeliveries:delivery
@@ -259,7 +300,11 @@ static updatePlayerDeliveries(delivery){
             playerhours:hours
         }) 
         }
-
+        static updateGameEnded(gameendedvalue){
+          database.ref('/').update({
+              gameEnded:gameendedvalue
+          }) 
+          }
   static updatePlayerOrders(order){
     database.ref('/').update({
         playerOrders:order

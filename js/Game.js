@@ -1,5 +1,6 @@
 class Game {
-  constructor(){}
+  constructor(){this.welcomeBG = "images/bg.jpg";
+  this.welcome = createImg(this.welcomeBG); this.playerCountMsg = createElement('h2');}
 
   getState(){
     var gameStateRef  = database.ref('gameState');
@@ -15,6 +16,10 @@ class Game {
        oks = data.val();
     })
 
+  }
+
+  updateMsg(){
+    this.playerCountMsg.html("Players Joined: " + playerCount);
   }
 
   update(state){
@@ -44,6 +49,9 @@ class Game {
   }
   async start(){
     if(gameState === 0){
+      this.playerCountMsg.style("color", 'blue');
+      this.welcome.position(0, 0);
+      this.playerCountMsg.position(displayWidth/15, displayHeight/250);
       player = new Player();
       var playerCountRef = await database.ref('playerCount').once("value");
       if(playerCountRef.exists()){
@@ -80,6 +88,8 @@ class Game {
 
   play(){
     form.hide();
+    this.welcome.hide();
+    this.playerCountMsg.hide();
     if(tries5 === 2){
       form.showButtons();
       tries5 = 1;

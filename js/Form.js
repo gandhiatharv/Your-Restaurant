@@ -1,8 +1,6 @@
 class Form {
 
   constructor() {
-    this.welcomeBG = "images/bg.jpg";
-    this.welcome = createImg(this.welcomeBG);
     this.input = createInput("").attribute("placeholder", "Nickname");
     this.button = createButton('Open Restaurant');
     this.greeting = createElement('h2');
@@ -20,7 +18,6 @@ class Form {
     this.send = createButton('Send');
     this.pause = createButton('Pause');
     this.play = createButton('Resume');
-    this.playerCountMsg = createElement('h2');
   }
   hideButtons(){
     ////this.up.hide();
@@ -48,7 +45,6 @@ this.play.show();
     this.greeting.hide();
     this.button.hide();
     this.input.hide();
-    this.welcome.hide();
     this.reset.show();
     this.reset.position(displayWidth/1.23, displayHeight/1.35);
     this.reset.style('width', '150px');
@@ -118,7 +114,6 @@ this.warning3.hide();
     }
   }
   display(){
-    this.welcome.position(0, 0);
     this.input.position(displayWidth/4, displayHeight/2);
     this.button.position(displayWidth/4, displayHeight/1.7);
     this.reset.hide();
@@ -366,8 +361,5 @@ this.reset.mousePressed(()=>{
   });
   location.reload();
   })
-
-  this.playerCountMsg.html("Players Joined: " + playerCount);
-  this.playerCountMsg.position(displayWidth/2, displayHeight/5);
   }
 }

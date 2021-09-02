@@ -374,6 +374,9 @@ if(gameState === 1){
   clear();
   game.play();
 }
+if(gameState === 0){
+  game.updateMsg();
+}
   if(gameState === 1 && tries2 === 2){
 stopSound();
 if(muted === 0){

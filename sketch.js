@@ -14,6 +14,8 @@ hhave chat feature, play and pause feature, different views, and different power
 9. pls wait for others to be ready & deliveries overflow, when it doesnt show current order you can serve pizza fix that glitch, pause and resume sound button
 */
 
+//cannot enter same name, ready to play button, avatars, and game has been paused notififcation when press pause btn;
+
 
 var canvas, backgroundImage;
 
@@ -40,7 +42,7 @@ var playsound, lobbysound, rank1sound, rank2sound, rank3sound, rank4sound, serve
 var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, playsound8;
 var orders;
 var chef1, chef2, chef3, chef4, chefs;
-var tutorialtext = "Enter your nickname and join the game. Begin playing when 4 players have joined. There will be various levels in the game. Every couple moments you will lose a delivery and customers will come to your restaurant at a rate that increases as you progress through levels and deliver more orders. Serve customers by checking the current order and dragging that respective food up to them. Whenever a customer arrives at your restaurant, your orders will increment by 1 and whenever you serve a customer, your deliveries will increment by 1. You can see all the other players' orders and deliveries at the top left and right sides of the screen respectively. You have to reach the target number of deliveries before anyone else to get 1st place. When you complete a level, your rank will be displayed. When everyone is ready for the next level, the next level of the game will begin. Every level, you have to deliver more orders than the previous one. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. You can press 'Tutorial' to view this tutorial again. Have fun!";
+var tutorialtext = "Enter your nickname and join the game. Begin playing when 4 players have joined. There will be various levels in the game. Every couple moments you will lose $10.00 and customers will come to your restaurant at a rate that increases as you progress through levels and earn more money. Serve customers by checking the current order and dragging that respective food up to them. Whenever a customer arrives at your restaurant, your orders will increment by 1 and whenever you serve a customer, your deliveries will increment by 1. You can see all the other players' orders and deliveries at the top left and right sides of the screen respectively. You have to reach the target number of deliveries before anyone else to get 1st place. When you complete a level, your rank will be displayed. When everyone is ready for the next level, the next level of the game will begin. Every level, you have to deliver more orders than the previous one. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. You can press 'Tutorial' to view this tutorial again. Have fun!";
 
 var levelnumber = 1;
 var deliveryremovalnumber = 1000;
@@ -66,9 +68,9 @@ var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, 
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
 
-var target = 10;
+var target = 100;
 
-var message2 = "Winning Score: " + target + " Deliveries";
+var message2 = "Winning Score: $" + target + ".00";
 
 var playerNameCheck;
 
@@ -77,6 +79,8 @@ var currentorder = " ";
 var message = " ";
 
 var paused = "false";
+
+var triesValue = 2;
 
 var seconds = 0;
 var minutes = 0;
@@ -88,6 +92,8 @@ var w = 0;
 var variable = 1;
 
 var result;
+
+var backimg;
 
 var orders = 0;
 var welcome;
@@ -108,6 +114,8 @@ var chatphase = 1;
 var gameended = "";
 
 var oks = 0;
+
+var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20;
 
 let sel;
 
@@ -163,6 +171,29 @@ function preload(){
   playsound8 = loadSound("sound/playsound8.mp3");
   clapsound = loadSound("sound/clap.wav");
 
+  a1 = loadImage("images/2.png");
+  a2 = loadImage("images/3.png");
+  a3 = loadImage("images/4.png");
+  a4 = loadImage("images/5.png");
+  a5 = loadImage("images/6.png");
+  a6 = loadImage("images/7.png");
+  a7 = loadImage("images/8.png");
+  a8 = loadImage("images/9.png");
+  a9 = loadImage("images/10.png");
+  a10 = loadImage("images/11.png");
+  a11 = loadImage("images/12.png");
+  a12 = loadImage("images/13.png");
+  a13 = loadImage("images/14.png");
+  a14 = loadImage("images/15.png");
+  a15 = loadImage("images/16.png");
+  a16 = loadImage("images/17.png");
+  a17 = loadImage("images/18.png");
+  a18 = loadImage("images/19.png");
+  a19 = loadImage("images/1.png");
+  a20 = loadImage("images/0.png");
+
+  backimg = loadImage("images/bg.jpg");
+
   tableimg = loadImage("images/tablebg.png");
   chefimg = loadAnimation("images/frontchef.png", "images/frontchef.png", "images/frontchef.png", "images/leftchef.png", "images/leftchef.png", "images/leftchef.png", "images/rightchef.png", "images/rightchef.png", "images/rightchef.png");
   chefimg2 = loadAnimation("images/frontchef.png");
@@ -206,6 +237,11 @@ framecountnumber = 300-player.delivery*3.5;
     }
   }
 
+  game.getName1();
+  game.getName2();
+  game.getName3();
+  game.getName4();
+
   if(gameended!==""&&oks < 3){
           swal({ title: `Game Ended`, text: gameended, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/waving.jpeg", imageSize: "306x220", confirmButtonText: "Ok", },    function(isConfirm) {
             if (isConfirm) {
@@ -238,7 +274,7 @@ if(alert === 1 && tries11 === 2){
   if(paused === "false"){
 if(frameCount%deliveryremovalnumber === 0){
   if(gameState2 === 2){
-  player.delivery = player.delivery - 1;
+  player.delivery = player.delivery - 10;
   }
 }
   }
@@ -321,7 +357,7 @@ if(gameState2 === 2){
     swal(
       {
         title: `Level 1`,
-        text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
+        text: "Your goal is to get $"+target+".00 before anyone else. Good luck!",
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",
         imageSize: "324x172",
@@ -735,7 +771,7 @@ player.order = 0;
 player.seconds = 0;
 player.minutes = 0;
 player.hours = 0;
-target  = target + 10;
+target  = target + 100;
 levelnumber = levelnumber + 1;
 deliveryremovalnumber = deliveryremovalnumber/1.15;
     player.update();
@@ -743,7 +779,7 @@ deliveryremovalnumber = deliveryremovalnumber/1.15;
     gameState2 = 2;
     checkSound();
     message3 = "Pick A Sound For Your Restaurant";
-    message2 = "Winning Score: " + target + " Deliveries";
+    message2 = "Winning Score: $" + target + ".00";
     message = " ";
     tries3 = 2;
     variable = 1;
@@ -755,7 +791,7 @@ deliveryremovalnumber = deliveryremovalnumber/1.15;
     swal(
       {
         title: `Level `+levelnumber,
-        text: "Your goal is to get "+target+" deliveries before anyone else. Good luck!",
+        text: "Your goal is to get $"+target+".00 before anyone else. Good luck!",
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",
         imageSize: "324x172",

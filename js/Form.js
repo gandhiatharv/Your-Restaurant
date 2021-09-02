@@ -15,10 +15,12 @@ class Form {
     this.freeze = createButton("Freeze");
     this.tutorial = createButton("Tutorial");
     this.warning = createElement('h2');
+    this.warning3 = createElement('h2');
     this.chat = createInput("").attribute("placeholder", "Send A Message");
     this.send = createButton('Send');
     this.pause = createButton('Pause');
     this.play = createButton('Resume');
+    this.playerCountMsg = createElement('h2');
   }
   hideButtons(){
     ////this.up.hide();
@@ -78,18 +80,34 @@ this.play.show();
   enter() {
     if(this.input.value()<=0||this.input.value()>=0){
       this.warning.show();
+      this.warning3.hide();
     } else if(this.input.value()===""){
     this.warning.show();
+    this.warning3.hide();
     }
     else if(this.input.value().length<1||this.input.value().length>25){
 this.warning.show();
-    }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!==""){
+this.warning3.hide();
+    }else if(this.input.value()===name1||this.input.value()===name2||this.input.value()===name3||this.input.value()===name4){
+      this.warning3.show();
+      this.warning.hide();
+    }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && name1!==this.input.value() && name2!==this.input.value() && name3!==this.input.value() && name4!==this.input.value()){
       this.input.hide();
       this.button.hide();
       this.warning.hide();
+      this.warning3.hide();
       this.leave.show();
       player.name = this.input.value();
       playerCount+=1;
+      if(playerCount === 1){
+        Player.updateName1(player.name);
+      } else if (playerCount === 2){
+        Player.updateName2(player.name);
+      }else if (playerCount === 3){
+        Player.updateName3(player.name);
+      }else if (playerCount === 4){
+        Player.updateName4(player.name);
+      }
       player.index = playerCount;
       player.update();
       player.updateCount(playerCount);
@@ -107,9 +125,15 @@ this.warning.show();
     this.warning.html("Please enter a name between 1 and 25 characters.");
     this.warning.position(displayWidth/5, displayHeight/1.5);
     this.warning.style("font-size", '20px');
-    this.warning.style("color", 'white');
+    this.warning.style("color", '#CA4286');
     this.warning.style("font-family", 'Courier New');
     this.warning.hide();
+    this.warning3.html("This nickname is taken. Please enter a different one.");
+    this.warning3.position(displayWidth/5, displayHeight/1.5);
+    this.warning3.style("font-size", '20px');
+    this.warning3.style("color", '#CA4286');
+    this.warning3.style("font-family", 'Courier New');
+    this.warning3.hide();
     this.leave.position(displayWidth/1.23, displayHeight/1.35);
     this.leave.style('width', '150px');
     this.leave.style('height', '60px');
@@ -146,20 +170,33 @@ this.warning.show();
     this.button.mousePressed(()=>{
       if(this.input.value()<=0||this.input.value()>=0){
         this.warning.show();
+        this.warning3.hide();
       } else if(this.input.value()===""){
       this.warning.show();
+      this.warning3.hide();
       }
       else if(this.input.value().length<1||this.input.value().length>25){
 this.warning.show();
-      }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!==""){
+this.warning3.hide();
+      }else if(this.input.value()===name1||this.input.value()===name2||this.input.value()===name3||this.input.value()===name4){
+        this.warning3.show();
+        this.warning.hide();
+      }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && name1!==this.input.value() && name2!==this.input.value() && name3!==this.input.value() && name4!==this.input.value()){
         this.input.hide();
         this.button.hide();
         this.warning.hide();
+        this.warning3.hide();
         this.leave.show();
         player.name = this.input.value();
         playerCount+=1;
         if(playerCount === 1){
-          
+          Player.updateName1(player.name);
+        } else if (playerCount === 2){
+          Player.updateName2(player.name);
+        }else if (playerCount === 3){
+          Player.updateName3(player.name);
+        }else if (playerCount === 4){
+          Player.updateName4(player.name);
         }
         player.index = playerCount;
         player.update();
@@ -264,6 +301,7 @@ this.unmute.mousePressed(()=>{
 
  this.pause.mousePressed(()=>{
 Player.updatePaused("true");
+Player.updateTriesValue(2);
 customerGroup.setLifetimeEach(-1);
    this.pause.hide();
    this.play.show();
@@ -315,7 +353,12 @@ this.reset.mousePressed(()=>{
   Player.updateSecondPlace("");
   Player.updateThirdPlace("");
   Player.updateFourthPlace("");
+  Player.updateName1("");
+  Player.updateName2("");
+  Player.updateName3("");
+  Player.updateName4("");
   Player.updatePaused("false");
+  Player.updateTriesValue(2);
   var playerInfoRef = database.ref('players');
   playerInfoRef.remove();
   database.ref("/").update({
@@ -324,5 +367,7 @@ this.reset.mousePressed(()=>{
   location.reload();
   })
 
+  this.playerCountMsg.html("Players Joined: " + playerCount);
+  this.playerCountMsg.position(displayWidth/2, displayHeight/5);
   }
 }

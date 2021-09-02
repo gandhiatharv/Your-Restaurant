@@ -110,6 +110,11 @@ class Player {
       paused = data.val();
     });
   }
+  getTriesValue(){
+    database.ref('triesValue').on("value", (data) => {
+      triesValue = data.val();
+    });
+  }
   getMessage5(){
     database.ref('chatmessage5').on("value", (data) => {
        
@@ -180,6 +185,11 @@ static playerhours(){
   static updateChatPhase(chatphasevalue){
     database.ref('/').update({
       chatphase:chatphasevalue
+    });
+  } 
+  static updateTriesValue(triesvalueinput){
+    database.ref('/').update({
+      triesValue:triesvalueinput
     });
   } 
    static updateFirstPlace(name){

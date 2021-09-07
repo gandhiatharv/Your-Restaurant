@@ -10,7 +10,6 @@ class Form {
     ////this.down = createButton("Next");
     this.mute = createButton("Mute");
     this.unmute = createButton("Unmute");
-    this.freeze = createButton("Freeze");
     this.tutorial = createButton("Tutorial");
     this.warning = createElement('h2');
     this.warning3 = createElement('h2');
@@ -18,6 +17,11 @@ class Form {
     this.send = createButton('Send');
     this.pause = createButton('Pause');
     this.play = createButton('Resume');
+    this.moneyperquestion = createButton('Money Per Question');
+    this.freeze = createButton("1");
+    this.p1 = createButton('reduce money');
+    this.reset2 = createButton('Reset Deliveries');
+    this.multiply = createButton('Multiply');
   }
   hideButtons(){
     ////this.up.hide();
@@ -259,6 +263,14 @@ if(chatmessage5 ===""){
       );
     })
 
+    this.moneyperquestion.mousePressed(()=>{
+      moneyperquestionnum = moneyperquestionnum*2;
+      multiplier = multiplier*1.1;
+      price = moneyperquestionnum*multiplier;
+      player.delivery = player.delivery - price;
+    })
+
+
 this.leave.mousePressed(()=>{
   if(playerCount === 0){
     player.updateCount(0);
@@ -269,9 +281,33 @@ this.leave.mousePressed(()=>{
 })
 
 this.freeze.mousePressed(()=>{
+  if(paused === "true"){
+    swal({
+      title: `The Game Is Paused`,
+      text: "You cannot perform any actions until the game is resumed.",
+      type: "error",
+      confirmButtonText: "Ok",
+    }
+      );
+  } else if(gameState === 3){
+    swal({
+      title: `You Are Frozen`,
+      text: "You cannot perform any actions until you are unfrozen.",
+      type: "error",
+      confirmButtonText: "Ok",
+    }
+      );
+  }else if(gameState === 1){
   tries11 = 2;
   game.update(3);
     Player.updateFreezeAlert(1);
+  }
+})
+
+this.multiply.mousePressed(()=>{
+  multiplier2 = multiplier2 + 1;
+  multipliercost = (multiplier2 * multiplier2) * 7;
+  player.delivery = player.delivery - multipliercost;
 })
 
 this.mute.mousePressed(()=>{

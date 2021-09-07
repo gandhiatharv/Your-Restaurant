@@ -14,9 +14,6 @@ hhave chat feature, play and pause feature, different views, and different power
 9. pls wait for others to be ready & deliveries overflow, when it doesnt show current order you can serve pizza fix that glitch, pause and resume sound button
 */
 
-//cannot enter same name, ready to play button, avatars, and game has been paused notififcation when press pause btn;
-
-
 var canvas, backgroundImage;
 
 var gameState = 0;
@@ -60,7 +57,7 @@ var message3 = "Pick A Sound For Your Restaurant";
 
 var gameState2 = 2;
 
-var framecountnumber, timer;
+var framecountnumber, timer, variable3;
 
 var muted = 0;
 
@@ -101,11 +98,17 @@ var deliveries = 0;
 
 var soundNumber = 1;
 
+var multiplier = 2;
+
+var multiplier2 = 1;
+
+var price;
+
 var songtitle, variable2;
 
 var readyfornextlevel = 0;
 
-var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5;
+var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5, multipliercost;
 
 var firstPlace, secondPlace, thirdPlace, fourthPlace, name1, name2, name3, name4;
 
@@ -115,7 +118,7 @@ var gameended = "";
 
 var oks = 0;
 
-var a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20;
+var moneyperquestionnum = 10;
 
 let sel;
 
@@ -228,14 +231,15 @@ sel.changed(mySelectEvent);
 
 
 function draw(){
-  if(player.delivery <= 0){
-    framecountnumber = 300;
-  }else{
-framecountnumber = 300-player.delivery*3.5;
-    if(framecountnumber < 1){
-      framecountnumber = 1;
-    }
-  }
+  if(levelnumber <= 5){
+    framecountnumber = 380;
+    } else if(levelnumber > 5 && levelnumber <=10){
+      framecountnumber = 280;
+      } else if(levelnumber > 10 && levelnumber <= 15){
+        framecountnumber = 180;
+      } else if(levelnumber > 15){
+        framecountnumber = 80;
+      }
 
   game.getName1();
   game.getName2();
@@ -253,19 +257,22 @@ location.reload();
 if(alert === 1 && tries11 === 2){
   tries11 = 1;
   swal({ title: 'You Are Frozen',
-  text: "You can return to cooking in 10 seconds.", 
+  text: "You can return to cooking in a couple moments, when the food gets unlocked.", 
   imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
   imageSize: "200x200", 
   confirmButtonText: "Ok", });
 }
 
-  if(gameState === 3){
+if(gameState === 1){
+  variable3 = 1;
+}
+
+if(gameState === 3){
+  variable3 = 2;
+}
+
+  if(gameState === 3 && variable3 === 2){
     if(frameCount%300 === 0){
-      swal({ title: 'Click The Button',
-      text: "You can resume cooking now!", 
-      imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/thumbsup.png", 
-      imageSize: "150x150", 
-      confirmButtonText: "Ok", });
       Player.updateFreezeAlert(0);
       game.update(1);
     }
@@ -370,7 +377,7 @@ if(gameState2 === 2){
 if(finishedPlayers === 4){
   game.update(2);
 }
-if(gameState === 1){
+if(gameState === 1||gameState === 3){
   clear();
   game.play();
 }
@@ -774,7 +781,7 @@ player.order = 0;
 player.seconds = 0;
 player.minutes = 0;
 player.hours = 0;
-target  = target + 100;
+target = Math.round(target*1.5);
 levelnumber = levelnumber + 1;
 deliveryremovalnumber = deliveryremovalnumber/1.15;
     player.update();

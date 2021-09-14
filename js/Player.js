@@ -32,6 +32,12 @@ class Player {
     })
   }
 
+  getReduceMoney(){
+    database.ref('reduceMoney').on("value", (data) => {
+      reduceMoney = data.val();
+    });
+  }
+
   update(){
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).set({
@@ -61,6 +67,11 @@ class Player {
       chatphase = data.val();
     });
   }
+  getTarget(){
+    database.ref('target').on("value", (data) => {
+      target = data.val();
+    });
+  }
   getFirstPlace(){
     database.ref('firstPlace').on("value", (data) => {
       firstPlace = data.val();
@@ -79,6 +90,36 @@ class Player {
   getFourthPlace(){
     database.ref('fourthPlace').on("value", (data) => {
       fourthPlace = data.val();
+    });
+  }
+  getTime1(){
+    database.ref('time1').on("value", (data) => {
+      time1 = data.val();
+    });
+  }
+  getTime2(){
+    database.ref('time2').on("value", (data) => {
+      time2 = data.val();
+    });
+  }
+  getTime3(){
+    database.ref('time3').on("value", (data) => {
+      time3 = data.val();
+    });
+  }
+  getTime4(){
+    database.ref('time4').on("value", (data) => {
+      time4 = data.val();
+    });
+  }
+  getReset(){
+    database.ref('reset2').on("value", (data) => {
+      reset2 = data.val();
+    });
+  }
+  getUnfrozen(){
+    database.ref('unfrozen').on("value", (data) => {
+      readyforunfrozen = data.val();
     });
   }
   getMessage1(){
@@ -180,6 +221,21 @@ static playerhours(){
   static updateChefsAtEnd(rank){
     database.ref('/').update({
       chefsAtEnd:rank
+    });
+  }
+  static updateTarget(targetvalue){
+    database.ref('/').update({
+      target:targetvalue
+    });
+  }
+  static updateUnfrozen(unfrozenvalue){
+    database.ref('/').update({
+      unfrozen:unfrozenvalue
+    });
+  }
+  static updateReduceMoney(reducemoneyvalue){
+    database.ref('/').update({
+      reduceMoney:reducemoneyvalue
     });
   }
   static updateChatPhase(chatphasevalue){
@@ -289,10 +345,32 @@ static updateName1(name1value){
       name4: name4value,
   });
 }
+static updateTime1(time1value){
+  database.ref('/').update({
+      time1: time1value,
+  });
+}static updateTime2(time2value){
+  database.ref('/').update({
+      time2: time2value,
+  });
+}static updateTime3(time3value){
+  database.ref('/').update({
+      time3: time3value,
+  });
+}static updateTime4(time4value){
+  database.ref('/').update({
+      time4: time4value,
+  });
+}
 static updatePlayerDeliveries(delivery){
   database.ref('/').update({
       playerDeliveries:delivery
   }) 
+  }  
+  static updateReset(resetvalue){
+    database.ref('/').update({
+      reset2:resetvalue
+    });
   }
 
   static updatePlayerseconds(seconds){

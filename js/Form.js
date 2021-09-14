@@ -22,12 +22,57 @@ class Form {
     this.p1 = createButton('reduce money');
     this.reset2 = createButton('Reset Deliveries');
     this.multiply = createButton('Multiply');
+    this.rename = createButton('Rename Yourself');
   }
   hideButtons(){
     ////this.up.hide();
     ////this.down.hide();
     this.mute.hide();
     this.unmute.hide();
+  }
+
+  validate(){
+    if(this.chat.value().length>=1 && this.chat.value()!==""){
+      if(chatmessage1!==""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+          chatmessage1 = chatmessage2;
+          chatmessage2 = chatmessage3;
+          chatmessage3 = chatmessage4;
+          chatmessage4 = chatmessage5;
+          chatmessage5 = "Chef "+player.name + ": "+this.chat.value();
+          Player.updateMessage1(chatmessage1);
+          Player.updateMessage2(chatmessage2);
+          Player.updateMessage3(chatmessage3);
+          Player.updateMessage4(chatmessage4);
+          Player.updateMessage5(chatmessage5);
+      }else{
+if(chatmessage1 ===""){
+Player.updateMessage1("Chef "+player.name + ": "+this.chat.value());
+} else if(chatmessage2 ===""&&chatmessage1!==""){
+Player.updateMessage2("Chef "+player.name + ": "+this.chat.value());
+}else if(chatmessage3 ===""&&chatmessage2!==""&&chatmessage1!==""){
+Player.updateMessage3("Chef "+player.name + ": "+this.chat.value());
+}else if(chatmessage4 ===""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+Player.updateMessage4("Chef "+player.name + ": "+this.chat.value());
+}else if(chatmessage5 ===""&&chatmessage4!==""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+Player.updateMessage5("Chef "+player.name + ": "+this.chat.value());
+}
+}
+
+
+/*else{
+if(chatmessage5 ===""){
+Player.updateMessage5(this.chat.value());
+} else if(chatmessage4 ===""&&chatmessage5!==""){
+Player.updateMessage4(this.chat.value());
+}else if(chatmessage3 ===""&&chatmessage4!==""&&chatmessage5!==""){
+Player.updateMessage3(this.chat.value());
+}else if(chatmessage2 ===""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+Player.updateMessage2(this.chat.value());
+}else if(chatmessage1 ===""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+Player.updateMessage1(this.chat.value());
+}
+}*/
+    }
   }
 
   hidePause(){
@@ -92,6 +137,14 @@ this.warning3.hide();
       this.warning3.show();
       this.warning.hide();
     }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && name1!==this.input.value() && name2!==this.input.value() && name3!==this.input.value() && name4!==this.input.value()){
+      swal({
+        confirmButtonColor: '#8CD4F5', title: `Successfully Logged In`,
+        text: 'You are successfully logged in.',
+        type: "success",
+        showConfirmButton: false,
+        timer: 3000
+      }
+        )
       this.input.hide();
       this.button.hide();
       this.warning.hide();
@@ -181,6 +234,14 @@ this.warning3.hide();
         this.warning3.show();
         this.warning.hide();
       }else if(this.input.value().length>=1 &&this.input.value().length <= 25 && this.input.value()!=="" && name1!==this.input.value() && name2!==this.input.value() && name3!==this.input.value() && name4!==this.input.value()){
+        swal({
+          confirmButtonColor: '#8CD4F5', title: `Successfully Logged In`,
+          text: 'You are successfully logged in.',
+          type: "success",
+          showConfirmButton: false,
+          timer: 3000
+        }
+          )
         this.input.hide();
         this.button.hide();
         this.warning.hide();
@@ -221,93 +282,181 @@ this.warning3.hide();
             Player.updateMessage4(chatmessage4);
             Player.updateMessage5(chatmessage5);
         }else{
-if(chatmessage1 ===""){
-  Player.updateMessage1(this.chat.value());
-} else if(chatmessage2 ===""&&chatmessage1!==""){
-  Player.updateMessage2(this.chat.value());
-}else if(chatmessage3 ===""&&chatmessage2!==""&&chatmessage1!==""){
-  Player.updateMessage3(this.chat.value());
-}else if(chatmessage4 ===""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
-  Player.updateMessage4(this.chat.value());
-}else if(chatmessage5 ===""&&chatmessage4!==""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
-  Player.updateMessage5(this.chat.value());
-}
-}
+  if(chatmessage1 ===""){
+  Player.updateMessage1("Chef "+player.name + ": "+this.chat.value());
+  } else if(chatmessage2 ===""&&chatmessage1!==""){
+  Player.updateMessage2("Chef "+player.name + ": "+this.chat.value());
+  }else if(chatmessage3 ===""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage3("Chef "+player.name + ": "+this.chat.value());
+  }else if(chatmessage4 ===""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage4("Chef "+player.name + ": "+this.chat.value());
+  }else if(chatmessage5 ===""&&chatmessage4!==""&&chatmessage3!==""&&chatmessage2!==""&&chatmessage1!==""){
+  Player.updateMessage5("Chef "+player.name + ": "+this.chat.value());
+  }
+  }
 
-/*else{
-if(chatmessage5 ===""){
+  
+  /*else{
+  if(chatmessage5 ===""){
   Player.updateMessage5(this.chat.value());
-} else if(chatmessage4 ===""&&chatmessage5!==""){
+  } else if(chatmessage4 ===""&&chatmessage5!==""){
   Player.updateMessage4(this.chat.value());
-}else if(chatmessage3 ===""&&chatmessage4!==""&&chatmessage5!==""){
+  }else if(chatmessage3 ===""&&chatmessage4!==""&&chatmessage5!==""){
   Player.updateMessage3(this.chat.value());
-}else if(chatmessage2 ===""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+  }else if(chatmessage2 ===""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
   Player.updateMessage2(this.chat.value());
-}else if(chatmessage1 ===""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
+  }else if(chatmessage1 ===""&&chatmessage2!==""&&chatmessage3!==""&&chatmessage4!==""&&chatmessage5!==""){
   Player.updateMessage1(this.chat.value());
-}
-}*/
+  }
+  }*/
       }
     });
 
     this.tutorial.mousePressed(()=>{
       swal(
         {
-          title: `Tutorial`,
+          confirmButtonColor: '#8CD4F5', title: `Tutorial`,
           text: tutorialtext,
           imageUrl:
             "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
           imageSize: "365x171",
           confirmButtonText: "Resume Playing"
         },
-      );
+      )
+    })
+
+    this.reset2.mousePressed(()=>{
+      swal({
+        confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to purchase this powerup?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8CD4F5',
+        cancelButtonColor: '#d33333',
+        confirmButtonText: "Yes"},    function(isConfirm) {
+            if (isConfirm) {
+            if(tries15 === 2){
+              t = "done";
+              tries15 = 1;
+              Player.updateReset(1);
+              player.delivery = target/2;
+              player.delivery = player.delivery - target/5;
+              }
+          }
+        })
+    })
+
+    this.p1.mousePressed(()=>{
+      swal({
+        confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to purchase this powerup?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8CD4F5',
+        cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+            if (isConfirm) {
+              if(tries16 === 2){ 
+                Player.updateReduceMoney(1);
+                player.delivery = player.delivery - target/5;
+                }
+          }
+        })
     })
 
     this.moneyperquestion.mousePressed(()=>{
-      moneyperquestionnum = moneyperquestionnum*2;
-      multiplier = multiplier*1.1;
-      price = moneyperquestionnum*multiplier;
-      player.delivery = player.delivery - price;
-    })
+      swal({
+        confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to purchase this upgrade?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8CD4F5',
+        cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+            if (isConfirm) {
+            moneyperquestionnum = moneyperquestionnum*2;
+            multiplier = multiplier*1.1;
+            price = moneyperquestionnum*multiplier;
+            player.delivery = player.delivery - price;
+                 }        })
+                })
 
 
 this.leave.mousePressed(()=>{
-  if(playerCount === 0){
-    player.updateCount(0);
-  } else{
-  player.updateCount(playerCount-1);
-  }
-  location.reload();
+  swal({
+    confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to leave the game?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#8CD4F5',
+    cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+            if (isConfirm) {
+        if(playerCount === 0){
+          player.updateCount(0);
+        } else{
+        player.updateCount(playerCount-1);
+        }
+        if(player.name === name1){
+          Player.updateName1("");
+        } else if(player.name === name2){
+          Player.updateName2("");
+        } else if(player.name === name3){
+          Player.updateName3("");
+        } else if(player.name === name4){
+          Player.updateName4("");
+        }
+        location.reload();
+             }})
 })
 
 this.freeze.mousePressed(()=>{
   if(paused === "true"){
     swal({
-      title: `The Game Is Paused`,
+      confirmButtonColor: '#8CD4F5', title: `The Game Is Paused`,
       text: "You cannot perform any actions until the game is resumed.",
       type: "error",
       confirmButtonText: "Ok",
     }
-      );
+      )
   } else if(gameState === 3){
     swal({
-      title: `You Are Frozen`,
+      confirmButtonColor: '#8CD4F5', title: `You Are Frozen`,
       text: "You cannot perform any actions until you are unfrozen.",
       type: "error",
       confirmButtonText: "Ok",
     }
-      );
-  }else if(gameState === 1){
-  tries11 = 2;
-  game.update(3);
-    Player.updateFreezeAlert(1);
+      )
+  }else if(gameState === 1&&tries17 === 2){
+    swal({
+      confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to purchase this powerup?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#8CD4F5',
+      cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+        if (isConfirm) {
+          tries11 = 2;
+          tries17 = 1;
+          
+          player.delivery = player.delivery - target/5;
+          game.update(3);
+            Player.updateFreezeAlert(1);         
+               }})
   }
 })
 
 this.multiply.mousePressed(()=>{
-  multiplier2 = multiplier2 + 1;
-  multipliercost = (multiplier2 * multiplier2) * 7;
-  player.delivery = player.delivery - multipliercost;
+  swal({
+    confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to purchase this upgrade?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#8CD4F5',
+    cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+            if (isConfirm) {
+        multiplier2 = multiplier2 + 1;
+        
+        multipliercost = (multiplier2 * multiplier2) * 7;
+        player.delivery = player.delivery - multipliercost;
+             }})
 })
 
 this.mute.mousePressed(()=>{
@@ -331,17 +480,16 @@ this.unmute.mousePressed(()=>{
  }) 
 
  this.pause.mousePressed(()=>{
-Player.updatePaused("true");
+        Player.updatePaused("true");
 Player.updateTriesValue(2);
-customerGroup.setLifetimeEach(-1);
    this.pause.hide();
    this.play.show();
  })
  
  this.play.mousePressed(()=>{
-  Player.updatePaused("false");
-  this.play.hide();
-    this.pause.show();
+        Player.updatePaused("false");
+        this.play.hide();
+          this.pause.show();
   }) 
 
 /*this.up.mousePressed(()=>{
@@ -366,36 +514,51 @@ this.down.mousePressed(()=>{
 
 
 this.reset.mousePressed(()=>{
-  Player.updateGameEnded("Chef "+player.name+" has ended the game. Thanks for playing!");
-  player.updateCount(0);
-  game.update(0);
-  Player.updateChefsAtEnd(0);
-  Player.updateReadiness(0);
-  Player.updateTries9(2);
-  Player.updateMessage1("");
-  Player.updateMessage2("");
-  Player.updateMessage3("");
-  Player.updateMessage4("");
-  Player.updateMessage5("");
-  Player.updateChatPhase(1);
-  Player.updateFreezeAlert(0);
-  Player.updateTries(2);
-  Player.updateFirstPlace("");
-  Player.updateSecondPlace("");
-  Player.updateThirdPlace("");
-  Player.updateFourthPlace("");
-  Player.updateName1("");
-  Player.updateName2("");
-  Player.updateName3("");
-  Player.updateName4("");
-  Player.updatePaused("false");
-  Player.updateTriesValue(2);
-  var playerInfoRef = database.ref('players');
-  playerInfoRef.remove();
-  database.ref("/").update({
-    finishedPlayers: 0
-  });
-  location.reload();
+  swal({
+    confirmButtonColor: '#8CD4F5', title: 'Are you sure you would like to end the game?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#8CD4F5',
+    cancelButtonColor: '#d33333',confirmButtonText: "Yes", },    function(isConfirm) {
+            if (isConfirm) {
+        Player.updateGameEnded("Chef "+player.name+" has ended the game. Thanks for playing!");
+        player.updateCount(0);
+        game.update(0);
+        Player.updateChefsAtEnd(0);
+        Player.updateReadiness(0);
+        Player.updateTries9(2);
+        Player.updateMessage1("");
+        Player.updateMessage2("");
+        Player.updateMessage3("");
+        Player.updateMessage4("");
+        Player.updateMessage5("");
+        Player.updateUnfrozen(0);
+        Player.updateChatPhase(1);
+        Player.updateFreezeAlert(0);
+        Player.updateReduceMoney(0);
+        Player.updateReset(0);
+        Player.updateTries(2);
+        Player.updateFirstPlace("");
+        Player.updateSecondPlace("");
+        Player.updateThirdPlace("");
+        Player.updateFourthPlace("");
+        Player.updateName1("");
+        Player.updateName2("");
+        Player.updateName3("");
+        Player.updateName4("");
+        Player.updatePaused("false");
+        Player.updateTime1(0+":"+0+":"+0);
+        Player.updateTime2(0+":"+0+":"+0);
+        Player.updateTime3(0+":"+0+":"+0);
+        Player.updateTime4(0+":"+0+":"+0);
+        Player.updateTriesValue(2);
+        var playerInfoRef = database.ref('players');
+        playerInfoRef.remove();
+        database.ref("/").update({
+          finishedPlayers: 0
+        });
+        location.reload();      }})
   })
   }
 }

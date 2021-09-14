@@ -15,7 +15,6 @@ hhave chat feature, play and pause feature, different views, and different power
 */
 
 var canvas, backgroundImage;
-
 var gameState = 0;
 var playerCount = 0;
 var finishedPlayers = 0;
@@ -31,6 +30,17 @@ var tries9 = 2;
 var tries10 = 2;
 var tries11 = 2;
 var tries12 = 2;
+var tries13 = 2;
+var tries14 = 2;
+var tries15 = 2;
+var tries16 = 2;
+var tries17 = 2;
+var time1 = 0+":"+0+":"+0;
+var time2 = 0+":"+0+":"+0;
+var time3 = 0+":"+0+":"+0;
+var time4 = 0+":"+0+":"+0;
+var t = "pending";
+var readyforunfrozen = 0;
 var alert = 0;
 var chefsAtEnd = 0;
 var allPlayers;
@@ -40,86 +50,54 @@ var playsound2, playsound3, playsound4, playsound5, playsound6, playsound7, play
 var orders;
 var chef1, chef2, chef3, chef4, chefs;
 var tutorialtext = "Enter your nickname and join the game. Begin playing when 4 players have joined. There will be various levels in the game. Every couple moments you will lose $10.00 and customers will come to your restaurant at a rate that increases as you progress through levels and earn more money. Serve customers by checking the current order and dragging that respective food up to them. Whenever a customer arrives at your restaurant, your orders will increment by 1 and whenever you serve a customer, your deliveries will increment by 1. You can see all the other players' orders and deliveries at the top left and right sides of the screen respectively. You have to reach the target number of deliveries before anyone else to get 1st place. When you complete a level, your rank will be displayed. When everyone is ready for the next level, the next level of the game will begin. Every level, you have to deliver more orders than the previous one. You can play a sound you would like for your restaurant, and you may mute the game if you would like. You can use the freeze powerup by clicking the 'Freeze' button. If you use this powerup, you lose 5 deliveries and everyone on your team, including you, gets frozen for 10 seconds until a notification comes up telling you that time is up. You can also send messages in the group chat. You can press 'Tutorial' to view this tutorial again. Have fun!";
-
 var levelnumber = 1;
 var deliveryremovalnumber = 1000;
-
 var pizza, burger, fries, burrito, taco, spaghetti, bread, maccheese, nachos;
 var water, fanta, sprite, coke, gingerale, fruitpunch, lemonade, orangejuice, applejuice;
 var cookie, muffin, cake, applepie, pudding, icecream, brownie;
-
 var customer1, customer2, customer3, manyCustomers;
 var food, customer, chef, foodGroup, customerGroup;
 var form, player, game;
 var table, tableimg, chefimg, dollarimg;
-
 var message3 = "Pick A Sound For Your Restaurant";
-
 var gameState2 = 2;
-
 var framecountnumber, timer, variable3;
-
 var muted = 0;
-
 var pizzaimg, burgerimg, friesimg, burritoimg, tacoimg, spaghettiimg, breadimg, maccheeseimg, nachosimg;
 var waterimg, fantaimg, spriteimg, cokeimg, gingeraleimg, fruitpunchimg, lemonadeimg, orangejuiceimg, applejuiceimg;
 var cookieimg, muffinimg, cakeimg, applepieimg, puddingimg, icecreamimg, brownieimg;
-
 var target = 100;
-
 var message2 = "Winning Score: $" + target + ".00";
-
 var playerNameCheck;
-
 var currentorder = " ";
-
 var message = " ";
-
 var paused = "false";
-
 var triesValue = 2;
-
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
-
 var s = 0;
 var w = 0;
-
 var variable = 1;
-
 var result;
-
 var backimg;
-
 var orders = 0;
 var welcome;
 var deliveries = 0;
-
 var soundNumber = 1;
-
-var multiplier = 2;
-
+var multiplier = 1.81818181818;
 var multiplier2 = 1;
-
+var reset2 = 0;
 var price;
-
 var songtitle, variable2;
-
 var readyfornextlevel = 0;
-
 var chatmessage1, chatmessage2, chatmessage3, chatmessage4, chatmessage5, multipliercost;
-
 var firstPlace, secondPlace, thirdPlace, fourthPlace, name1, name2, name3, name4;
-
 var chatphase = 1;
-
+var reduceMoney = 0;
 var gameended = "";
-
 var oks = 0;
-
 var moneyperquestionnum = 10;
-
 let sel;
 
 function preload(){
@@ -174,27 +152,6 @@ function preload(){
   playsound8 = loadSound("sound/playsound8.mp3");
   clapsound = loadSound("sound/clap.wav");
 
-  a1 = loadImage("images/2.png");
-  a2 = loadImage("images/3.png");
-  a3 = loadImage("images/4.png");
-  a4 = loadImage("images/5.png");
-  a5 = loadImage("images/6.png");
-  a6 = loadImage("images/7.png");
-  a7 = loadImage("images/8.png");
-  a8 = loadImage("images/9.png");
-  a9 = loadImage("images/10.png");
-  a10 = loadImage("images/11.png");
-  a11 = loadImage("images/12.png");
-  a12 = loadImage("images/13.png");
-  a13 = loadImage("images/14.png");
-  a14 = loadImage("images/15.png");
-  a15 = loadImage("images/16.png");
-  a16 = loadImage("images/17.png");
-  a17 = loadImage("images/18.png");
-  a18 = loadImage("images/19.png");
-  a19 = loadImage("images/1.png");
-  a20 = loadImage("images/0.png");
-
   backimg = loadImage("images/bg.jpg");
 
   tableimg = loadImage("images/tablebg.png");
@@ -246,8 +203,9 @@ function draw(){
   game.getName3();
   game.getName4();
 
+
   if(gameended!==""&&oks < 3){
-          swal({ title: `Game Ended`, text: gameended, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/waving.jpeg", imageSize: "306x220", confirmButtonText: "Ok", },    function(isConfirm) {
+          swal({ confirmButtonColor: '#8CD4F5', title: `Game Ended`, text: gameended, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/waving.jpeg", imageSize: "306x220", confirmButtonText: "Ok", },    function(isConfirm) {
             if (isConfirm) {
               Player.updateOks(oks+1);
 location.reload();
@@ -256,10 +214,11 @@ location.reload();
 
 if(alert === 1 && tries11 === 2){
   tries11 = 1;
-  swal({ title: 'You Are Frozen',
-  text: "You can return to cooking in a couple moments, when the food gets unlocked.", 
+  tries17 = 1;
+  swal({ confirmButtonColor: '#8CD4F5', title: 'You Are Frozen',
+  text: "You can return to cooking in a couple moments.", 
   imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
-  imageSize: "200x200", 
+imageSize: "200x200",
   confirmButtonText: "Ok", });
 }
 
@@ -275,6 +234,7 @@ if(gameState === 3){
     if(frameCount%300 === 0){
       Player.updateFreezeAlert(0);
       game.update(1);
+      Player.updateUnfrozen(1);
     }
   }
 
@@ -292,7 +252,7 @@ if(gameState === 0 && tries6 === 2 && playerCount!==4&&gameState!==1){
 }
 
 /*if(alert === 1){
-  swal({ title: 'You Are Frozen',
+  swal({ confirmButtonColor: '#8CD4F5', title: 'You Are Frozen',
   text: "You can return to cooking in 10 seconds.", 
   imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/frozen.png", 
   imageSize: "200x200", 
@@ -303,7 +263,7 @@ if(gameState === 0 && tries6 === 2 && playerCount!==4&&gameState!==1){
   if(frameCount%300 === 0 && w === 1){
     game.update(0);
     w = 0;
-    swal({ title: 'Click The Button',
+    swal({ confirmButtonColor: '#8CD4F5', title: 'Click The Button',
     text: "You can resume cooking now!", 
     imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/thumbsup.png", 
     imageSize: "150x150", 
@@ -326,7 +286,7 @@ if(gameState === 0&&oks === 3){
   Player.updateOks(0);
 }
 
-if(frameCount%300 === 0 && variable === 1){
+if(frameCount%framecountnumber === 0 && variable === 1){
   tries4 = 1;
 }
 
@@ -337,7 +297,7 @@ if(tries4 === 1){
 }
 
 if(paused==="false"){
-if(gameState === 1){
+if(gameState === 1||gameState === 3){
 if(gameState2 === 2){
   if(frameCount%30 === 0){
     player.seconds = player.seconds+1;
@@ -363,7 +323,7 @@ if(gameState2 === 2){
       tries7 = 1;
     swal(
       {
-        title: `Level 1`,
+        confirmButtonColor: '#8CD4F5', title: `Level 1`,
         text: "Your goal is to get $"+target+".00 before anyone else. Good luck!",
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",
@@ -418,7 +378,7 @@ function spawnCustomers(){
     }
     currentOrderCheck();
     customer.depth = 1;
-    customer.lifetime = 200;
+    customer.lifetime = framecountnumber + 100;
     customerGroup.add(customer);
   }
 }
@@ -642,6 +602,16 @@ applepie.scale = displayWidth/4800;
     if (keyCode === 36 && gameState === 0) {
       form.enter();
     }
+    if (keyCode === 13) {
+      if(gameState === 1 || gameState === 3){
+      form.validate();
+      }
+    }
+    if (keyCode === 36) {
+      if(gameState === 1 || gameState === 3){
+        form.validate();
+        }    
+      }
   }
 
   function currentOrderCheck(){
@@ -763,15 +733,15 @@ applepie.scale = displayWidth/4800;
   }
 
   function showTutorial() {
-    swal(
+   swal(
       {
-        title: `Tutorial`,
+        confirmButtonColor: '#8CD4F5', title: `Tutorial`,
         text: tutorialtext,
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
         imageSize: "365x171",
         confirmButtonText: "Start Playing"
-      },
+      }
     );
   }
 
@@ -797,10 +767,16 @@ deliveryremovalnumber = deliveryremovalnumber/1.15;
     tries5 = 2;
     tries8 = 2;
     tries12 = 2;
+    Player.updateFreezeAlert(0);
+    Player.updateUnfrozen(0);
+    Player.updateReduceMoney(0);
+    Player.updateReset(0);
+    moneyperquestionnum = 10;
+    multiplier2 = 1;
     form.showMuteAndUnmute();
     swal(
       {
-        title: `Level `+levelnumber,
+        confirmButtonColor: '#8CD4F5', title: `Level `+levelnumber,
         text: "Your goal is to get $"+target+".00 before anyone else. Good luck!",
         imageUrl:
           "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/nextlevel.gif",

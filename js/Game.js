@@ -120,6 +120,49 @@ player.getFourthPlace();
 player.getGameEnded();
 player.getOks();
 player.getPaused();
+player.getReduceMoney();
+player.getReset();
+player.getUnfrozen();
+player.getTime1();
+player.getTime2();
+player.getTime3();
+player.getTime4();
+
+if(reduceMoney === 1&&tries13 === 2){
+  tries13 = 1;
+  tries16 = 1;
+  if(player.delivery <= target/2){
+    player.delivery = player.delivery + player.delivery/4;
+  } else{
+    player.delivery = player.delivery - player.delivery/4;
+  }
+}
+
+if(readyforunfrozen === 1 && tries14 === 2){
+  tries14 = 1;
+  swal({ confirmButtonColor: '#8CD4F5', title: 'Click The Button',
+  text: "You can resume cooking now!", 
+  imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/thumbsup.png", 
+  imageSize: "150x150", 
+  confirmButtonText: "Ok", });
+}
+
+if(reset2 === 1&&tries15 === 2){
+  if(t === "pending"){
+  tries15 = 1;
+  player.delivery = target/2;
+  swal(
+    {
+      confirmButtonColor: '#8CD4F5', title: `Your Money Got Reset`,
+      text: "Don't worry! It's just a powerup after all! Go get 'em, tiger",
+      imageUrl:
+        "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/tutorial.jpeg",
+        imageSize: "365x171",
+      confirmButtonText: "Start Playing"
+    },
+  );
+  }
+}
 
 if(allPlayers !== undefined){
   image(tableimg, 0, 0, displayWidth, displayHeight); 
@@ -209,12 +252,11 @@ if(allPlayers !== undefined){
 
       if(paused === "false"){
         form.hidePlay();
-        customerGroup.setLifetimeEach(150);
       }
       
       if(paused === "true"){
         form.hidePause();
-        customerGroup.setLifetimeEach(-1);
+        customerGroup.setLifetimeEach(500);
       }      
       if(player.index!= null){
 if(paused === "false"&&gameState2 === 2){
@@ -225,7 +267,7 @@ if(paused === "false"&&gameState2 === 2){
       if(gameState === 3){
         if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
           swal({
-            title: `You Are Frozen`,
+            confirmButtonColor: '#8CD4F5', title: `You Are Frozen`,
             text: "You cannot perform any actions until you are unfrozen.",
             type: "error",
             confirmButtonText: "Ok",
@@ -470,9 +512,9 @@ if(gameState !== 3){
       }else if (paused === "true"){
         if(mousePressedOver(pizza)||mousePressedOver(burger)||mousePressedOver(burrito)||mousePressedOver(taco)||mousePressedOver(fries)||mousePressedOver(spaghetti)||mousePressedOver(bread)||mousePressedOver(maccheese)||mousePressedOver(nachos)||mousePressedOver(sprite)||mousePressedOver(coke)||mousePressedOver(fanta)||mousePressedOver(gingerale)||mousePressedOver(lemonade)||mousePressedOver(fruitpunch)||mousePressedOver(orangejuice)||mousePressedOver(applejuice)||mousePressedOver(water)||mousePressedOver(cookie)||mousePressedOver(muffin)||mousePressedOver(cake)||mousePressedOver(applepie)||mousePressedOver(pudding)||mousePressedOver(brownie)||mousePressedOver(icecream)){
           swal({
-            title: `The Game Is Paused`,
+            confirmButtonColor: '#8CD4F5', title: `The Game Is Paused`,
             text: "You cannot perform any actions until the game is resumed.",
-            type: "error",
+           // type: "error",
             confirmButtonText: "Ok",
           }
             );
@@ -501,7 +543,7 @@ if(gameState !== 3){
         if(muted === 0){
           rank4sound.play();
           }
-          swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+          swal({ confirmButtonColor: '#8CD4F5', title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageWidth: 150, imageHeight: 150, confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
             if (isConfirm) {
               tries9 = 2;
               Player.updateReadiness(readyfornextlevel + 1);
@@ -533,7 +575,7 @@ if(gameState !== 3){
         rank1sound.play();
         }
                 Player.updateChefsAtEnd(player.rank);       
-      swal({ title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ confirmButtonColor: '#8CD4F5', title: `1st Place!`, text: "Excellent cooking! You're at the top of the charts! We've spotted a future chef! Please wait for others to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageWidth: 150, imageHeight: 150, confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           message2 = "Please wait for others to finish.";
           tries9 = 2;
@@ -550,7 +592,7 @@ player.getReadiness();
       rank2sound.play();
       }
       Player.updateChefsAtEnd(player.rank);
-      swal({ title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ confirmButtonColor: '#8CD4F5', title: `2nd Place!`, text: "Nice cooking! You're almost there! Please wait for another person to finish.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageWidth: 150, imageHeight: 150, confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {      
           message2 = "Please wait for another person to finish.";
           tries9 = 2;
@@ -562,7 +604,7 @@ player.getReadiness();
       rank3sound.play();
       }
       Player.updateChefsAtEnd(player.rank);
-      swal({ title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ confirmButtonColor: '#8CD4F5', title: `3rd Place`, text: "Okay cooking... you have the potential to do MUCH better.", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageWidth: 150, imageHeight: 150, confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           tries9 = 2;
           Player.updateReadiness(readyfornextlevel + 1);
@@ -572,7 +614,7 @@ player.getReadiness();
       if(muted === 0){
       rank4sound.play();
       }
-      swal({ title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+      swal({ confirmButtonColor: '#8CD4F5', title: `Last Place`, text: "Your cooking can improve. With practice, you can become an expert. Better luck next time!", imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageWidth: 150, imageHeight: 150, confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
         if (isConfirm) {
           tries9 = 2;
           Player.updateReadiness(readyfornextlevel + 1);
@@ -597,36 +639,45 @@ player.getReadiness();
     if(player.rank === 1){
               Player.updateChefsAtEnd(player.rank);       
               Player.updateFirstPlace(player.name);
+              Player.updateTime1(player.hours+":"+player.minutes+":"+player.seconds);
               result = 1;
               if(muted === 0){
                 clapsound.play();
                 }
-              swal({
-                title: `You Reached The Target!`,
-                text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
-                type: "success",
-                confirmButtonText: "Ok",
-              },    function(isConfirm) {
-                if (isConfirm) {
-                  message2 = "Please wait for others to finish.";
-                }});  } else if (player.rank === 2){
+                swal(
+                  {
+                    confirmButtonColor: '#8CD4F5', title: `You Reached The Target!`,
+                    text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
+                    imageUrl:
+                      "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/crossingfinishline.jpeg",
+                      imageSize: "255x255",
+                    confirmButtonText: "Ok"
+                  },    function(isConfirm) {
+            if (isConfirm) {
+                      message2 = "Please wait for others to finish.";
+                    }});   } else if (player.rank === 2){
     Player.updateChefsAtEnd(player.rank);
     Player.updateSecondPlace(player.name);
+    Player.updateTime2(player.hours+":"+player.minutes+":"+player.seconds);
     result = 2;
     if(muted === 0){
       clapsound.play();
       }
-      swal({
-        title: `You Reached The Target!`,
-        text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
-        type: "success",
-        confirmButtonText: "Ok",
-      },    function(isConfirm) {
-        if (isConfirm) {
-          message2 = "Please wait for others to finish.";
-        }});  } else if (player.rank === 3){
+      swal(
+        {
+          confirmButtonColor: '#8CD4F5', title: `You Reached The Target!`,
+          text: "Excellent cooking! We've spotted a future chef! Please wait for others to finish.",
+          imageUrl:
+            "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/crossingfinishline.jpeg",
+            imageSize: "255x255",
+          confirmButtonText: "Ok"
+        },    function(isConfirm) {
+          if (isConfirm) {
+            message2 = "Please wait for others to finish.";
+          }});  } else if (player.rank === 3){
     Player.updateChefsAtEnd(player.rank);
     Player.updateThirdPlace(player.name);
+    Player.updateTime3(player.hours+":"+player.minutes+":"+player.seconds);
     result = 3;
   } else{
     if(muted === 0){
@@ -650,6 +701,7 @@ player.getReadiness();
     customerGroup.destroyEach();
   gameState2 = 1;
   Player.updateFourthPlace(player.name);
+  Player.updateTime4(player.hours+":"+player.minutes+":"+player.seconds);
   result = 4;
       }
 
@@ -658,7 +710,7 @@ if(chefsAtEnd === 3 && tries12 === 2){
     if(muted === 0){
       rank1sound.play();
       }
-    swal({ title: `Results`, text: `1st Place: You (Chef ${firstPlace})${"\n"}2nd Place: Chef ${secondPlace}${"\n"}3rd Place: Chef ${thirdPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+    swal({ confirmButtonColor: '#8CD4F5', title: `Results`, text: `1st Place: You (${time1} - Finished)${"\n"}2nd Place: Chef ${secondPlace} (${time2} - Finished)${"\n"}3rd Place: Chef ${thirdPlace} (${time3} - Finished)${"\n"}Honorable Mention: Chef ${fourthPlace} (${time4} - Unfinished)`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/gold.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
         message2 = "Please wait for others to be ready for the next level.";
@@ -674,7 +726,7 @@ if(chefsAtEnd === 3 && tries12 === 2){
     if(muted === 0){
       rank2sound.play();
       }
-    swal({ title: `Results`, text: `2nd Place: You (Chef ${secondPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}3rd Place: Chef ${thirdPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+    swal({ confirmButtonColor: '#8CD4F5', title: `Results`, text: `2nd Place: You (${time2} - Finished)${"\n"}1st Place: Chef ${firstPlace} (${time1} - Finished)${"\n"}3rd Place: Chef ${thirdPlace} (${time3} - Finished)${"\n"}Honorable Mention: Chef ${fourthPlace} (${time4} - Unfinished)`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/silver.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
         message2 = "Please wait for others to be ready for the next level.";
@@ -685,7 +737,7 @@ if(chefsAtEnd === 3 && tries12 === 2){
     if(muted === 0){
       rank3sound.play();
       }
-    swal({ title: `Results`, text: `3rd Place: You (Chef ${thirdPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}2nd Place: Chef ${secondPlace}${"\n"}Honorable Mention: Chef ${fourthPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+    swal({ confirmButtonColor: '#8CD4F5', title: `Results`, text: `3rd Place: You (${time3} - Finished)${"\n"}1st Place: Chef ${firstPlace} (${time1} - Finished)${"\n"}2nd Place: Chef ${secondPlace} (${time2} - Finished)${"\n"}Honorable Mention: Chef ${fourthPlace} (${time4} - Unfinished)`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/bronze.png", imageSize: "150x150",  confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
         message2 = "Please wait for others to be ready for the next level.";
@@ -696,7 +748,7 @@ if(chefsAtEnd === 3 && tries12 === 2){
     if(muted === 0){
       rank4sound.play();
       }
-    swal({ title: `Results`, text: `Honorable Mention: You (Chef ${fourthPlace})${"\n"}1st Place: Chef ${firstPlace}${"\n"}2nd Place: Chef ${secondPlace}${"\n"}3rd Place: Chef ${thirdPlace}`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
+    swal({ confirmButtonColor: '#8CD4F5', title: `Results`, text: `Honorable Mention: You (${time4} - Unfinished)${"\n"}1st Place: Chef ${firstPlace} (${time1} - Finished)${"\n"}2nd Place: Chef ${secondPlace} (${time2} - Finished)${"\n"}3rd Place: Chef ${thirdPlace} (${time3} - Finished)`, imageUrl: "https://raw.githubusercontent.com/gandhiatharv/Your-Restaurant/main/images/honorablemention.png", imageSize: "150x150", confirmButtonText: "Ready For Next Level", },    function(isConfirm) {
       if (isConfirm) {
         tries9 = 2;
         message2 = "Please wait for others to be ready for the next level.";
